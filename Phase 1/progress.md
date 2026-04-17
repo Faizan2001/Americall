@@ -47,7 +47,7 @@ Do not mark unrelated tasks done.
 | P1-015 | review | Add SEO basics. | Codex | 2026-04-17 | 2026-04-17 | Page titles/descriptions and OG basics added. Sitemap, robots, canonical, schema still needed. |
 | P1-016 | todo | Optimize images and media. |  |  |  | WebP/AVIF for photos, compressed MP3/M4A for audio, lazy loading. |
 | P1-017 | todo | Add accessibility pass. |  |  |  | Keyboard nav, focus states, alt text, labels, color contrast, reduced motion. |
-| P1-018 | todo | Set up Cloudflare Pages deployment docs/config. |  |  |  | Build command likely `npm run build`, output `dist`. |
+| P1-018 | done | Set up Cloudflare Pages deployment docs/config. | Codex | 2026-04-17 | 2026-04-17 | Removed GitHub Pages wiring, documented Cloudflare Pages settings in `americall-site/README.md`, and verified `npm run build`. |
 | P1-019 | review | Verify with local build and screenshots. | Codex | 2026-04-17 | 2026-04-17 | `npm run build` passed. Playwright checked homepage at 1440 desktop and 390 mobile via static server. |
 | P1-020 | todo | Prepare client handoff notes for Phase 1. |  |  |  | Include how updates work, form provider, hosting, and Phase 2 CMS option. |
 

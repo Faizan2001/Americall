@@ -38,6 +38,17 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Cloudflare Pages
+
+Use these settings when connecting this repo to Cloudflare Pages:
+
+- Root directory: `americall-site`
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Production branch: `main`
+
+If Cloudflare asks for the framework preset, choose Astro.
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
