@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { services, stats, testimonials } from '../data/site';
+
+const serviceLoop = [...services, ...services];
+---
+
+<BaseLayout
+	title="Trained Calling Teams For Qualified Appointments"
+	description="Americall helps U.S. service businesses turn call operations into qualified appointments with trained agents, campaign management, and reliable support."
+>
+	<section class="grid-surface relative overflow-hidden bg-ameri-navy text-white">
+		<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+		<div class="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:py-16 lg:min-h-[calc(100vh-73px)] lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
+			<div class="reveal">
+				<p class="inline-flex rounded-md border border-white/15 bg-white/10 px-3 py-1 text-sm font-bold text-white/85 shadow-sm backdrop-blur">
+					30,000+ qualified appointments sent
+				</p>
+				<h1 class="mt-6 max-w-4xl text-3xl font-black leading-tight sm:text-5xl lg:text-6xl">
+					Trained calling teams that turn interest into booked appointments.
+				</h1>
+				<p class="mt-5 max-w-2xl text-base leading-7 text-white/78 sm:mt-6 sm:text-lg sm:leading-8">
+					Americall supports solar, roofing, HVAC, real estate, and home improvement businesses with trained agents, campaign management, CRM support, and appointment-setting operations built around your goals.
+				</p>
+				<div class="mt-9 flex flex-col gap-3 sm:flex-row">
+					<a class="button-motion rounded-md bg-ameri-red px-6 py-3 text-center text-sm font-black text-white shadow-lg shadow-black/20 hover:bg-red-700" href="/contact/">
+						<span>Book a Free Demo</span>
+					</a>
+					<a class="button-motion rounded-md border border-white/25 px-6 py-3 text-center text-sm font-black text-white hover:bg-white hover:text-ameri-navy" href="/services/">
+						<span>View Services</span>
+					</a>
+				</div>
+			</div>
+			<div class="reveal relative">
+				<div class="absolute -left-6 top-8 hidden h-24 w-24 rounded-md border border-white/10 bg-white/5 lg:block"></div>
+				<div class="float-panel relative rounded-md border border-white/12 bg-white p-4 shadow-2xl shadow-black/25 sm:p-6">
+					<img
+						src="/images/americall-logo.jpeg"
+						alt="Americall logo"
+						class="mx-auto h-auto w-full max-w-md rounded-md object-contain"
+						loading="eager"
+					/>
+					<div class="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3">
+						<div class="lift-card rounded-md bg-ameri-soft p-3 text-ameri-navy sm:p-4">
+							<p class="text-xl font-black sm:text-2xl">500+</p>
+							<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Trained agents</p>
+						</div>
+						<div class="lift-card rounded-md bg-ameri-soft p-3 text-ameri-navy sm:p-4">
+							<p class="text-xl font-black sm:text-2xl">12K+</p>
+							<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Confirmed sits</p>
+						</div>
+						<div class="lift-card rounded-md bg-ameri-soft p-3 text-ameri-navy sm:p-4">
+							<p class="text-xl font-black sm:text-2xl">3K+</p>
+							<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Sold deals</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="overflow-hidden bg-white px-5 py-16 sm:py-20 lg:px-8" id="services">
+		<div class="mx-auto max-w-7xl">
+			<div class="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+				<div class="max-w-3xl">
+					<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Services</p>
+					<h2 class="mt-3 text-3xl font-black text-ameri-navy sm:text-4xl">Calling operations built around your sales pipeline.</h2>
+					<p class="mt-4 text-base leading-7 text-ameri-muted sm:text-lg sm:leading-8">
+						From dialing systems to trained agents and confirmation support, Americall helps your team protect time and focus on closing.
+					</p>
+				</div>
+				<a class="button-motion inline-flex w-fit rounded-md border border-ameri-border px-5 py-3 text-sm font-black text-ameri-navy hover:border-ameri-red hover:text-ameri-red" href="/services/">
+					<span>Explore Services</span>
+				</a>
+			</div>
+			<div class="services-marquee reveal mt-12">
+				<div class="services-track py-3">
+					{serviceLoop.map((service, index) => (
+							<article class="lift-card group flex min-h-64 w-[82vw] shrink-0 flex-col rounded-md border border-ameri-border bg-white p-5 hover:border-ameri-red/35 sm:min-h-72 sm:w-[22rem] sm:p-6">
+							<div class="flex items-center justify-between">
+								<div class="grid h-11 w-11 place-items-center rounded-md bg-ameri-navy text-sm font-black text-white transition group-hover:bg-ameri-red">
+									{String((index % services.length) + 1).padStart(2, '0')}
+								</div>
+								<span class="rounded-md bg-ameri-soft px-3 py-1 text-xs font-black uppercase tracking-wide text-ameri-muted">BPO support</span>
+							</div>
+							<h3 class="mt-7 text-xl font-black text-ameri-navy">{service.title}</h3>
+							<p class="mt-3 leading-7 text-ameri-muted">{service.description}</p>
+							<div class="mt-auto pt-6 text-sm font-black text-ameri-red">Built for qualified conversations</div>
+						</article>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="soft-grid bg-ameri-soft px-5 py-16 sm:py-20 lg:px-8">
+		<div class="mx-auto max-w-7xl">
+			<div class="reveal mx-auto max-w-3xl text-center">
+				<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Proof</p>
+				<h2 class="mt-3 text-3xl font-black text-ameri-navy sm:text-4xl">Proof built through thousands of calls.</h2>
+				<p class="mt-4 text-base leading-7 text-ameri-muted sm:text-lg sm:leading-8">
+					Five years in, Americall has built the team, process, and operating discipline to support growth-focused U.S. businesses.
+				</p>
+			</div>
+			<div class="mt-9 grid gap-3 sm:hidden">
+				{stats.map((stat) => (
+					<details class="rounded-md border border-white bg-white p-4 shadow-sm">
+						<summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+							<div>
+								<p class="text-2xl font-black text-ameri-red">{stat.value}</p>
+								<h3 class="mt-1 text-sm font-black text-ameri-navy">{stat.label}</h3>
+							</div>
+							<span class="faq-chevron grid h-5 w-5 shrink-0 place-items-center text-ameri-navy" aria-hidden="true">
+								<svg viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+									<path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</span>
+						</summary>
+						<div class="faq-answer">
+							<div>
+								<p class="pt-3 text-sm leading-6 text-ameri-muted">{stat.description}</p>
+							</div>
+						</div>
+					</details>
+				))}
+			</div>
+			<div class="mt-12 hidden gap-5 sm:grid md:grid-cols-2 lg:grid-cols-3">
+				{stats.map((stat) => (
+					<article class="reveal lift-card rounded-md border border-white bg-white p-7">
+						<p class="text-4xl font-black text-ameri-red">{stat.value}</p>
+						<h3 class="mt-3 text-lg font-black text-ameri-navy">{stat.label}</h3>
+						<p class="mt-3 leading-7 text-ameri-muted">{stat.description}</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="soft-grid relative overflow-hidden bg-white px-5 py-14 sm:py-20 lg:px-8">
+		<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ameri-border to-transparent"></div>
+		<div class="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+			<div class="reveal max-w-2xl">
+				<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Trust</p>
+				<h2 class="mt-3 text-3xl font-black leading-tight text-ameri-navy sm:text-4xl">
+					Less chasing. More sales-ready appointments.
+				</h2>
+				<p class="mt-5 text-base leading-7 text-ameri-muted sm:text-lg sm:leading-8">
+					Americall handles the calling, qualification, confirmation, and handoff work before your sales team arrives, so every appointment starts with better context.
+				</p>
+				<div class="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
+					<div class="rounded-md border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
+						<p class="text-xl font-black text-ameri-red sm:text-2xl">30K+</p>
+						<p class="mt-1 text-[0.63rem] font-black uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Appointments sent</p>
+					</div>
+					<div class="rounded-md border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
+						<p class="text-xl font-black text-ameri-red sm:text-2xl">12K+</p>
+						<p class="mt-1 text-[0.63rem] font-black uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Confirmed sit-ins</p>
+					</div>
+					<div class="rounded-md border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
+						<p class="text-xl font-black text-ameri-red sm:text-2xl">5/5</p>
+						<p class="mt-1 text-[0.63rem] font-black uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Client feedback</p>
+					</div>
+				</div>
+				<div class="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-row">
+					<a class="button-motion rounded-md bg-ameri-red px-6 py-3 text-center text-sm font-black text-white shadow-lg shadow-ameri-red/20 hover:bg-red-700" href="/contact/">
+						<span class="sm:hidden">Book Demo</span>
+						<span class="hidden sm:inline">Start the Conversation</span>
+					</a>
+					<a class="button-motion rounded-md border border-ameri-border bg-white px-6 py-3 text-center text-sm font-black text-ameri-navy hover:border-ameri-red hover:text-ameri-red" href="/services/">
+						<span>See the Process</span>
+					</a>
+				</div>
+			</div>
+			<div class="-mx-5 flex snap-x gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:gap-5 md:overflow-visible md:px-0 md:pb-0 md:grid-cols-2">
+				{testimonials.map((testimonial, index) => (
+					<figure class={`reveal lift-card relative min-w-[82vw] snap-start overflow-hidden rounded-md border border-ameri-border bg-white p-5 shadow-sm hover:border-ameri-red/35 sm:p-7 md:min-w-0 ${index === 1 ? 'md:mt-10' : ''}`}>
+						<div class="absolute inset-x-0 top-0 h-1 bg-ameri-red"></div>
+						<div class="flex items-center justify-between gap-4">
+							<div class="flex gap-1 text-ameri-red" aria-label="5 out of 5 rating">
+								<span aria-hidden="true">&#9733;</span>
+								<span aria-hidden="true">&#9733;</span>
+								<span aria-hidden="true">&#9733;</span>
+								<span aria-hidden="true">&#9733;</span>
+								<span aria-hidden="true">&#9733;</span>
+							</div>
+							<span class="rounded-md bg-ameri-soft px-3 py-1 text-xs font-black uppercase tracking-wide text-ameri-muted">Verified client</span>
+						</div>
+						<blockquote class="mt-6 text-base font-bold leading-7 text-ameri-navy sm:text-lg sm:leading-8">
+							<span class="text-4xl leading-none text-ameri-red" aria-hidden="true">&ldquo;</span>{testimonial.quote}
+						</blockquote>
+						<figcaption class="mt-7 flex items-center gap-4 border-t border-ameri-border pt-5">
+							<div class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-ameri-navy text-sm font-black text-white">
+								{testimonial.name.split(' ').map((part) => part[0]).join('')}
+							</div>
+							<div>
+								<p class="font-black text-ameri-navy">{testimonial.name}</p>
+								<p class="mt-1 text-sm leading-6 text-ameri-muted">{testimonial.role}</p>
+							</div>
+						</figcaption>
+					</figure>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="grid-surface bg-ameri-navy px-5 py-16 text-white sm:py-20 lg:px-8">
+		<div class="reveal mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_auto]">
+			<div>
+				<p class="text-sm font-black uppercase tracking-wide text-white/70">Book a demo</p>
+				<h2 class="mt-3 text-3xl font-black sm:text-4xl">Let's build a calling system that actually works.</h2>
+				<p class="mt-4 max-w-2xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
+					In a short demo call, Americall can walk you through how its calling, qualification, confirmation, and support process can fit your sales operation.
+				</p>
+			</div>
+			<a class="button-motion rounded-md bg-ameri-red px-7 py-4 text-center text-sm font-black text-white hover:bg-red-700" href="/contact/">
+				<span>Book a Free Demo</span>
+			</a>
+		</div>
+	</section>
+</BaseLayout>

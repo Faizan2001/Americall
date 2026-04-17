@@ -1,0 +1,245 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Americall home" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: AmeriCall
+      - navigation "Main navigation" [ref=e7]:
+        - generic [ref=e8]:
+          - link "Home" [ref=e9] [cursor=pointer]:
+            - /url: /
+          - link "Services" [ref=e10] [cursor=pointer]:
+            - /url: /services/
+          - link "About Us" [ref=e11] [cursor=pointer]:
+            - /url: /about/
+          - link "FAQ" [ref=e12] [cursor=pointer]:
+            - /url: /faq/
+          - link "Contact Us" [ref=e13] [cursor=pointer]:
+            - /url: /contact/
+      - link "Book a Free Demo" [ref=e14] [cursor=pointer]:
+        - /url: /contact/
+        - generic [ref=e15]: Book a Free Demo
+  - main [ref=e16]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - paragraph [ref=e21]: 30,000+ qualified appointments sent
+        - heading "Trained calling teams that turn interest into booked appointments." [level=1] [ref=e22]
+        - paragraph [ref=e23]: Americall supports solar, roofing, HVAC, real estate, and home improvement businesses with trained agents, campaign management, CRM support, and appointment-setting operations built around your goals.
+        - generic [ref=e24]:
+          - link "Book a Free Demo" [ref=e25] [cursor=pointer]:
+            - /url: /contact/
+          - link "View Services" [ref=e26] [cursor=pointer]:
+            - /url: /services/
+      - generic [ref=e29]:
+        - img "Americall logo" [ref=e30]
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - paragraph [ref=e33]: 500+
+            - paragraph [ref=e34]: Trained agents
+          - generic [ref=e35]:
+            - paragraph [ref=e36]: 12K+
+            - paragraph [ref=e37]: Confirmed sits
+          - generic [ref=e38]:
+            - paragraph [ref=e39]: 3K+
+            - paragraph [ref=e40]: Sold deals
+    - generic [ref=e42]:
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - paragraph [ref=e45]: Services
+          - heading "Calling operations built around your sales pipeline." [level=2] [ref=e46]
+          - paragraph [ref=e47]: From dialing systems to trained agents and confirmation support, Americall helps your team protect time and focus on closing.
+        - link "Explore Services" [ref=e48] [cursor=pointer]:
+          - /url: /services/
+          - generic [ref=e49]: Explore Services
+      - generic [ref=e51]:
+        - article [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: "01"
+            - generic [ref=e55]: BPO support
+          - heading "Dialer And CRM Solutions" [level=3] [ref=e56]
+          - paragraph [ref=e57]: Keep campaigns organized with dialer and CRM support that helps your team track conversations, follow-ups, outcomes, and appointment flow.
+          - generic [ref=e58]: Built for qualified conversations
+        - article [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: "02"
+            - generic [ref=e62]: BPO support
+          - heading "Agent Recruitment And Training" [level=3] [ref=e63]
+          - paragraph [ref=e64]: Americall recruits and trains agents to understand your offer, qualify prospects clearly, and represent your business with consistency.
+          - generic [ref=e65]: Built for qualified conversations
+        - article [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: "03"
+            - generic [ref=e69]: BPO support
+          - heading "Strategic Campaign Management" [level=3] [ref=e70]
+          - paragraph [ref=e71]: From call strategy to daily performance checks, campaigns are managed around your industry, sales goals, and appointment quality.
+          - generic [ref=e72]: Built for qualified conversations
+        - article [ref=e73]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: "04"
+            - generic [ref=e76]: BPO support
+          - heading "Dedicated Administrative Support" [level=3] [ref=e77]
+          - paragraph [ref=e78]: Behind every campaign, support teams help with confirmations, quality checks, reporting, coordination, and client communication.
+          - generic [ref=e79]: Built for qualified conversations
+        - article [ref=e80]:
+          - generic [ref=e81]:
+            - generic [ref=e82]: "01"
+            - generic [ref=e83]: BPO support
+          - heading "Dialer And CRM Solutions" [level=3] [ref=e84]
+          - paragraph [ref=e85]: Keep campaigns organized with dialer and CRM support that helps your team track conversations, follow-ups, outcomes, and appointment flow.
+          - generic [ref=e86]: Built for qualified conversations
+        - article [ref=e87]:
+          - generic [ref=e88]:
+            - generic [ref=e89]: "02"
+            - generic [ref=e90]: BPO support
+          - heading "Agent Recruitment And Training" [level=3] [ref=e91]
+          - paragraph [ref=e92]: Americall recruits and trains agents to understand your offer, qualify prospects clearly, and represent your business with consistency.
+          - generic [ref=e93]: Built for qualified conversations
+        - article [ref=e94]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: "03"
+            - generic [ref=e97]: BPO support
+          - heading "Strategic Campaign Management" [level=3] [ref=e98]
+          - paragraph [ref=e99]: From call strategy to daily performance checks, campaigns are managed around your industry, sales goals, and appointment quality.
+          - generic [ref=e100]: Built for qualified conversations
+        - article [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: "04"
+            - generic [ref=e104]: BPO support
+          - heading "Dedicated Administrative Support" [level=3] [ref=e105]
+          - paragraph [ref=e106]: Behind every campaign, support teams help with confirmations, quality checks, reporting, coordination, and client communication.
+          - generic [ref=e107]: Built for qualified conversations
+    - generic [ref=e109]:
+      - generic [ref=e110]:
+        - paragraph [ref=e111]: Proof
+        - heading "Proof built through thousands of calls." [level=2] [ref=e112]
+        - paragraph [ref=e113]: Five years in, Americall has built the team, process, and operating discipline to support growth-focused U.S. businesses.
+      - generic [ref=e114]:
+        - article [ref=e115]:
+          - paragraph [ref=e116]: 100+
+          - heading "Satisfied Clients Served" [level=3] [ref=e117]
+          - paragraph [ref=e118]: Trusted by clients across the U.S., including solar, roofing, HVAC, and a wide range of home improvement businesses.
+        - article [ref=e119]:
+          - paragraph [ref=e120]: 500+
+          - heading "Agents Recruited And Trained" [level=3] [ref=e121]
+          - paragraph [ref=e122]: An in-house team of trained agents supports inbound and outbound calling with sales approaches shaped around each client industry.
+        - article [ref=e123]:
+          - paragraph [ref=e124]: 10,000+
+          - heading "Hours Logged" [level=3] [ref=e125]
+          - paragraph [ref=e126]: Hours across agents, client managers, operations, quality control, and confirmations teams, all invested in better campaign outcomes.
+        - article [ref=e127]:
+          - paragraph [ref=e128]: 30,000+
+          - heading "Qualified Appointments Sent" [level=3] [ref=e129]
+          - paragraph [ref=e130]: Qualified appointments generated for U.S. businesses through trained agents and industry-specific call strategies.
+        - article [ref=e131]:
+          - paragraph [ref=e132]: 12,000+
+          - heading "Confirmed Customer Sit Ins" [level=3] [ref=e133]
+          - paragraph [ref=e134]: Confirmed sit-ins with prospects who showed up, listened, and were ready to engage.
+        - article [ref=e135]:
+          - paragraph [ref=e136]: 3,000+
+          - heading "Sold Deals And Installs" [level=3] [ref=e137]
+          - paragraph [ref=e138]: Appointments moved through to sold deals and installs, connecting calling operations to measurable business outcomes.
+    - generic [ref=e141]:
+      - generic [ref=e142]:
+        - paragraph [ref=e143]: Trust
+        - heading "Less chasing. More sales-ready appointments." [level=2] [ref=e144]
+        - paragraph [ref=e145]: Americall handles the calling, qualification, confirmation, and handoff work before your sales team arrives, so every appointment starts with better context.
+        - generic [ref=e146]:
+          - generic [ref=e147]:
+            - paragraph [ref=e148]: 30K+
+            - paragraph [ref=e149]: Appointments sent
+          - generic [ref=e150]:
+            - paragraph [ref=e151]: 12K+
+            - paragraph [ref=e152]: Confirmed sit-ins
+          - generic [ref=e153]:
+            - paragraph [ref=e154]: 5/5
+            - paragraph [ref=e155]: Client feedback
+        - generic [ref=e156]:
+          - link "Start the Conversation" [ref=e157] [cursor=pointer]:
+            - /url: /contact/
+          - link "See the Process" [ref=e158] [cursor=pointer]:
+            - /url: /services/
+      - generic [ref=e159]:
+        - figure "MP Marquis P. Owner, Jusi Power LLC" [ref=e160]:
+          - generic [ref=e162]:
+            - generic "5 out of 5 rating" [ref=e163]:
+              - generic [ref=e164]: ★
+              - generic [ref=e165]: ★
+              - generic [ref=e166]: ★
+              - generic [ref=e167]: ★
+              - generic [ref=e168]: ★
+            - generic [ref=e169]: Verified client
+          - blockquote [ref=e170]: “What stood out was the attention behind every appointment. Americall took time to understand our business, and it showed in the quality of prospects we sat with.
+          - generic [ref=e171]:
+            - generic [ref=e172]: MP
+            - generic [ref=e173]:
+              - paragraph [ref=e174]: Marquis P.
+              - paragraph [ref=e175]: Owner, Jusi Power LLC
+        - figure "SL Samuel L. Owner, Your Home Improved LLC" [ref=e176]:
+          - generic [ref=e178]:
+            - generic "5 out of 5 rating" [ref=e179]:
+              - generic [ref=e180]: ★
+              - generic [ref=e181]: ★
+              - generic [ref=e182]: ★
+              - generic [ref=e183]: ★
+              - generic [ref=e184]: ★
+            - generic [ref=e185]: Verified client
+          - blockquote [ref=e186]: “They have been a reliable extension of our team. The appointments are with homeowners who are actually interested, and every lead comes with context.
+          - generic [ref=e187]:
+            - generic [ref=e188]: SL
+            - generic [ref=e189]:
+              - paragraph [ref=e190]: Samuel L.
+              - paragraph [ref=e191]: Owner, Your Home Improved LLC
+    - generic [ref=e193]:
+      - generic [ref=e194]:
+        - paragraph [ref=e195]: Book a demo
+        - heading "Let's build a calling system that actually works." [level=2] [ref=e196]
+        - paragraph [ref=e197]: In a short demo call, Americall can walk you through how its calling, qualification, confirmation, and support process can fit your sales operation.
+      - link "Book a Free Demo" [ref=e198] [cursor=pointer]:
+        - /url: /contact/
+  - contentinfo [ref=e199]:
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - paragraph [ref=e202]: Americall, Inc.
+        - paragraph [ref=e203]: Americall provides trained calling teams, appointment-setting support, campaign management, and call operations for U.S. service businesses.
+      - generic [ref=e204]:
+        - paragraph [ref=e205]: Contact
+        - list [ref=e206]:
+          - listitem [ref=e207]: 101-43 105th St Ozone Park, New York, NY 11416, USA
+          - listitem [ref=e208]:
+            - link "info@americall.io" [ref=e209] [cursor=pointer]:
+              - /url: mailto:info@americall.io
+          - listitem [ref=e210]: www.americall.io
+      - generic [ref=e211]:
+        - paragraph [ref=e212]: Pages
+        - list [ref=e213]:
+          - listitem [ref=e214]:
+            - link "Home" [ref=e215] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e216]:
+            - link "Services" [ref=e217] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=e218]:
+            - link "About Us" [ref=e219] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=e220]:
+            - link "FAQ" [ref=e221] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=e222]:
+            - link "Contact Us" [ref=e223] [cursor=pointer]:
+              - /url: /contact/
+    - generic [ref=e224]: © 2026 Americall, Inc. All rights reserved.
+  - generic [ref=e227]:
+    - button "Menu" [ref=e228]:
+      - img [ref=e230]
+      - generic: Menu
+    - button "Inspect" [ref=e234]:
+      - img [ref=e236]
+      - generic: Inspect
+    - button "Audit" [ref=e238]:
+      - img [ref=e240]
+      - generic: Audit
+    - button "Settings" [ref=e243]:
+      - img [ref=e245]
+      - generic: Settings

@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+@theme {
+	--color-ameri-navy: #02122c;
+	--color-ameri-ink: #162033;
+	--color-ameri-muted: #5b6472;
+	--color-ameri-border: #d8dee8;
+	--color-ameri-soft: #f5f7fa;
+	--color-ameri-red: #d71920;
+	--font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--shadow-soft: 0 20px 60px rgb(2 18 44 / 0.12);
+	--shadow-lift: 0 28px 80px rgb(2 18 44 / 0.18);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-sans);
+	color: var(--color-ameri-ink);
+	background: #ffffff;
+}
+
+a {
+	text-decoration: none;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+:focus-visible {
+	outline: 3px solid color-mix(in srgb, var(--color-ameri-red) 70%, white);
+	outline-offset: 3px;
+}
+
+.grid-surface {
+	background-image:
+		linear-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px),
+		linear-gradient(90deg, rgb(255 255 255 / 0.055) 1px, transparent 1px);
+	background-size: 56px 56px;
+}
+
+.soft-grid {
+	background-image:
+		linear-gradient(rgb(2 18 44 / 0.045) 1px, transparent 1px),
+		linear-gradient(90deg, rgb(2 18 44 / 0.045) 1px, transparent 1px);
+	background-size: 48px 48px;
+}
+
+.reveal {
+	opacity: 0;
+	transform: translateY(22px);
+	transition:
+		opacity 680ms ease,
+		transform 680ms ease;
+	transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.lift-card {
+	box-shadow: 0 1px 2px rgb(2 18 44 / 0.05);
+	transition:
+		transform 220ms ease,
+		box-shadow 220ms ease,
+		border-color 220ms ease,
+		background-color 220ms ease;
+}
+
+.lift-card:hover {
+	transform: translateY(-6px);
+	box-shadow: var(--shadow-soft);
+}
+
+.button-motion {
+	position: relative;
+	overflow: hidden;
+	transition:
+		transform 180ms ease,
+		box-shadow 180ms ease,
+		background-color 180ms ease,
+		color 180ms ease,
+		border-color 180ms ease;
+}
+
+.button-motion:hover {
+	transform: translateY(-2px);
+}
+
+.button-motion::after {
+	position: absolute;
+	inset: 0;
+	content: "";
+	background: linear-gradient(110deg, transparent 20%, rgb(255 255 255 / 0.28) 45%, transparent 70%);
+	transform: translateX(-120%);
+	transition: transform 520ms ease;
+}
+
+.button-motion:hover::after {
+	transform: translateX(120%);
+}
+
+.button-motion > span {
+	position: relative;
+	z-index: 1;
+}
+
+.brand-wordmark {
+	font-family: "Aptos Display", "Segoe UI Variable Display", "Segoe UI", Helvetica, Arial, sans-serif;
+	font-weight: 850;
+	letter-spacing: -0.055em;
+	line-height: 1;
+}
+
+.nav-link {
+	position: relative;
+}
+
+.nav-link::after {
+	position: absolute;
+	right: 0;
+	bottom: -8px;
+	left: 0;
+	height: 2px;
+	content: "";
+	background: var(--color-ameri-red);
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform 180ms ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+	transform: scaleX(1);
+}
+
+.services-marquee {
+	overflow: hidden;
+	mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.services-track {
+	display: flex;
+	width: max-content;
+	gap: 1.25rem;
+	animation: service-marquee 30s linear infinite;
+}
+
+.services-marquee:hover .services-track {
+	animation-play-state: paused;
+}
+
+.faq-answer {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 240ms ease;
+}
+
+details[open] .faq-answer {
+	grid-template-rows: 1fr;
+}
+
+.faq-answer > div {
+	overflow: hidden;
+}
+
+.faq-chevron {
+	transition: transform 220ms ease;
+}
+
+details[open] .faq-chevron {
+	transform: rotate(180deg);
+}
+
+@keyframes service-marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(calc(-50% - 0.625rem));
+	}
+}
+
+@keyframes float-panel {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.float-panel {
+	animation: float-panel 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+
+	.reveal {
+		opacity: 1;
+		transform: none;
+	}
+
+	.float-panel {
+		animation: none;
+	}
+
+	.services-track {
+		transform: none;
+		animation: none;
+	}
+
+	.faq-answer {
+		transition: none;
+	}
+
+	.faq-chevron {
+		transition: none;
+	}
+}

@@ -1,0 +1,81 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - link "Americall home" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e6]: Americall
+    - navigation "Mobile navigation" [ref=e7]:
+      - link "Home" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - link "Services" [ref=e9] [cursor=pointer]:
+        - /url: /services/
+      - link "About Us" [ref=e10] [cursor=pointer]:
+        - /url: /about/
+      - link "FAQ" [ref=e11] [cursor=pointer]:
+        - /url: /faq/
+      - link "Contact Us" [ref=e12] [cursor=pointer]:
+        - /url: /contact/
+  - main [ref=e13]:
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - paragraph [ref=e17]: About Americall
+        - heading "A calling partner built on training, consistency, and follow-through." [level=1] [ref=e18]
+        - paragraph [ref=e19]: Americall supports businesses that need reliable appointment-setting operations, trained agents, confirmation workflows, and campaign support that connects daily calling activity to sales outcomes.
+      - img "Americall eagle headset mark" [ref=e20]
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - paragraph [ref=e24]: Agent voices
+        - heading "The human side of every campaign." [level=2] [ref=e25]
+        - paragraph [ref=e26]: These are placeholder profiles for now. Replace them with real agent photos, names, quotes, and short voice clips before launch.
+      - generic [ref=e27]:
+        - article [ref=e28]:
+          - generic [ref=e29]: A1
+          - heading "Agent One" [level=3] [ref=e30]
+          - paragraph [ref=e31]: Appointment Setter
+          - paragraph [ref=e32]: "\"Every strong appointment starts with listening carefully.\""
+          - button "Voice clip coming soon" [disabled] [ref=e33]
+        - article [ref=e34]:
+          - generic [ref=e35]: A2
+          - heading "Agent Two" [level=3] [ref=e36]
+          - paragraph [ref=e37]: Confirmation Specialist
+          - paragraph [ref=e38]: "\"Clear confirmation helps every sales team protect its time.\""
+          - button "Voice clip coming soon" [disabled] [ref=e39]
+        - article [ref=e40]:
+          - generic [ref=e41]: A3
+          - heading "Agent Three" [level=3] [ref=e42]
+          - paragraph [ref=e43]: Campaign Support
+          - paragraph [ref=e44]: "\"The details behind each call are what turn activity into outcomes.\""
+          - button "Voice clip coming soon" [disabled] [ref=e45]
+  - contentinfo [ref=e46]:
+    - generic [ref=e47]:
+      - generic [ref=e48]:
+        - paragraph [ref=e49]: Americall, Inc.
+        - paragraph [ref=e50]: Americall provides trained calling teams, appointment-setting support, campaign management, and call operations for U.S. service businesses.
+      - generic [ref=e51]:
+        - paragraph [ref=e52]: Contact
+        - list [ref=e53]:
+          - listitem [ref=e54]: 101-43 105th St Ozone Park, New York, NY 11416, USA
+          - listitem [ref=e55]:
+            - link "info@americall.io" [ref=e56] [cursor=pointer]:
+              - /url: mailto:info@americall.io
+          - listitem [ref=e57]: www.americall.io
+      - generic [ref=e58]:
+        - paragraph [ref=e59]: Pages
+        - list [ref=e60]:
+          - listitem [ref=e61]:
+            - link "Home" [ref=e62] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e63]:
+            - link "Services" [ref=e64] [cursor=pointer]:
+              - /url: /services/
+          - listitem [ref=e65]:
+            - link "About Us" [ref=e66] [cursor=pointer]:
+              - /url: /about/
+          - listitem [ref=e67]:
+            - link "FAQ" [ref=e68] [cursor=pointer]:
+              - /url: /faq/
+          - listitem [ref=e69]:
+            - link "Contact Us" [ref=e70] [cursor=pointer]:
+              - /url: /contact/
+    - generic [ref=e71]: © 2026 Americall, Inc. All rights reserved.

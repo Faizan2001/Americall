@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { services } from '../data/site';
+---
+
+<BaseLayout title="Services" description="Explore Americall calling, appointment-setting, CRM, training, campaign management, and administrative support services.">
+	<section class="soft-grid bg-ameri-soft px-5 py-20 lg:px-8">
+		<div class="reveal mx-auto max-w-7xl">
+			<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Services</p>
+			<h1 class="mt-3 max-w-4xl text-4xl font-black leading-tight text-ameri-navy sm:text-5xl">
+				Call operations support for teams that need qualified conversations.
+			</h1>
+			<p class="mt-5 max-w-3xl text-lg leading-8 text-ameri-muted">
+				Americall combines trained agents, campaign management, CRM coordination, and confirmation support so your sales team can spend more time with prepared prospects.
+			</p>
+		</div>
+	</section>
+	<section class="px-5 py-20 lg:px-8">
+		<div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
+			{services.map((service, index) => (
+				<article class="reveal lift-card group rounded-md border border-ameri-border p-8 hover:border-ameri-red/35">
+					<div class="mb-8 grid h-12 w-12 place-items-center rounded-md bg-ameri-navy text-sm font-black text-white transition group-hover:bg-ameri-red">
+						{String(index + 1).padStart(2, '0')}
+					</div>
+					<h2 class="text-2xl font-black text-ameri-navy">{service.title}</h2>
+					<p class="mt-4 leading-8 text-ameri-muted">{service.description}</p>
+				</article>
+			))}
+		</div>
+	</section>
+</BaseLayout>
