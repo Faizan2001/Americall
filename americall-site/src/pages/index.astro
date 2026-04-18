@@ -262,6 +262,9 @@ import { services, stats, testimonials } from '../data/site';
 			let scrollStart = 0;
 			let autoScrollId: number | null = null;
 			let idleTimeout: number | null = null;
+			let direction = 1; // 1 for right, -1 for left
+
+			const isMobile = () => window.innerWidth < 768;
 
 			/* ── Get card width for scroll distance ── */
 			function getScrollAmount(): number {
@@ -352,11 +355,13 @@ import { services, stats, testimonials } from '../data/site';
 					requestAnimationFrame(() => {
 						const setWidth = getSingleSetWidth();
 						
-						// Infinite wrap logic
-						if (carousel!.scrollLeft >= setWidth * 2) {
-							carousel!.scrollLeft -= setWidth;
-						} else if (carousel!.scrollLeft <= 0) {
-							carousel!.scrollLeft += setWidth;
+						// Infinite wrap logic (Desktop only)
+						if (!isMobile()) {
+							if (carousel!.scrollLeft >= setWidth * 2) {
+								carousel!.scrollLeft -= setWidth;
+							} else if (carousel!.scrollLeft <= 0) {
+								carousel!.scrollLeft += setWidth;
+							}
 						}
 
 						updateDots();
@@ -375,7 +380,22 @@ import { services, stats, testimonials } from '../data/site';
 				
 				function step() {
 					if (!isDragging) {
-						carousel!.scrollLeft += 1; // Slow continuous speed
+						if (isMobile()) {
+							const setWidth = getSingleSetWidth();
+							const minScroll = setWidth;
+							// Buffer so we don't jump past max bounds
+							const maxScroll = setWidth * 2 - carousel!.clientWidth;
+							
+							carousel!.scrollLeft += direction * 1;
+							
+							if (carousel!.scrollLeft >= maxScroll) {
+								direction = -1;
+							} else if (carousel!.scrollLeft <= minScroll) {
+								direction = 1;
+							}
+						} else {
+							carousel!.scrollLeft += 1; // Slow continuous speed
+						}
 					}
 					autoScrollId = requestAnimationFrame(step);
 				}
@@ -398,7 +418,7 @@ import { services, stats, testimonials } from '../data/site';
 				if (idleTimeout !== null) clearTimeout(idleTimeout);
 				idleTimeout = window.setTimeout(() => {
 					startAutoScroll();
-				}, 2000); // Resume quicker after interaction
+				}, 5000); // Resume after 5 seconds of interaction
 			}
 
 			/* ── Init ── */
