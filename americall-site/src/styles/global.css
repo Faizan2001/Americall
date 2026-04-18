@@ -7,9 +7,13 @@
 	--color-ameri-border: #d8dee8;
 	--color-ameri-soft: #f5f7fa;
 	--color-ameri-red: #d71920;
+	--color-ameri-gold: #f59e0b;
 	--font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-	--shadow-soft: 0 20px 60px rgb(2 18 44 / 0.12);
-	--shadow-lift: 0 28px 80px rgb(2 18 44 / 0.18);
+	--shadow-soft: 0 20px 60px rgb(2 18 44 / 0.10);
+	--shadow-lift: 0 28px 80px rgb(2 18 44 / 0.16);
+	--shadow-card: 0 4px 24px rgb(2 18 44 / 0.07);
+	--shadow-glass: 0 1px 3px rgba(2, 18, 44, 0.06);
+	--radius-smooth: 1.5rem;
 }
 
 html {
@@ -42,6 +46,8 @@ summary::-webkit-details-marker {
 	outline-offset: 3px;
 }
 
+/* ─── Background textures ─── */
+
 .grid-surface {
 	background-image:
 		linear-gradient(rgb(255 255 255 / 0.055) 1px, transparent 1px),
@@ -51,10 +57,91 @@ summary::-webkit-details-marker {
 
 .soft-grid {
 	background-image:
-		linear-gradient(rgb(2 18 44 / 0.045) 1px, transparent 1px),
-		linear-gradient(90deg, rgb(2 18 44 / 0.045) 1px, transparent 1px);
+		linear-gradient(rgb(2 18 44 / 0.035) 1px, transparent 1px),
+		linear-gradient(90deg, rgb(2 18 44 / 0.035) 1px, transparent 1px);
 	background-size: 48px 48px;
 }
+
+/* ─── Glassmorphism navigation ─── */
+
+.glass-nav {
+	background: rgba(255, 255, 255, 0.65);
+	backdrop-filter: blur(20px) saturate(1.8);
+	-webkit-backdrop-filter: blur(20px) saturate(1.8);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+	box-shadow: var(--shadow-glass);
+	transition: background 300ms ease, box-shadow 300ms ease;
+}
+
+.glass-nav-scrolled {
+	background: rgba(255, 255, 255, 0.82);
+	box-shadow: 0 1px 8px rgba(2, 18, 44, 0.08);
+}
+
+.glass-pill {
+	background: rgba(255, 255, 255, 0.55);
+	border: 1px solid rgba(216, 222, 232, 0.5);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+}
+
+/* ─── Brand wordmark with red "Call" box ─── */
+/* Font matches original Americall logo: bold condensed sans-serif */
+
+.brand-wordmark {
+	font-family: "Impact", "Haettenschweiler", "Arial Narrow Bold", "Franklin Gothic Demi Cond", "Segoe UI Black", sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.01em;
+	line-height: 1;
+	display: inline-flex;
+	align-items: center;
+	gap: 0;
+	text-transform: uppercase;
+	transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.brand-wordmark:hover {
+	transform: scale(1.04);
+}
+
+.brand-call-box {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--color-ameri-red);
+	color: white;
+	border-radius: 0.25em;
+	padding: 0.06em 0.2em;
+	margin-left: 0.02em;
+	transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease, background 280ms ease;
+	position: relative;
+}
+
+/* Modern hover glow animation for the logo */
+@keyframes logo-glow {
+	0%, 100% { box-shadow: 0 0 0 0 rgba(215, 25, 32, 0); }
+	50% { box-shadow: 0 0 20px 4px rgba(215, 25, 32, 0.35); }
+}
+
+.brand-wordmark:hover .brand-call-box {
+	transform: scale(1.06) translateY(-1px);
+	box-shadow: 0 4px 20px rgba(215, 25, 32, 0.4);
+	background: #c0151b;
+	animation: logo-glow 1.5s ease-in-out infinite;
+}
+
+/* Eagle icon hover tilt */
+.brand-eagle {
+	transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), filter 320ms ease;
+}
+
+.brand-wordmark:hover ~ .brand-eagle,
+a:hover .brand-eagle {
+	transform: rotate(-5deg) scale(1.08);
+	filter: drop-shadow(0 4px 12px rgba(2, 18, 44, 0.2));
+}
+
+/* ─── Scroll reveal ─── */
 
 .reveal {
 	opacity: 0;
@@ -70,19 +157,24 @@ summary::-webkit-details-marker {
 	transform: translateY(0);
 }
 
+/* ─── Card lift effect ─── */
+
 .lift-card {
-	box-shadow: 0 1px 2px rgb(2 18 44 / 0.05);
+	box-shadow: var(--shadow-card);
+	border-radius: var(--radius-smooth);
 	transition:
-		transform 220ms ease,
-		box-shadow 220ms ease,
+		transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
 		border-color 220ms ease,
 		background-color 220ms ease;
 }
 
 .lift-card:hover {
 	transform: translateY(-6px);
-	box-shadow: var(--shadow-soft);
+	box-shadow: var(--shadow-lift);
 }
+
+/* ─── Button motion ─── */
 
 .button-motion {
 	position: relative;
@@ -117,12 +209,7 @@ summary::-webkit-details-marker {
 	z-index: 1;
 }
 
-.brand-wordmark {
-	font-family: "Aptos Display", "Segoe UI Variable Display", "Segoe UI", Helvetica, Arial, sans-serif;
-	font-weight: 850;
-	letter-spacing: -0.055em;
-	line-height: 1;
-}
+/* ─── Nav link underline ─── */
 
 .nav-link {
 	position: relative;
@@ -146,21 +233,236 @@ summary::-webkit-details-marker {
 	transform: scaleX(1);
 }
 
-.services-marquee {
-	overflow: hidden;
-	mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-}
+/* ─── Draggable carousel ─── */
 
-.services-track {
+.draggable-carousel {
 	display: flex;
-	width: max-content;
 	gap: 1.25rem;
-	animation: service-marquee 30s linear infinite;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+	scroll-behavior: smooth;
+	padding-bottom: 0.5rem;
+	cursor: grab;
 }
 
-.services-marquee:hover .services-track {
-	animation-play-state: paused;
+.draggable-carousel.is-dragging {
+	cursor: grabbing;
+	scroll-behavior: auto;
+	scroll-snap-type: none;
 }
+
+.draggable-carousel.is-auto-scrolling {
+	scroll-behavior: auto;
+	scroll-snap-type: none;
+}
+
+.draggable-carousel:not(.is-dragging):not(.is-auto-scrolling) {
+	scroll-snap-type: x mandatory;
+}
+
+.draggable-carousel > * {
+	scroll-snap-align: start;
+	flex-shrink: 0;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.draggable-carousel::-webkit-scrollbar {
+	display: none;
+}
+
+.draggable-carousel {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+/* Carousel edge fade mask */
+.carousel-mask {
+	mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+/* Carousel navigation arrows */
+.carousel-arrow {
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	border: 1.5px solid var(--color-ameri-border);
+	background: white;
+	color: var(--color-ameri-navy);
+	cursor: pointer;
+	transition: all 220ms ease;
+	box-shadow: 0 2px 8px rgba(2, 18, 44, 0.08);
+}
+
+.carousel-arrow:hover {
+	background: var(--color-ameri-navy);
+	color: white;
+	border-color: var(--color-ameri-navy);
+	transform: scale(1.08);
+	box-shadow: 0 4px 16px rgba(2, 18, 44, 0.18);
+}
+
+.carousel-arrow:disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+	transform: none;
+}
+
+/* Carousel dot indicators */
+.carousel-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--color-ameri-border);
+	border: none;
+	cursor: pointer;
+	transition: all 260ms ease;
+	padding: 0;
+}
+
+.carousel-dot.is-active {
+	background: var(--color-ameri-red);
+	width: 24px;
+	border-radius: 4px;
+}
+
+/* ─── Testimonial cards (equal-height modern tiles) ─── */
+
+.testimonials-grid {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+	.testimonials-grid {
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	}
+}
+
+.testimonial-card {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--radius-smooth);
+	border: 1px solid var(--color-ameri-border);
+	background: white;
+	padding: 2rem;
+	box-shadow: var(--shadow-card);
+	transition:
+		transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		border-color 220ms ease;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.testimonial-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-lift);
+	border-color: rgba(215, 25, 32, 0.25);
+}
+
+.testimonial-card::before {
+	content: "";
+	position: absolute;
+	inset-inline: 0;
+	top: 0;
+	height: 4px;
+	background: linear-gradient(90deg, var(--color-ameri-navy), var(--color-ameri-red));
+	border-radius: var(--radius-smooth) var(--radius-smooth) 0 0;
+}
+
+/* Star rating gold */
+.star-rating {
+	color: var(--color-ameri-gold);
+	display: flex;
+	gap: 2px;
+	font-size: 1.1rem;
+}
+
+/* Avatar ring */
+.avatar-ring {
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--color-ameri-navy), var(--color-ameri-red));
+	padding: 2.5px;
+	flex-shrink: 0;
+}
+
+.avatar-ring > span {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: white;
+	font-weight: 900;
+	font-size: 0.75rem;
+	color: var(--color-ameri-navy);
+	letter-spacing: 0.02em;
+}
+
+/* Decorative quote mark */
+.quote-watermark {
+	position: absolute;
+	top: 0.75rem;
+	right: 1.25rem;
+	font-size: 5rem;
+	line-height: 1;
+	font-family: Georgia, serif;
+	color: var(--color-ameri-soft);
+	pointer-events: none;
+	user-select: none;
+	z-index: 0;
+}
+
+/* ─── About section hero polish ─── */
+
+.about-hero-eagle {
+	border-radius: var(--radius-smooth);
+	background: white;
+	padding: 1.5rem;
+	box-shadow: var(--shadow-lift);
+	transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms ease;
+}
+
+.about-hero-eagle:hover {
+	transform: translateY(-6px) rotate(-2deg);
+	box-shadow: 0 32px 80px rgba(2, 18, 44, 0.22);
+}
+
+
+/* ─── Stats tile grid (equal height, modern look) ─── */
+
+.stats-tile {
+	border-radius: var(--radius-smooth);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	background: white;
+	padding: 1.75rem;
+	box-shadow: var(--shadow-card);
+	transition:
+		transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		border-color 220ms ease;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.stats-tile:hover {
+	transform: translateY(-6px);
+	box-shadow: var(--shadow-lift);
+	border-color: rgba(215, 25, 32, 0.2);
+}
+
+/* ─── FAQ ─── */
 
 .faq-answer {
 	display: grid;
@@ -184,14 +486,7 @@ details[open] .faq-chevron {
 	transform: rotate(180deg);
 }
 
-@keyframes service-marquee {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(calc(-50% - 0.625rem));
-	}
-}
+/* ─── Float panel ─── */
 
 @keyframes float-panel {
 	0%,
@@ -206,6 +501,49 @@ details[open] .faq-chevron {
 .float-panel {
 	animation: float-panel 7s ease-in-out infinite;
 }
+
+/* ─── About Americall section styling ─── */
+
+.about-feature-card {
+	border-radius: var(--radius-smooth);
+	border: 1px solid var(--color-ameri-border);
+	background: white;
+	padding: 2rem;
+	box-shadow: var(--shadow-card);
+	transition:
+		transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+		border-color 220ms ease;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1rem;
+}
+
+.about-feature-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-lift);
+	border-color: rgba(215, 25, 32, 0.25);
+}
+
+.about-feature-icon {
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 0.875rem;
+	background: var(--color-ameri-soft);
+	color: var(--color-ameri-red);
+	flex-shrink: 0;
+	transition: background 220ms ease, color 220ms ease;
+}
+
+.about-feature-card:hover .about-feature-icon {
+	background: var(--color-ameri-red);
+	color: white;
+}
+
+/* ─── Reduced motion ─── */
 
 @media (prefers-reduced-motion: reduce) {
 	*,
@@ -226,9 +564,8 @@ details[open] .faq-chevron {
 		animation: none;
 	}
 
-	.services-track {
-		transform: none;
-		animation: none;
+	.draggable-carousel {
+		scroll-behavior: auto;
 	}
 
 	.faq-answer {

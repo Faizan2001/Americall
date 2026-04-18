@@ -18,8 +18,8 @@ import { services } from '../data/site';
 	<section class="px-5 py-20 lg:px-8">
 		<div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
 			{services.map((service, index) => (
-				<article class="reveal lift-card group rounded-md border border-ameri-border p-8 hover:border-ameri-red/35">
-					<div class="mb-8 grid h-12 w-12 place-items-center rounded-md bg-ameri-navy text-sm font-black text-white transition group-hover:bg-ameri-red">
+				<article class="reveal lift-card group rounded-2xl border border-ameri-border p-8 hover:border-ameri-red/35">
+					<div class="mb-8 grid h-12 w-12 place-items-center rounded-xl bg-ameri-navy text-sm font-black text-white transition group-hover:bg-ameri-red">
 						{String(index + 1).padStart(2, '0')}
 					</div>
 					<h2 class="text-2xl font-black text-ameri-navy">{service.title}</h2>

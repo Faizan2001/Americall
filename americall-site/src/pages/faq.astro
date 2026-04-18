@@ -14,9 +14,9 @@ import { faqs } from '../data/site';
 		</div>
 	</section>
 	<section class="px-5 py-16 lg:px-8">
-		<div class="reveal mx-auto max-w-4xl divide-y divide-ameri-border rounded-md border border-ameri-border bg-white shadow-sm">
+		<div class="reveal mx-auto max-w-4xl divide-y divide-ameri-border rounded-2xl border border-ameri-border bg-white shadow-sm">
 			{faqs.map((faq) => (
-				<details class="group p-6 transition hover:bg-ameri-soft/70">
+				<details class="group p-6 transition hover:bg-ameri-soft/70 first:rounded-t-2xl last:rounded-b-2xl">
 					<summary class="flex cursor-pointer list-none items-start justify-between gap-5 text-lg font-black text-ameri-navy transition group-open:text-ameri-red">
 						<span>{faq.question}</span>
 						<span class="faq-chevron mt-1 grid h-5 w-5 shrink-0 place-items-center text-ameri-navy" aria-hidden="true">

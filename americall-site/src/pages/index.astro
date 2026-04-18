@@ -1,19 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { services, stats, testimonials } from '../data/site';
-
-const serviceLoop = [...services, ...services];
 ---
 
 <BaseLayout
 	title="Trained Calling Teams For Qualified Appointments"
 	description="Americall helps U.S. service businesses turn call operations into qualified appointments with trained agents, campaign management, and reliable support."
 >
+	<!-- ═══ HERO ═══ -->
 	<section class="grid-surface relative overflow-hidden bg-ameri-navy text-white">
+		<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(215,25,32,0.08)_0%,transparent_60%)]"></div>
 		<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
-		<div class="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:py-16 lg:min-h-[calc(100vh-73px)] lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
+		<div class="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:py-16 lg:min-h-[calc(100vh-73px)] lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
 			<div class="reveal">
-				<p class="inline-flex rounded-md border border-white/15 bg-white/10 px-3 py-1 text-sm font-bold text-white/85 shadow-sm backdrop-blur">
+				<p class="inline-flex rounded-xl border border-white/15 bg-white/10 px-3 py-1 text-sm font-bold text-white/85 shadow-sm backdrop-blur">
 					30,000+ qualified appointments sent
 				</p>
 				<h1 class="mt-6 max-w-4xl text-3xl font-black leading-tight sm:text-5xl lg:text-6xl">
@@ -23,42 +23,45 @@ const serviceLoop = [...services, ...services];
 					Americall supports solar, roofing, HVAC, real estate, and home improvement businesses with trained agents, campaign management, CRM support, and appointment-setting operations built around your goals.
 				</p>
 				<div class="mt-9 flex flex-col gap-3 sm:flex-row">
-					<a class="button-motion rounded-md bg-ameri-red px-6 py-3 text-center text-sm font-black text-white shadow-lg shadow-black/20 hover:bg-red-700" href="/contact/">
+					<a class="button-motion rounded-xl bg-ameri-red px-6 py-3 text-center text-sm font-black text-white shadow-lg shadow-black/20 hover:bg-red-700" href="/contact/">
 						<span>Book a Free Demo</span>
 					</a>
-					<a class="button-motion rounded-md border border-white/25 px-6 py-3 text-center text-sm font-black text-white hover:bg-white hover:text-ameri-navy" href="/services/">
+					<a class="button-motion rounded-xl border border-white/25 px-6 py-3 text-center text-sm font-black text-white hover:bg-white hover:text-ameri-navy" href="/services/">
 						<span>View Services</span>
 					</a>
 				</div>
 			</div>
 			<div class="reveal relative">
-				<div class="absolute -left-6 top-8 hidden h-24 w-24 rounded-md border border-white/10 bg-white/5 lg:block"></div>
-				<div class="float-panel relative rounded-md border border-white/12 bg-white p-4 shadow-2xl shadow-black/25 sm:p-6">
+				<div class="relative group perspective-1000">
+					<div class="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-ameri-red to-blue-500 opacity-20 blur-xl transition duration-500 group-hover:opacity-40"></div>
 					<img
-						src="/images/americall-logo.jpeg"
-						alt="Americall logo"
-						class="mx-auto h-auto w-full max-w-md rounded-md object-contain"
+						src="/images/modern-abstract-hero.png"
+						alt="Modern call center dashboard and headset"
+						class="relative mx-auto h-auto w-full max-w-md rounded-2xl object-cover shadow-2xl transition duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_32px_64px_rgba(2,18,44,0.3)]"
+						width="1024"
+						height="1024"
 						loading="eager"
 					/>
-					<div class="mt-4 grid grid-cols-3 gap-2 sm:mt-6 sm:gap-3">
-						<div class="lift-card rounded-md bg-ameri-soft p-3 text-ameri-navy sm:p-4">
-							<p class="text-xl font-black sm:text-2xl">500+</p>
-							<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Trained agents</p>
-						</div>
-						<div class="lift-card rounded-md bg-ameri-soft p-3 text-ameri-navy sm:p-4">
-							<p class="text-xl font-black sm:text-2xl">12K+</p>
-							<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Confirmed sits</p>
-						</div>
-						<div class="lift-card rounded-md bg-ameri-soft p-3 text-ameri-navy sm:p-4">
-							<p class="text-xl font-black sm:text-2xl">3K+</p>
-							<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Sold deals</p>
-						</div>
+				</div>
+				<div class="mt-6 grid grid-cols-3 gap-2 sm:gap-3">
+					<div class="lift-card rounded-2xl border border-white/12 bg-white/10 p-3 text-white backdrop-blur sm:p-4">
+						<p class="text-xl font-black sm:text-2xl">500+</p>
+						<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-white/65 sm:text-xs">Trained agents</p>
+					</div>
+					<div class="lift-card rounded-2xl border border-white/12 bg-white/10 p-3 text-white backdrop-blur sm:p-4">
+						<p class="text-xl font-black sm:text-2xl">12K+</p>
+						<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-white/65 sm:text-xs">Confirmed sits</p>
+					</div>
+					<div class="lift-card rounded-2xl border border-white/12 bg-white/10 p-3 text-white backdrop-blur sm:p-4">
+						<p class="text-xl font-black sm:text-2xl">3K+</p>
+						<p class="mt-1 text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-white/65 sm:text-xs">Sold deals</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
+	<!-- ═══ SERVICES CAROUSEL ═══ -->
 	<section class="overflow-hidden bg-white px-5 py-16 sm:py-20 lg:px-8" id="services">
 		<div class="mx-auto max-w-7xl">
 			<div class="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -69,30 +72,47 @@ const serviceLoop = [...services, ...services];
 						From dialing systems to trained agents and confirmation support, Americall helps your team protect time and focus on closing.
 					</p>
 				</div>
-				<a class="button-motion inline-flex w-fit rounded-md border border-ameri-border px-5 py-3 text-sm font-black text-ameri-navy hover:border-ameri-red hover:text-ameri-red" href="/services/">
-					<span>Explore Services</span>
-				</a>
-			</div>
-			<div class="services-marquee reveal mt-12">
-				<div class="services-track py-3">
-					{serviceLoop.map((service, index) => (
-							<article class="lift-card group flex min-h-64 w-[82vw] shrink-0 flex-col rounded-md border border-ameri-border bg-white p-5 hover:border-ameri-red/35 sm:min-h-72 sm:w-[22rem] sm:p-6">
-							<div class="flex items-center justify-between">
-								<div class="grid h-11 w-11 place-items-center rounded-md bg-ameri-navy text-sm font-black text-white transition group-hover:bg-ameri-red">
-									{String((index % services.length) + 1).padStart(2, '0')}
-								</div>
-								<span class="rounded-md bg-ameri-soft px-3 py-1 text-xs font-black uppercase tracking-wide text-ameri-muted">BPO support</span>
-							</div>
-							<h3 class="mt-7 text-xl font-black text-ameri-navy">{service.title}</h3>
-							<p class="mt-3 leading-7 text-ameri-muted">{service.description}</p>
-							<div class="mt-auto pt-6 text-sm font-black text-ameri-red">Built for qualified conversations</div>
-						</article>
-					))}
+				<div class="flex items-center gap-3">
+					<button class="carousel-arrow" id="carousel-prev" aria-label="Previous service" type="button">
+						<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</button>
+					<button class="carousel-arrow" id="carousel-next" aria-label="Next service" type="button">
+						<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</button>
+					<a class="button-motion inline-flex w-fit rounded-xl border border-ameri-border px-5 py-3 text-sm font-black text-ameri-navy hover:border-ameri-red hover:text-ameri-red" href="/services/">
+						<span>Explore Services</span>
+					</a>
 				</div>
+			</div>
+			<div class="carousel-mask reveal mt-12">
+				<div class="draggable-carousel py-3" id="services-carousel">
+					{[...services, ...services, ...services].map((service, index) => {
+						const realIndex = index % services.length;
+						return (
+							<article class="lift-card group flex min-h-64 w-[82vw] shrink-0 flex-col rounded-2xl border border-ameri-border bg-white p-5 hover:border-ameri-red/35 sm:min-h-72 sm:w-[22rem] sm:p-6" data-index={realIndex}>
+								<div class="flex items-center justify-between">
+									<div class="grid h-11 w-11 place-items-center rounded-xl bg-ameri-navy text-sm font-black text-white transition group-hover:bg-ameri-red">
+										{String(realIndex + 1).padStart(2, '0')}
+									</div>
+									<span class="rounded-xl bg-ameri-soft px-3 py-1 text-xs font-black uppercase tracking-wide text-ameri-muted">BPO support</span>
+								</div>
+								<h3 class="mt-7 text-xl font-black text-ameri-navy">{service.title}</h3>
+								<p class="mt-3 leading-7 text-ameri-muted">{service.description}</p>
+								<div class="mt-auto pt-6 text-sm font-black text-ameri-red">Built for qualified conversations</div>
+							</article>
+						);
+					})}
+				</div>
+			</div>
+			<div class="mt-6 flex justify-center gap-2" id="carousel-dots">
+				{services.map((_, index) => (
+					<button class={`carousel-dot ${index === 0 ? 'is-active' : ''}`} aria-label={`Go to service ${index + 1}`} data-index={index} type="button"></button>
+				))}
 			</div>
 		</div>
 	</section>
 
+	<!-- ═══ PROOF / STATS ═══ -->
 	<section class="soft-grid bg-ameri-soft px-5 py-16 sm:py-20 lg:px-8">
 		<div class="mx-auto max-w-7xl">
 			<div class="reveal mx-auto max-w-3xl text-center">
@@ -104,7 +124,7 @@ const serviceLoop = [...services, ...services];
 			</div>
 			<div class="mt-9 grid gap-3 sm:hidden">
 				{stats.map((stat) => (
-					<details class="rounded-md border border-white bg-white p-4 shadow-sm">
+					<details class="rounded-2xl border border-white bg-white p-4 shadow-sm">
 						<summary class="flex cursor-pointer list-none items-center justify-between gap-4">
 							<div>
 								<p class="text-2xl font-black text-ameri-red">{stat.value}</p>
@@ -126,7 +146,7 @@ const serviceLoop = [...services, ...services];
 			</div>
 			<div class="mt-12 hidden gap-5 sm:grid md:grid-cols-2 lg:grid-cols-3">
 				{stats.map((stat) => (
-					<article class="reveal lift-card rounded-md border border-white bg-white p-7">
+					<article class="reveal stats-tile">
 						<p class="text-4xl font-black text-ameri-red">{stat.value}</p>
 						<h3 class="mt-3 text-lg font-black text-ameri-navy">{stat.label}</h3>
 						<p class="mt-3 leading-7 text-ameri-muted">{stat.description}</p>
@@ -136,9 +156,11 @@ const serviceLoop = [...services, ...services];
 		</div>
 	</section>
 
-	<section class="soft-grid relative overflow-hidden bg-white px-5 py-14 sm:py-20 lg:px-8">
+	<!-- ═══ TRUST + TESTIMONIALS ═══ -->
+	<section class="relative overflow-hidden bg-white px-5 py-14 sm:py-20 lg:px-8">
+		<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_50%,rgba(245,247,250,0.9)_0%,transparent_70%)]"></div>
 		<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-ameri-border to-transparent"></div>
-		<div class="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+		<div class="relative mx-auto grid max-w-7xl items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">
 			<div class="reveal max-w-2xl">
 				<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Trust</p>
 				<h2 class="mt-3 text-3xl font-black leading-tight text-ameri-navy sm:text-4xl">
@@ -148,53 +170,58 @@ const serviceLoop = [...services, ...services];
 					Americall handles the calling, qualification, confirmation, and handoff work before your sales team arrives, so every appointment starts with better context.
 				</p>
 				<div class="mt-7 grid grid-cols-3 gap-2 sm:gap-3">
-					<div class="rounded-md border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
+					<div class="rounded-2xl border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
 						<p class="text-xl font-black text-ameri-red sm:text-2xl">30K+</p>
 						<p class="mt-1 text-[0.63rem] font-black uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Appointments sent</p>
 					</div>
-					<div class="rounded-md border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
+					<div class="rounded-2xl border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
 						<p class="text-xl font-black text-ameri-red sm:text-2xl">12K+</p>
 						<p class="mt-1 text-[0.63rem] font-black uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Confirmed sit-ins</p>
 					</div>
-					<div class="rounded-md border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
+					<div class="rounded-2xl border border-ameri-border bg-white p-3 shadow-sm sm:p-4">
 						<p class="text-xl font-black text-ameri-red sm:text-2xl">5/5</p>
 						<p class="mt-1 text-[0.63rem] font-black uppercase leading-tight tracking-wide text-ameri-muted sm:text-xs">Client feedback</p>
 					</div>
 				</div>
 				<div class="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-row">
-					<a class="button-motion rounded-md bg-ameri-red px-6 py-3 text-center text-sm font-black text-white shadow-lg shadow-ameri-red/20 hover:bg-red-700" href="/contact/">
+					<a class="button-motion rounded-xl bg-ameri-red px-6 py-3 text-center text-sm font-black text-white shadow-lg shadow-ameri-red/20 hover:bg-red-700" href="/contact/">
 						<span class="sm:hidden">Book Demo</span>
 						<span class="hidden sm:inline">Start the Conversation</span>
 					</a>
-					<a class="button-motion rounded-md border border-ameri-border bg-white px-6 py-3 text-center text-sm font-black text-ameri-navy hover:border-ameri-red hover:text-ameri-red" href="/services/">
+					<a class="button-motion rounded-xl border border-ameri-border bg-white px-6 py-3 text-center text-sm font-black text-ameri-navy hover:border-ameri-red hover:text-ameri-red" href="/services/">
 						<span>See the Process</span>
 					</a>
 				</div>
 			</div>
-			<div class="-mx-5 flex snap-x gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:gap-5 md:overflow-visible md:px-0 md:pb-0 md:grid-cols-2">
+
+			<!-- Modernized Testimonial Cards -->
+			<div class="testimonials-grid mt-8">
 				{testimonials.map((testimonial, index) => (
-					<figure class={`reveal lift-card relative min-w-[82vw] snap-start overflow-hidden rounded-md border border-ameri-border bg-white p-5 shadow-sm hover:border-ameri-red/35 sm:p-7 md:min-w-0 ${index === 1 ? 'md:mt-10' : ''}`}>
-						<div class="absolute inset-x-0 top-0 h-1 bg-ameri-red"></div>
-						<div class="flex items-center justify-between gap-4">
-							<div class="flex gap-1 text-ameri-red" aria-label="5 out of 5 rating">
-								<span aria-hidden="true">&#9733;</span>
-								<span aria-hidden="true">&#9733;</span>
-								<span aria-hidden="true">&#9733;</span>
-								<span aria-hidden="true">&#9733;</span>
-								<span aria-hidden="true">&#9733;</span>
+					<figure class="reveal testimonial-card">
+						<span class="quote-watermark" aria-hidden="true">&rdquo;</span>
+						<div class="relative z-10 flex items-center justify-between gap-4">
+							<div class="star-rating" aria-label="5 out of 5 rating">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
 							</div>
-							<span class="rounded-md bg-ameri-soft px-3 py-1 text-xs font-black uppercase tracking-wide text-ameri-muted">Verified client</span>
+							<span class="inline-flex items-center gap-1.5 rounded-xl bg-green-50 px-3 py-1 text-xs font-bold text-green-700">
+								<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+								Verified client
+							</span>
 						</div>
-						<blockquote class="mt-6 text-base font-bold leading-7 text-ameri-navy sm:text-lg sm:leading-8">
-							<span class="text-4xl leading-none text-ameri-red" aria-hidden="true">&ldquo;</span>{testimonial.quote}
+						<blockquote class="relative z-10 mt-6 text-base font-semibold leading-7 text-ameri-navy sm:text-lg sm:leading-8">
+							&ldquo;{testimonial.quote}&rdquo;
 						</blockquote>
-						<figcaption class="mt-7 flex items-center gap-4 border-t border-ameri-border pt-5">
-							<div class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-ameri-navy text-sm font-black text-white">
-								{testimonial.name.split(' ').map((part) => part[0]).join('')}
+						<figcaption class="relative z-10 mt-7 flex items-center gap-4 border-t border-ameri-border/50 pt-5">
+							<div class="avatar-ring">
+								<span>{testimonial.name.split(' ').map((part) => part[0]).join('')}</span>
 							</div>
 							<div>
 								<p class="font-black text-ameri-navy">{testimonial.name}</p>
-								<p class="mt-1 text-sm leading-6 text-ameri-muted">{testimonial.role}</p>
+								<p class="mt-0.5 text-sm leading-6 text-ameri-muted">{testimonial.role}</p>
 							</div>
 						</figcaption>
 					</figure>
@@ -203,6 +230,7 @@ const serviceLoop = [...services, ...services];
 		</div>
 	</section>
 
+	<!-- ═══ CTA BAND ═══ -->
 	<section class="grid-surface bg-ameri-navy px-5 py-16 text-white sm:py-20 lg:px-8">
 		<div class="reveal mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_auto]">
 			<div>
@@ -212,9 +240,172 @@ const serviceLoop = [...services, ...services];
 					In a short demo call, Americall can walk you through how its calling, qualification, confirmation, and support process can fit your sales operation.
 				</p>
 			</div>
-			<a class="button-motion rounded-md bg-ameri-red px-7 py-4 text-center text-sm font-black text-white hover:bg-red-700" href="/contact/">
+			<a class="button-motion rounded-xl bg-ameri-red px-7 py-4 text-center text-sm font-black text-white hover:bg-red-700" href="/contact/">
 				<span>Book a Free Demo</span>
 			</a>
 		</div>
 	</section>
+
+	<!-- ═══ DRAGGABLE CAROUSEL SCRIPT ═══ -->
+	<script>
+		const carousel = document.getElementById('services-carousel') as HTMLElement | null;
+		const prevBtn = document.getElementById('carousel-prev') as HTMLButtonElement | null;
+		const nextBtn = document.getElementById('carousel-next') as HTMLButtonElement | null;
+		const dotsContainer = document.getElementById('carousel-dots') as HTMLElement | null;
+		const dots = dotsContainer ? Array.from(dotsContainer.querySelectorAll('.carousel-dot')) as HTMLElement[] : [];
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		if (carousel) {
+			const cards = Array.from(carousel.children) as HTMLElement[];
+			let isDragging = false;
+			let startX = 0;
+			let scrollStart = 0;
+			let autoScrollId: number | null = null;
+			let idleTimeout: number | null = null;
+
+			/* ── Get card width for scroll distance ── */
+			function getScrollAmount(): number {
+				const card = cards[0];
+				if (!card) return 300;
+				const style = getComputedStyle(carousel!);
+				const gap = parseFloat(style.gap) || 20;
+				return card.offsetWidth + gap;
+			}
+
+			/* ── Get single set width for infinite scrolling ── */
+			function getSingleSetWidth(): number {
+				return carousel!.scrollWidth / 3;
+			}
+
+			/* ── Update dot indicators ── */
+			function updateDots(): void {
+				if (!carousel || dots.length === 0) return;
+				const scrollAmount = getScrollAmount();
+				const setWidth = getSingleSetWidth();
+				const normalizedScroll = carousel.scrollLeft % setWidth;
+				const activeIndex = Math.round(normalizedScroll / scrollAmount);
+				dots.forEach((dot, i) => {
+					dot.classList.toggle('is-active', i === Math.min(activeIndex, dots.length - 1));
+				});
+			}
+
+			/* ── Arrow navigation ── */
+			prevBtn?.addEventListener('click', () => {
+				carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+				pauseAutoScroll();
+				scheduleResume();
+			});
+
+			nextBtn?.addEventListener('click', () => {
+				carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+				pauseAutoScroll();
+				scheduleResume();
+			});
+
+			/* ── Dot navigation ── */
+			dots.forEach((dot) => {
+				dot.addEventListener('click', () => {
+					const index = parseInt(dot.dataset.index || '0', 10);
+					const setWidth = getSingleSetWidth();
+					carousel.scrollTo({ left: setWidth + (index * getScrollAmount()), behavior: 'smooth' });
+					pauseAutoScroll();
+					scheduleResume();
+				});
+			});
+
+			/* ── Mouse drag ── */
+			carousel.addEventListener('mousedown', (e: MouseEvent) => {
+				isDragging = true;
+				startX = e.pageX;
+				scrollStart = carousel.scrollLeft;
+				carousel.classList.add('is-dragging');
+				pauseAutoScroll();
+			});
+
+			document.addEventListener('mousemove', (e: MouseEvent) => {
+				if (!isDragging) return;
+				e.preventDefault();
+				const dx = e.pageX - startX;
+				carousel.scrollLeft = scrollStart - dx;
+			});
+
+			document.addEventListener('mouseup', () => {
+				if (!isDragging) return;
+				isDragging = false;
+				carousel.classList.remove('is-dragging');
+				scheduleResume();
+			});
+
+			/* ── Touch handling (native scroll-snap works, just pause auto-scroll) ── */
+			carousel.addEventListener('touchstart', () => {
+				pauseAutoScroll();
+			}, { passive: true });
+
+			carousel.addEventListener('touchend', () => {
+				scheduleResume();
+			}, { passive: true });
+
+			/* ── Scroll event for dot sync & infinite wrap ── */
+			let scrollTick = false;
+			carousel.addEventListener('scroll', () => {
+				if (!scrollTick) {
+					requestAnimationFrame(() => {
+						const setWidth = getSingleSetWidth();
+						
+						// Infinite wrap logic
+						if (carousel!.scrollLeft >= setWidth * 2) {
+							carousel!.scrollLeft -= setWidth;
+						} else if (carousel!.scrollLeft <= 0) {
+							carousel!.scrollLeft += setWidth;
+						}
+
+						updateDots();
+						scrollTick = false;
+					});
+					scrollTick = true;
+				}
+			}, { passive: true });
+
+			/* ── Auto-scroll (Continuous) ── */
+			function startAutoScroll(): void {
+				if (reducedMotion) return;
+				pauseAutoScroll();
+				
+				carousel!.classList.add('is-auto-scrolling');
+				
+				function step() {
+					if (!isDragging) {
+						carousel!.scrollLeft += 1; // Slow continuous speed
+					}
+					autoScrollId = requestAnimationFrame(step);
+				}
+				autoScrollId = requestAnimationFrame(step);
+			}
+
+			function pauseAutoScroll(): void {
+				if (autoScrollId !== null) {
+					cancelAnimationFrame(autoScrollId);
+					autoScrollId = null;
+				}
+				carousel?.classList.remove('is-auto-scrolling');
+				if (idleTimeout !== null) {
+					clearTimeout(idleTimeout);
+					idleTimeout = null;
+				}
+			}
+
+			function scheduleResume(): void {
+				if (idleTimeout !== null) clearTimeout(idleTimeout);
+				idleTimeout = window.setTimeout(() => {
+					startAutoScroll();
+				}, 2000); // Resume quicker after interaction
+			}
+
+			/* ── Init ── */
+			const setWidth = getSingleSetWidth();
+			carousel.scrollLeft = setWidth; // Start in the middle set
+			updateDots();
+			startAutoScroll();
+		}
+	</script>
 </BaseLayout>

@@ -32,42 +32,40 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 	<body class="min-h-screen antialiased">
 		<a
 			href="#main-content"
-			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-ameri-navy focus:shadow-lg"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-3xl focus:bg-white focus:px-4 focus:py-2 focus:text-ameri-navy focus:shadow-lg"
 		>
 			Skip to content
 		</a>
-		<header class="sticky top-0 z-40 border-b border-ameri-border/70 bg-white/90 shadow-sm shadow-ameri-navy/5 backdrop-blur-xl">
+		<header class="glass-nav sticky top-0 z-40" id="site-header">
 			<div class="mx-auto grid max-w-7xl grid-cols-[auto_auto] items-center justify-between gap-4 px-5 py-3 md:grid-cols-[auto_1fr_auto] lg:px-8">
-				<a href="/" class="flex min-w-0 items-center gap-3" aria-label="Americall home">
-					<img src="/images/americall-eagle-mark.webp" alt="" class="h-12 w-12 object-contain md:h-14 md:w-14" loading="eager" />
-					<span class="brand-wordmark text-2xl text-ameri-navy md:text-3xl">
-						Ameri<span class="text-ameri-red">Call</span>
-					</span>
+				<a href="/" class="group flex min-w-0 items-center gap-3" aria-label="Americall home">
+					<img src="/images/americall-logo-transparent.png" alt="Americall" class="h-11 object-contain md:h-14 lg:h-[3.75rem] transition-transform duration-300 group-hover:scale-105 origin-left" loading="eager" />
 				</a>
 				<nav class="hidden justify-center md:flex" aria-label="Main navigation">
-					<div class="flex items-center gap-1 rounded-md border border-ameri-border/80 bg-ameri-soft/80 p-1 text-sm font-bold text-ameri-ink shadow-inner shadow-white">
+					<div class="glass-pill flex items-center gap-1 rounded-2xl p-1 text-sm font-bold text-ameri-ink">
 						{navItems.map((item) => (
-							<a class="rounded-md px-4 py-2 transition hover:bg-white hover:text-ameri-red hover:shadow-sm" href={item.href}>{item.label}</a>
+							<a class="rounded-xl px-4 py-2 transition hover:bg-white hover:text-ameri-red hover:shadow-sm" href={item.href}>{item.label}</a>
 						))}
 					</div>
 				</nav>
 				<a
 					href="/contact/"
-					class="button-motion inline-flex rounded-md bg-ameri-red px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-ameri-red/25 hover:bg-red-700 md:px-5"
+					class="button-motion inline-flex rounded-2xl bg-ameri-red px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-ameri-red/25 hover:bg-red-700 md:px-5"
 				>
 					<span class="hidden sm:inline">Book a Free Demo</span>
 					<span class="sm:hidden">Demo</span>
 				</a>
 			</div>
-			<nav class="flex gap-5 overflow-x-auto border-t border-ameri-border/60 px-5 py-3 text-sm font-bold text-ameri-ink md:hidden" aria-label="Mobile navigation">
+			<nav class="flex gap-5 overflow-x-auto border-t border-white/20 px-5 py-3 text-sm font-bold text-ameri-ink md:hidden" aria-label="Mobile navigation">
 				{navItems.map((item) => <a class="shrink-0 transition hover:text-ameri-red" href={item.href}>{item.label}</a>)}
 			</nav>
 		</header>
 		<main id="main-content">
 			<slot />
 		</main>
-		<footer class="bg-ameri-navy text-white">
-			<div class="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+		<footer class="bg-ameri-navy text-white relative">
+			<div class="absolute inset-x-0 top-0 h-px bg-white/10"></div>
+			<div class="mx-auto grid max-w-7xl gap-10 px-5 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
 				<div class="sm:col-span-2">
 					<p class="text-2xl font-black">{site.name}</p>
 					<p class="mt-4 max-w-md text-sm leading-6 text-white/75">{site.description}</p>
@@ -92,6 +90,7 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 			</div>
 		</footer>
 		<script>
+			/* ── Scroll reveal ── */
 			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			const revealItems = Array.from(document.querySelectorAll('.reveal'));
 
@@ -114,6 +113,25 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 					item.style.setProperty('--reveal-delay', `${Math.min(index * 55, 220)}ms`);
 					observer.observe(item);
 				});
+			}
+
+			/* ── Glassmorphism nav scroll enhancement ── */
+			const header = document.getElementById('site-header');
+			if (header) {
+				let ticking = false;
+				window.addEventListener('scroll', () => {
+					if (!ticking) {
+						window.requestAnimationFrame(() => {
+							if (window.scrollY > 40) {
+								header.classList.add('glass-nav-scrolled');
+							} else {
+								header.classList.remove('glass-nav-scrolled');
+							}
+							ticking = false;
+						});
+						ticking = true;
+					}
+				}, { passive: true });
 			}
 		</script>
 	</body>

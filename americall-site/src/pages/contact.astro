@@ -11,38 +11,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<p class="mt-5 text-lg leading-8 text-white/75">
 					In a short demo call, Americall can walk you through how its calling, qualification, confirmation, and support process can fit your sales operation.
 				</p>
-				<p class="mt-8 rounded-md border border-white/15 bg-white/10 p-4 text-sm leading-6 text-white/75">
+				<p class="mt-8 rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-white/75">
 					Form backend is still a Phase 1 setup item. Connect Basin, Formspree, Getform, or a Cloudflare handler before launch.
 				</p>
 			</div>
-			<form class="reveal rounded-md bg-white p-6 text-ameri-ink shadow-2xl shadow-black/25" method="post">
+			<form class="reveal rounded-2xl bg-white p-6 text-ameri-ink shadow-2xl shadow-black/25 sm:p-8" method="post">
 				<div class="grid gap-5 sm:grid-cols-2">
 					<label class="block">
 						<span class="text-sm font-bold text-ameri-navy">First name</span>
-						<input class="mt-2 w-full rounded-md border border-ameri-border px-4 py-3 transition focus:border-ameri-red" name="firstName" autocomplete="given-name" required />
+						<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15" name="firstName" autocomplete="given-name" required />
 					</label>
 					<label class="block">
 						<span class="text-sm font-bold text-ameri-navy">Last name</span>
-						<input class="mt-2 w-full rounded-md border border-ameri-border px-4 py-3 transition focus:border-ameri-red" name="lastName" autocomplete="family-name" required />
+						<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15" name="lastName" autocomplete="family-name" required />
 					</label>
 					<label class="block sm:col-span-2">
 						<span class="text-sm font-bold text-ameri-navy">Company</span>
-						<input class="mt-2 w-full rounded-md border border-ameri-border px-4 py-3 transition focus:border-ameri-red" name="company" autocomplete="organization" required />
+						<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15" name="company" autocomplete="organization" required />
 					</label>
 					<label class="block sm:col-span-2">
 						<span class="text-sm font-bold text-ameri-navy">Business email</span>
-						<input class="mt-2 w-full rounded-md border border-ameri-border px-4 py-3 transition focus:border-ameri-red" type="email" name="email" autocomplete="email" required />
+						<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15" type="email" name="email" autocomplete="email" required />
 					</label>
 					<label class="block sm:col-span-2">
 						<span class="text-sm font-bold text-ameri-navy">Contact number</span>
-						<input class="mt-2 w-full rounded-md border border-ameri-border px-4 py-3 transition focus:border-ameri-red" type="tel" name="phone" autocomplete="tel" />
+						<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15" type="tel" name="phone" autocomplete="tel" />
 					</label>
 					<label class="block sm:col-span-2">
 						<span class="text-sm font-bold text-ameri-navy">How can Americall help?</span>
-						<textarea class="mt-2 min-h-32 w-full rounded-md border border-ameri-border px-4 py-3 transition focus:border-ameri-red" name="message"></textarea>
+						<textarea class="mt-2 min-h-32 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15" name="message"></textarea>
 					</label>
 				</div>
-				<button class="button-motion mt-6 w-full rounded-md bg-ameri-red px-6 py-3 text-sm font-black text-white hover:bg-red-700" type="submit">
+				<button class="button-motion mt-6 w-full rounded-xl bg-ameri-red px-6 py-3 text-sm font-black text-white hover:bg-red-700" type="submit">
 					<span>Book a Free Demo</span>
 				</button>
 			</form>
