@@ -15,10 +15,7 @@ Read these before doing any work:
 7. `website-phases.md`
 8. `qa-checklist.md`
 
-If your task involves prompts, agent workflow, or task decomposition, also read:
 
-9. `codex-agent-guidance.md`
-10. `prompt-templates.md`
 
 ## Current Recommendation
 
