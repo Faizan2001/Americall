@@ -34,32 +34,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					
 					<div class="grid gap-5 sm:grid-cols-2">
 						<label class="block">
-							<span class="text-sm font-bold text-ameri-navy">First name</span>
+							<span class="text-sm font-bold text-ameri-navy">First name*</span>
 							<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" name="firstName" autocomplete="given-name" required data-fs-field />
 							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="firstName"></span>
 						</label>
 						<label class="block">
-							<span class="text-sm font-bold text-ameri-navy">Last name</span>
+							<span class="text-sm font-bold text-ameri-navy">Last name*</span>
 							<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" name="lastName" autocomplete="family-name" required data-fs-field />
 							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="lastName"></span>
 						</label>
 						<label class="block sm:col-span-2">
-							<span class="text-sm font-bold text-ameri-navy">Company</span>
+							<span class="text-sm font-bold text-ameri-navy">Designation</span>
+							<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" name="designation" autocomplete="organization-title" data-fs-field />
+							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="designation"></span>
+						</label>
+						<label class="block sm:col-span-2">
+							<span class="text-sm font-bold text-ameri-navy">Company*</span>
 							<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" name="company" autocomplete="organization" required data-fs-field />
 							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="company"></span>
 						</label>
 						<label class="block sm:col-span-2">
-							<span class="text-sm font-bold text-ameri-navy">Business email</span>
+							<span class="text-sm font-bold text-ameri-navy">Business email*</span>
 							<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" type="email" name="email" autocomplete="email" required data-fs-field />
 							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="email"></span>
 						</label>
 						<label class="block sm:col-span-2">
-							<span class="text-sm font-bold text-ameri-navy">Contact number</span>
-							<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" type="tel" name="phone" autocomplete="tel" data-fs-field />
+							<span class="text-sm font-bold text-ameri-navy">Contact number*</span>
+							<input class="mt-2 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" type="tel" name="phone" autocomplete="tel" required data-fs-field />
 							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="phone"></span>
 						</label>
 						<label class="block sm:col-span-2">
-							<span class="text-sm font-bold text-ameri-navy">How can Americall help?</span>
+							<span class="text-sm font-bold text-ameri-navy">Monthly appointment volume</span>
+							<select class="mt-2 w-full rounded-xl border border-ameri-border bg-white px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" name="monthlyAppointmentVolume" data-fs-field>
+								<option value="">Select appointment volume</option>
+								<option value="Under 100 appointments/mo">Under 100 appointments/mo</option>
+								<option value="100-500 appointments/mo">100-500 appointments/mo</option>
+								<option value="500-1,000 appointments/mo">500-1,000 appointments/mo</option>
+								<option value="1,000+/mo">1,000+/mo</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="monthlyAppointmentVolume"></span>
+						</label>
+						<label class="block sm:col-span-2">
+							<span class="text-sm font-bold text-ameri-navy">How can Americall, Inc. help with campaign management?</span>
 							<textarea class="mt-2 min-h-32 w-full rounded-xl border border-ameri-border px-4 py-3 transition focus:border-ameri-red focus:ring-2 focus:ring-ameri-red/15 data-[invalid]:border-red-500" name="message" data-fs-field></textarea>
 							<span class="mt-1 hidden text-xs text-red-500" data-fs-error="message"></span>
 						</label>

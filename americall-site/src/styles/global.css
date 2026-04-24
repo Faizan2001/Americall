@@ -85,59 +85,18 @@ summary::-webkit-details-marker {
 	-webkit-backdrop-filter: blur(8px);
 }
 
-/* ─── Brand wordmark with red "Call" box ─── */
-/* Font matches original Americall logo: bold condensed sans-serif */
+/* Header uses the original logo with corrected transparent counters in the wordmark. */
 
-.brand-wordmark {
-	font-family: "Impact", "Haettenschweiler", "Arial Narrow Bold", "Franklin Gothic Demi Cond", "Segoe UI Black", sans-serif;
-	font-weight: 900;
-	letter-spacing: 0.01em;
-	line-height: 1;
-	display: inline-flex;
-	align-items: center;
-	gap: 0;
-	text-transform: uppercase;
-	transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+.brand-lockup {
+	min-width: 0;
 }
 
-.brand-wordmark:hover {
-	transform: scale(1.04);
-}
-
-.brand-call-box {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--color-ameri-red);
-	color: white;
-	border-radius: 0.25em;
-	padding: 0.06em 0.2em;
-	margin-left: 0.02em;
-	transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease, background 280ms ease;
-	position: relative;
-}
-
-/* Modern hover glow animation for the logo */
-@keyframes logo-glow {
-	0%, 100% { box-shadow: 0 0 0 0 rgba(215, 25, 32, 0); }
-	50% { box-shadow: 0 0 20px 4px rgba(215, 25, 32, 0.35); }
-}
-
-.brand-wordmark:hover .brand-call-box {
-	transform: scale(1.06) translateY(-1px);
-	box-shadow: 0 4px 20px rgba(215, 25, 32, 0.4);
-	background: #c0151b;
-	animation: logo-glow 1.5s ease-in-out infinite;
-}
-
-/* Eagle icon hover tilt */
-.brand-eagle {
+.brand-logo-img {
 	transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), filter 320ms ease;
 }
 
-.brand-wordmark:hover ~ .brand-eagle,
-a:hover .brand-eagle {
-	transform: rotate(-5deg) scale(1.08);
+.brand-lockup:hover .brand-logo-img {
+	transform: translateY(-1px) scale(1.03);
 	filter: drop-shadow(0 4px 12px rgba(2, 18, 44, 0.2));
 }
 

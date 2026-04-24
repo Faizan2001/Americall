@@ -1,0 +1,8 @@
+# Local browser/test artifacts
+.playwright-mcp/
+*.png
+
+# Keep curated reference/source image folders tracked
+!Logo/*.png
+!Old Website/*.png
+!americall-site/public/**/*.png

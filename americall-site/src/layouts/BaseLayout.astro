@@ -38,10 +38,8 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 		</a>
 		<header class="glass-nav sticky top-0 z-40" id="site-header">
 			<div class="mx-auto flex items-center justify-between gap-4 px-5 py-3 lg:px-8">
-				<a href="/" class="group flex shrink-0 items-center gap-3" aria-label="Americall home">
-					<div class="h-10 w-10 overflow-hidden md:h-auto md:w-auto md:overflow-visible">
-						<img src="/images/americall-logo-transparent.png" alt="Americall" class="h-10 max-w-none object-left object-cover md:h-14 lg:h-[3.75rem] md:object-contain transition-transform duration-300 group-hover:scale-105 origin-left" loading="eager" />
-					</div>
+				<a href="/" class="brand-lockup group flex shrink-0 items-center" aria-label="Americall home">
+					<img src="/images/americall-logo-transparent-fixed.png" alt="Americall" class="brand-logo-img h-14 w-auto max-w-[13rem] object-contain md:h-16 md:max-w-[18rem]" loading="eager" />
 				</a>
 				<nav class="hidden justify-center md:flex md:flex-1" aria-label="Main navigation">
 					<div class="glass-pill flex items-center gap-1 rounded-2xl p-1 text-sm font-bold text-ameri-ink">
@@ -159,10 +157,8 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 		<!-- ═══ MOBILE MENU OVERLAY ═══ -->
 		<div id="mobile-menu" class="fixed inset-0 z-50 hidden flex-col bg-white px-5 py-5 sm:px-8">
 			<div class="flex items-center justify-between">
-				<a href="/" class="flex shrink-0 items-center gap-3">
-					<div class="h-10 w-10 overflow-hidden">
-						<img src="/images/americall-logo-transparent.png" alt="Americall" class="h-10 max-w-none object-left object-cover" loading="eager" />
-					</div>
+				<a href="/" class="brand-lockup flex shrink-0 items-center" aria-label="Americall home">
+					<img src="/images/americall-logo-transparent-fixed.png" alt="Americall" class="brand-logo-img h-14 w-auto max-w-[13rem] object-contain" loading="eager" />
 				</a>
 				<button id="mobile-menu-close" class="grid h-10 w-10 place-items-center rounded-xl bg-ameri-soft text-ameri-navy transition hover:bg-ameri-border/50" aria-label="Close menu">
 					<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>

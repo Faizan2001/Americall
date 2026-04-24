@@ -153,24 +153,38 @@ export const faqs = [
 
 export const agents = [
 	{
-		name: 'Agent One',
+		name: 'Bryan Tucker',
 		role: 'Appointment Setter',
 		quote: 'Every strong appointment starts with listening carefully.',
-		initials: 'A1',
+		initials: 'BT',
 		audio: '',
 	},
 	{
-		name: 'Agent Two',
+		name: 'Alex Mercer',
 		role: 'Confirmation Specialist',
 		quote: 'Clear confirmation helps every sales team protect its time.',
-		initials: 'A2',
+		initials: 'AM',
 		audio: '',
 	},
 	{
-		name: 'Agent Three',
+		name: 'Raiyan Dio Sarwar',
 		role: 'Campaign Support',
 		quote: 'The details behind each call are what turn activity into outcomes.',
-		initials: 'A3',
+		initials: 'RDS',
+		audio: '',
+	},
+	{
+		name: 'Omar',
+		role: 'Appointment Setter',
+		quote: 'Every strong appointment starts with listening carefully.',
+		initials: 'O',
+		audio: '',
+	},
+	{
+		name: 'Rezwan Chowdhury',
+		role: 'Confirmation Specialist',
+		quote: 'Clear confirmation helps every sales team protect its time.',
+		initials: 'RC',
 		audio: '',
 	},
 ];

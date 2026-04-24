@@ -54,31 +54,31 @@ import { agents } from '../data/site';
 				<div class="reveal about-feature-card">
 					<div class="about-feature-icon">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+						</div>
+						<h3 class="text-lg font-black text-ameri-navy">Trained Teams</h3>
+						<p class="text-sm leading-6 text-ameri-muted">Every agent goes through a rigorous multi-stage recruitment and training process before handling a single call — ensuring only the most prepared, brand-aligned representatives reach your prospects.</p>
 					</div>
-					<h3 class="text-lg font-black text-ameri-navy">Trained Teams</h3>
-					<p class="text-sm leading-6 text-ameri-muted">500+ agents recruited, trained, and managed to represent your brand with consistency on every call.</p>
-				</div>
-				<div class="reveal about-feature-card">
-					<div class="about-feature-icon">
-						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+					<div class="reveal about-feature-card">
+						<div class="about-feature-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+						</div>
+						<h3 class="text-lg font-black text-ameri-navy">Quality First</h3>
+						<p class="text-sm leading-6 text-ameri-muted">Every call is monitored against your exact requirements. Our QA process captures performance data, surfaces coaching opportunities, and feeds directly back to agents — so standards tighten over time, not drift.</p>
 					</div>
-					<h3 class="text-lg font-black text-ameri-navy">Quality First</h3>
-					<p class="text-sm leading-6 text-ameri-muted">Every appointment goes through QA before reaching your team, so you sit with prospects who are genuinely interested.</p>
-				</div>
-				<div class="reveal about-feature-card">
-					<div class="about-feature-icon">
-						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+					<div class="reveal about-feature-card">
+						<div class="about-feature-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+						</div>
+						<h3 class="text-lg font-black text-ameri-navy">Smart Campaign Management</h3>
+						<p class="text-sm leading-6 text-ameri-muted">From scrubbed lead lists and connection-optimized DIDs to real-time agent oversight — we manage every layer of your campaign so your pipeline stays full and your team stays focused on closing.</p>
 					</div>
-					<h3 class="text-lg font-black text-ameri-navy">CRM & Dialer</h3>
-					<p class="text-sm leading-6 text-ameri-muted">Integrated with Salesforce, HubSpot, GoHighLevel, and popular scheduling tools your team already uses.</p>
-				</div>
-				<div class="reveal about-feature-card">
-					<div class="about-feature-icon">
-						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+					<div class="reveal about-feature-card">
+						<div class="about-feature-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+						</div>
+						<h3 class="text-lg font-black text-ameri-navy">Industry Expertise</h3>
+						<p class="text-sm leading-6 text-ameri-muted">Deep specialization across solar, roofing, HVAC, healthcare, and home improvement means your agents already understand your buyer's language before the first call is made.</p>
 					</div>
-					<h3 class="text-lg font-black text-ameri-navy">U.S. Focused</h3>
-					<p class="text-sm leading-6 text-ameri-muted">Deep experience in solar, roofing, HVAC, real estate, and home improvement industries across all 50 states.</p>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -96,14 +96,12 @@ import { agents } from '../data/site';
 			<div class="mt-12 grid gap-6 md:grid-cols-3">
 				{agents.map((agent) => (
 					<article class="reveal lift-card group rounded-2xl border border-ameri-border bg-white p-6 hover:border-ameri-red/35">
-						<div class="grid aspect-square place-items-center rounded-2xl bg-ameri-soft text-4xl font-black text-ameri-navy transition group-hover:bg-ameri-navy group-hover:text-white">
-							{agent.initials}
-						</div>
-						<h3 class="mt-6 text-xl font-black text-ameri-navy">{agent.name}</h3>
-						<p class="mt-1 text-sm font-bold uppercase tracking-wide text-ameri-red">{agent.role}</p>
-						<p class="mt-4 leading-7 text-ameri-muted">"{agent.quote}"</p>
-						<button
-							type="button"
+							<div class="grid aspect-square place-items-center rounded-2xl bg-ameri-soft text-4xl font-black text-ameri-navy transition group-hover:bg-ameri-navy group-hover:text-white">
+								{agent.initials}
+							</div>
+							<h3 class="mt-6 text-xl font-black text-ameri-navy">{agent.name}</h3>
+							<button
+								type="button"
 							class="mt-6 w-full rounded-xl border border-ameri-border px-4 py-3 text-sm font-black text-ameri-navy transition hover:border-ameri-red hover:text-ameri-red disabled:cursor-not-allowed disabled:opacity-60"
 							data-audio={agent.audio}
 							disabled={!agent.audio}
