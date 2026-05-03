@@ -39,7 +39,7 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 		<header class="glass-nav sticky top-0 z-40" id="site-header">
 			<div class="mx-auto flex items-center justify-between gap-4 px-5 py-3 lg:px-8">
 				<a href="/" class="brand-lockup group flex shrink-0 items-center" aria-label="Americall home">
-					<img src="/images/americall-logo-transparent-fixed.png" alt="Americall" class="brand-logo-img h-14 w-auto max-w-[13rem] object-contain md:h-16 md:max-w-[18rem]" loading="eager" />
+					<img src="/images/americall-logo-transparent-fixed.png" alt="Americall" class="brand-logo-img h-12 w-auto max-w-[10rem] object-contain sm:h-14 sm:max-w-[13rem] md:h-16 md:max-w-[18rem]" loading="eager" />
 				</a>
 				<nav class="hidden justify-center md:flex md:flex-1" aria-label="Main navigation">
 					<div class="glass-pill flex items-center gap-1 rounded-2xl p-1 text-sm font-bold text-ameri-ink">
@@ -51,10 +51,9 @@ const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
 				<div class="flex items-center gap-3">
 					<a
 						href="/contact/"
-						class="button-motion inline-flex rounded-2xl bg-ameri-red px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-ameri-red/25 hover:bg-red-700 md:px-5"
+						class="button-motion hidden rounded-2xl bg-ameri-red px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-ameri-red/25 hover:bg-red-700 sm:inline-flex md:px-5"
 					>
-						<span class="hidden sm:inline">Book a Free Demo</span>
-						<span class="sm:hidden">Demo</span>
+						<span>Book a Free Demo</span>
 					</a>
 					<button id="mobile-menu-btn" class="grid h-10 w-10 place-items-center rounded-xl bg-ameri-soft text-ameri-navy transition hover:bg-ameri-border/50 md:hidden" aria-label="Open menu">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>

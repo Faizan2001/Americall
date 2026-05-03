@@ -1,31 +1,276 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { services } from '../data/site';
+import { servicePackages, services, stats, whyAmericallCards } from '../data/site';
+
+const serviceIcons = [
+	'M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-5l-4 4v-4H6a2 2 0 0 1-2-2V5z',
+	'M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2 M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M17 11l2 2 4-5',
+	'M3 12h4l3 7 4-14 3 7h4 M4 5h16 M4 19h16',
+	'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+];
 ---
 
-<BaseLayout title="Services" description="Explore Americall calling, appointment-setting, CRM, training, campaign management, and administrative support services.">
-	<section class="soft-grid bg-ameri-soft px-5 py-20 lg:px-8">
-		<div class="reveal mx-auto max-w-7xl">
-			<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Services</p>
-			<h1 class="mt-3 max-w-4xl text-4xl font-black leading-tight text-ameri-navy sm:text-5xl">
-				Call operations support for teams that need qualified conversations.
-			</h1>
-			<p class="mt-5 max-w-3xl text-lg leading-8 text-ameri-muted">
-				Americall combines trained agents, campaign management, CRM coordination, and confirmation support so your sales team can spend more time with prepared prospects.
-			</p>
+<BaseLayout title="Services" description="Explore Americall dialer and CRM setup, agent recruitment and training, strategic campaign management, dedicated administrative support, and appointment-setting packages.">
+	<section class="soft-grid bg-ameri-soft px-5 py-14 sm:py-20 lg:px-8">
+		<div class="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.92fr_1.08fr]">
+			<div class="reveal">
+				<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Services</p>
+				<h1 class="mt-3 max-w-4xl text-4xl font-black leading-tight text-ameri-navy sm:text-5xl">
+					Support built for conversations that convert.
+				</h1>
+				<p class="mt-5 max-w-3xl text-lg leading-8 text-ameri-muted">
+					From dialing to follow-up, Americall provides the people, systems, and process behind reliable appointment-setting campaigns.
+				</p>
+				<div class="mt-8 flex flex-col gap-3 sm:flex-row">
+					<a class="button-motion rounded-xl bg-ameri-red px-6 py-3 text-center text-sm font-black text-white shadow-lg shadow-ameri-red/20 hover:bg-red-700" href="/contact/">
+						<span>Book a Free Demo</span>
+					</a>
+					<a class="button-motion rounded-xl border border-ameri-border bg-white px-6 py-3 text-center text-sm font-black text-ameri-navy hover:border-ameri-red hover:text-ameri-red" href="#packages">
+						<span>Compare Packages</span>
+					</a>
+				</div>
+			</div>
+			<div class="reveal overflow-hidden rounded-2xl border border-white bg-white p-2 shadow-lift">
+				<img
+					src="/images/services/services-hero.webp"
+					alt="Modern call operations desk with CRM dashboards and headset"
+					class="aspect-[16/9] w-full rounded-xl object-cover"
+					width="1536"
+					height="864"
+					loading="eager"
+				/>
+			</div>
 		</div>
 	</section>
-	<section class="px-5 py-20 lg:px-8">
-		<div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
-			{services.map((service, index) => (
-				<article class="reveal lift-card group rounded-2xl border border-ameri-border p-8 hover:border-ameri-red/35">
-					<div class="mb-8 grid h-12 w-12 place-items-center rounded-xl bg-ameri-navy text-sm font-black text-white transition group-hover:bg-ameri-red">
-						{String(index + 1).padStart(2, '0')}
+
+	<section class="px-5 py-16 sm:py-20 lg:px-8" id="service-details">
+		<div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+			<div class="reveal space-y-3" role="tablist" aria-label="Americall services">
+				{services.map((service, index) => (
+					<button
+						class={`service-tab group w-full rounded-2xl border p-5 text-left transition ${index === 0 ? 'is-active border-ameri-navy bg-ameri-navy text-white shadow-card' : 'border-ameri-border bg-white text-ameri-navy hover:border-ameri-red/40 hover:shadow-card'}`}
+						type="button"
+						id={`service-tab-${service.slug}`}
+						role="tab"
+						aria-selected={index === 0 ? 'true' : 'false'}
+						aria-controls={service.slug}
+						data-service-tab={service.slug}
+					>
+						<span class="flex items-center gap-4">
+							<span class={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${index === 0 ? 'bg-white/10 text-white' : 'bg-ameri-soft text-ameri-red group-hover:bg-ameri-red group-hover:text-white'}`}>
+								<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d={serviceIcons[index]} />
+								</svg>
+							</span>
+							<span class="min-w-0">
+								<span class="block text-xs font-black uppercase tracking-wide text-ameri-red group-[.is-active]:text-white/65">{String(index + 1).padStart(2, '0')}</span>
+								<span class="mt-1 block text-lg font-black leading-tight">{service.title}</span>
+							</span>
+						</span>
+					</button>
+				))}
+			</div>
+
+			<div class="reveal rounded-2xl border border-ameri-border bg-white p-4 shadow-card sm:p-6">
+				{services.map((service, index) => (
+					<article
+						class={`service-panel ${index === 0 ? '' : 'hidden'}`}
+						id={service.slug}
+						role="tabpanel"
+						aria-labelledby={`service-tab-${service.slug}`}
+						data-service-panel={service.slug}
+					>
+						<div class="grid items-start gap-6 xl:grid-cols-[1fr_0.86fr]">
+							<div class="p-2 sm:p-4">
+								<p class="text-sm font-black uppercase tracking-wide text-ameri-red">0{index + 1} Service</p>
+								<h2 class="mt-3 text-3xl font-black leading-tight text-ameri-navy">{service.title}</h2>
+								<div class="mt-5 space-y-4 text-base leading-8 text-ameri-muted">
+									{service.description.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+								</div>
+							</div>
+							<img
+								src={service.image}
+								alt={`${service.title} visual`}
+								class="aspect-[4/3] w-full rounded-xl object-cover shadow-card"
+								width="1200"
+								height="900"
+								loading={index === 0 ? 'eager' : 'lazy'}
+							/>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-ameri-soft px-5 py-16 sm:py-20 lg:px-8" id="why-americall">
+		<div class="mx-auto max-w-7xl">
+			<div class="reveal mx-auto max-w-3xl text-center">
+				<p class="text-sm font-black uppercase tracking-wide text-ameri-red">Why Americall</p>
+				<h2 class="mt-3 text-3xl font-black text-ameri-navy sm:text-4xl">A partner focused on your results.</h2>
+			</div>
+			<div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+				{whyAmericallCards.map((card, index) => (
+					<article class="reveal about-feature-card">
+						<div class="about-feature-icon">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d={serviceIcons[index]} />
+							</svg>
+						</div>
+						<h3 class="text-lg font-black text-ameri-navy">{card.title}</h3>
+						<p class="text-sm leading-6 text-ameri-muted">{card.description}</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="grid-surface bg-ameri-navy px-5 py-16 text-white sm:py-20 lg:px-8" id="packages">
+		<div class="mx-auto max-w-7xl">
+			<div class="reveal mx-auto max-w-3xl text-center">
+				<p class="text-sm font-black uppercase tracking-wide text-white/65">Packages</p>
+				<h2 class="mt-3 text-3xl font-black sm:text-4xl">Find the Right Plan for Your Needs</h2>
+				<p class="mt-4 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+					This section provides a structured comparison of features and pricing to help customers choose the best option for their needs.
+				</p>
+			</div>
+
+			<div class="mt-12 grid gap-5 lg:grid-cols-3">
+				{servicePackages.slice(0, 3).map((pkg) => (
+					<article class={`reveal package-card ${pkg.highlight ? 'package-card-featured' : ''}`}>
+						<div class="flex items-center justify-between gap-4">
+							<div class="package-icon" aria-hidden="true">
+								<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="6" cy="7" r="2.5" /><circle cx="16" cy="7" r="2.5" /><circle cx="6" cy="17" r="2.5" /><circle cx="16" cy="17" r="2.5" />
+								</svg>
+							</div>
+							{pkg.highlight && <span class="rounded-full bg-ameri-red px-3 py-1 text-xs font-black uppercase tracking-wide text-white">Popular</span>}
+						</div>
+						<h3 class="mt-7 text-xl font-black">{pkg.title}</h3>
+						<p class="mt-4 min-h-36 text-base leading-7 text-white/76">{pkg.description}</p>
+						<ul class="mt-7 space-y-4 border-t border-white/18 pt-7">
+							{pkg.features.map((feature) => (
+								<li class={`flex gap-3 text-base leading-7 ${feature.included ? 'text-white' : 'text-white/58'}`}>
+									<span class="mt-1.5 grid h-5 w-5 shrink-0 place-items-center rounded-full">
+										{feature.included ? (
+											<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+										) : (
+											<svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" /></svg>
+										)}
+									</span>
+									<span>{feature.text}</span>
+								</li>
+							))}
+						</ul>
+					</article>
+				))}
+			</div>
+
+			{servicePackages.slice(3).map((pkg) => (
+				<article class="reveal package-card package-card-enterprise mt-5">
+					<div class="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+						<div>
+							<div class="package-icon" aria-hidden="true">
+								<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="6" cy="7" r="2.5" /><circle cx="16" cy="7" r="2.5" /><circle cx="6" cy="17" r="2.5" /><circle cx="16" cy="17" r="2.5" /><path d="M21 17h-4M19 15v4" />
+								</svg>
+							</div>
+							<h3 class="mt-7 text-xl font-black">{pkg.title}</h3>
+							<p class="mt-4 text-base leading-7 text-white/76">{pkg.description}</p>
+						</div>
+						<ul class="space-y-4 border-t border-white/18 pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+							{pkg.features.map((feature) => (
+								<li class="flex gap-3 text-base leading-7 text-white">
+									<span class="mt-1.5 grid h-5 w-5 shrink-0 place-items-center rounded-full">
+										<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+									</span>
+									<span>{feature.text}</span>
+								</li>
+							))}
+						</ul>
 					</div>
-					<h2 class="text-2xl font-black text-ameri-navy">{service.title}</h2>
-					<p class="mt-4 leading-8 text-ameri-muted">{service.description}</p>
 				</article>
 			))}
 		</div>
 	</section>
+
+	<section class="px-5 py-16 sm:py-20 lg:px-8">
+		<div class="reveal mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+			{stats.slice(0, 3).map((stat) => (
+				<article class="stats-tile">
+					<p class="text-4xl font-black text-ameri-red">{stat.value}</p>
+					<h3 class="mt-3 text-lg font-black text-ameri-navy">{stat.label}</h3>
+					<p class="mt-3 leading-7 text-ameri-muted">{stat.description}</p>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="grid-surface bg-ameri-navy px-5 py-16 text-white lg:px-8">
+		<div class="reveal mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_auto]">
+			<div>
+				<p class="text-sm font-black uppercase tracking-wide text-white/65">Ready for the next step?</p>
+				<h2 class="mt-3 text-3xl font-black sm:text-4xl">Ready to build a stronger pipeline?</h2>
+				<p class="mt-4 max-w-2xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
+					Book a free demo and see how Americall can help your team close more deals.
+				</p>
+			</div>
+			<a class="button-motion rounded-xl bg-ameri-red px-7 py-4 text-center text-sm font-black text-white hover:bg-red-700" href="/contact/">
+				<span>Book a Free Demo</span>
+			</a>
+		</div>
+	</section>
+
+	<script>
+		const tabs = Array.from(document.querySelectorAll('[data-service-tab]')) as HTMLButtonElement[];
+		const panels = Array.from(document.querySelectorAll('[data-service-panel]')) as HTMLElement[];
+		const serviceDetails = document.getElementById('service-details');
+		const validServiceIds = new Set(tabs.map((tab) => tab.dataset.serviceTab).filter(Boolean));
+
+		function activateService(target: string | undefined, options: { updateHash?: boolean; scroll?: boolean } = {}): void {
+			if (!target || !validServiceIds.has(target)) return;
+
+			tabs.forEach((item) => {
+				const isActive = item.dataset.serviceTab === target;
+				item.classList.toggle('is-active', isActive);
+				item.classList.toggle('border-ameri-navy', isActive);
+				item.classList.toggle('bg-ameri-navy', isActive);
+				item.classList.toggle('text-white', isActive);
+				item.classList.toggle('shadow-card', isActive);
+				item.classList.toggle('border-ameri-border', !isActive);
+				item.classList.toggle('bg-white', !isActive);
+				item.classList.toggle('text-ameri-navy', !isActive);
+				item.setAttribute('aria-selected', String(isActive));
+			});
+
+			panels.forEach((panel) => {
+				panel.classList.toggle('hidden', panel.dataset.servicePanel !== target);
+			});
+
+			if (options.updateHash) {
+				window.history.replaceState(null, '', `#${target}`);
+			}
+
+			if (options.scroll && serviceDetails) {
+				window.requestAnimationFrame(() => {
+					serviceDetails.scrollIntoView({ block: 'start' });
+				});
+			}
+		}
+
+		tabs.forEach((tab) => {
+			tab.addEventListener('click', () => {
+				activateService(tab.dataset.serviceTab, { updateHash: true });
+			});
+		});
+
+		const initialHash = window.location.hash.slice(1);
+		if (initialHash) {
+			activateService(initialHash, { scroll: true });
+		}
+
+		window.addEventListener('hashchange', () => {
+			activateService(window.location.hash.slice(1), { scroll: true });
+		});
+	</script>
 </BaseLayout>

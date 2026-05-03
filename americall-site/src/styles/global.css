@@ -16,8 +16,15 @@
 	--radius-smooth: 1.5rem;
 }
 
+@property --trail-angle {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0turn;
+}
+
 html {
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 body {
@@ -25,6 +32,7 @@ body {
 	font-family: var(--font-sans);
 	color: var(--color-ameri-ink);
 	background: #ffffff;
+	overflow-x: hidden;
 }
 
 a {
@@ -103,12 +111,17 @@ summary::-webkit-details-marker {
 /* ─── Scroll reveal ─── */
 
 .reveal {
-	opacity: 0;
-	transform: translateY(22px);
+	opacity: 1;
+	transform: none;
 	transition:
 		opacity 680ms ease,
 		transform 680ms ease;
 	transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.js .reveal {
+	opacity: 0;
+	transform: translateY(22px);
 }
 
 .reveal.is-visible {
@@ -166,6 +179,80 @@ summary::-webkit-details-marker {
 .button-motion > span {
 	position: relative;
 	z-index: 1;
+}
+
+.border-trail {
+	--trail-angle: 0turn;
+	isolation: isolate;
+	overflow: visible;
+	border-color: color-mix(in srgb, var(--color-ameri-border) 88%, var(--color-ameri-red));
+	background: white;
+	box-shadow:
+		0 8px 24px rgb(2 18 44 / 0.05),
+		0 0 0 1px rgb(215 25 32 / 0.03);
+}
+
+.border-trail::after {
+	display: none;
+}
+
+.border-trail::before {
+	position: absolute;
+	inset: -1px;
+	z-index: 2;
+	content: "";
+	border-radius: inherit;
+	padding: 1.5px;
+	background: conic-gradient(
+		from var(--trail-angle),
+		transparent 0turn,
+		transparent 0.72turn,
+		rgb(215 25 32 / 0.18) 0.78turn,
+		rgb(215 25 32 / 0.96) 0.83turn,
+		rgb(215 25 32 / 0.18) 0.89turn,
+		transparent 0.95turn,
+		transparent 1turn
+	);
+	opacity: 0;
+	filter: drop-shadow(0 0 5px rgb(215 25 32 / 0.42));
+	pointer-events: none;
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	animation: border-trail-run 5.8s ease-in-out infinite;
+}
+
+.border-trail > span {
+	position: relative;
+	z-index: 3;
+}
+
+@keyframes border-trail-run {
+	0%,
+	100% {
+		opacity: 0;
+		--trail-angle: 0turn;
+	}
+	58% {
+		opacity: 0;
+		--trail-angle: 0turn;
+	}
+	63% {
+		opacity: 0.92;
+	}
+	84% {
+		opacity: 0.92;
+		--trail-angle: 1turn;
+	}
+	91% {
+		opacity: 0;
+		--trail-angle: 1turn;
+	}
 }
 
 /* ─── Nav link underline ─── */
@@ -500,6 +587,61 @@ details[open] .faq-chevron {
 .about-feature-card:hover .about-feature-icon {
 	background: var(--color-ameri-red);
 	color: white;
+}
+
+/* ─── Services page ─── */
+
+.service-tab.is-active .about-feature-icon,
+.service-tab.is-active .package-icon {
+	background: rgb(255 255 255 / 0.12);
+	color: white;
+}
+
+.service-panel {
+	animation: service-panel-in 220ms ease both;
+}
+
+@keyframes service-panel-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.package-card {
+	border-radius: var(--radius-smooth);
+	border: 1px solid rgb(255 255 255 / 0.12);
+	background: rgb(255 255 255 / 0.075);
+	padding: 2rem;
+	box-shadow: 0 18px 70px rgb(0 0 0 / 0.18);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+}
+
+.package-card-featured {
+	border-color: rgb(215 25 32 / 0.65);
+	background:
+		linear-gradient(180deg, rgb(215 25 32 / 0.16), transparent 34%),
+		rgb(255 255 255 / 0.085);
+}
+
+.package-card-enterprise {
+	max-width: 56rem;
+	margin-inline: auto;
+}
+
+.package-icon {
+	display: grid;
+	place-items: center;
+	width: 3.25rem;
+	height: 3.25rem;
+	border-radius: 1rem;
+	background: rgb(255 255 255 / 0.09);
+	color: #fff7d6;
 }
 
 /* ─── Reduced motion ─── */

@@ -11,31 +11,118 @@ export const site = {
 export const navItems = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Services', href: '/services/' },
-	{ label: 'About Us', href: '/about/' },
+	// About Us is intentionally hidden for now; the strongest trust cards were moved into Services.
+	// { label: 'About Us', href: '/about/' },
 	{ label: 'FAQ', href: '/faq/' },
 	{ label: 'Contact Us', href: '/contact/' },
 ];
 
 export const services = [
 	{
-		title: 'Dialer And CRM Solutions',
+		slug: 'dialer-crm',
+		title: 'Dialer and CRM Solutions',
 		description:
-			'Keep campaigns organized with dialer and CRM support that helps your team track conversations, follow-ups, outcomes, and appointment flow.',
+			'The right dialer, the right CRM, and the right numbers make all the difference. Our team manages DID selection and maintenance to protect call quality and maximize answer rates — while seamlessly integrating with the platforms you already use, including VICI Dialer, Calltools, ReadyMode, GoHighLevel, Salesforce, HubSpot, and Zoho CRM. We handle the setup, the upkeep, and the strategy so you can focus on closing.',
+		image: '/images/services/dialer-crm.webp',
 	},
 	{
-		title: 'Agent Recruitment And Training',
+		slug: 'agent-training',
+		title: 'Skilled Agent Recruitment and Training',
 		description:
-			'Americall recruits and trains agents to understand your offer, qualify prospects clearly, and represent your business with consistency.',
+			'Building a high-performing call team starts long before the first dial. At Americall, our recruitment process is designed to identify candidates with the right communication skills, resilience, and aptitude for sales — before any training even begins.\n\nFrom there, agents go through a structured onboarding and training program tailored to your industry, your product, and your target audience. The result is a team that understands your business, represents your brand professionally, and knows how to turn a conversation into a confirmed appointment.',
+		image: '/images/services/agent-training.webp',
 	},
 	{
+		slug: 'campaign-management',
 		title: 'Strategic Campaign Management',
 		description:
-			'From call strategy to daily performance checks, campaigns are managed around your industry, sales goals, and appointment quality.',
+			"We don't set campaigns and leave them running. Our team actively manages every aspect of your campaign — from call strategy and script refinement to performance tracking and real-time adjustments. Our managers conduct live monitoring of calls as they happen, stepping in with one-on-one agent coaching during active operations to ensure quality never slips.\n\nThe goal is simple: keep what's working, fix what isn't, and never stop improving.",
+		image: '/images/services/campaign-management.webp',
 	},
 	{
+		slug: 'admin-support',
 		title: 'Dedicated Administrative Support',
 		description:
-			'Behind every campaign, support teams help with confirmations, quality checks, reporting, coordination, and client communication.',
+			"Every Americall client is assigned a dedicated account manager who serves as their primary point of contact throughout the campaign. From onboarding to ongoing operations, your account manager handles the administrative side of your campaign — coordinating between teams, managing reporting, tracking performance, and ensuring nothing falls through the cracks.\n\nYou'll be given direct access to agent, manager, and admin communication channels, your campaign's dialer, and the Appointment Master Spreadsheet — giving you full visibility into every moving part of your campaign at every stage. You focus on your business. We handle the rest.",
+		image: '/images/services/admin-support.webp',
+	},
+];
+
+export const servicePackages = [
+	{
+		title: 'LAUNCH PACKAGE',
+		description:
+			"Perfect for businesses looking to test the waters. The Launch Package gives you a dedicated two-agent team to start generating qualified appointments, with the full support of Americall's infrastructure behind every call.",
+		highlight: false,
+		features: [
+			{ text: '2 Trained Agents', included: true },
+			{ text: '8+ Qualified Appointments Weekly (32-35 Appts / mo.)', included: true },
+			{ text: 'Appointment Quality Control and Agent Management', included: false },
+			{ text: 'Dedicated Campaign Manager - Operations and KPI Tracking.', included: false },
+			{ text: 'Dedicated Client Success Manager', included: false },
+		],
+	},
+	{
+		title: 'MOMENTUM PACKAGE',
+		description:
+			"Built for businesses ready to scale. With a five-agent team working your campaign, the Momentum Package delivers a consistent, higher volume of qualified appointments while maintaining the attention to detail Americall is known for.",
+		highlight: true,
+		features: [
+			{ text: '5 Trained Agents (Fully Managed)', included: true },
+			{ text: '20+ Qualified Appointments Weekly (80-100 Appt / mo.)', included: true },
+			{ text: 'Appointment Quality Control and Agent KPI Management', included: true },
+			{ text: 'Dedicated Campaign Manager - Operations and KPI Tracking.', included: true },
+			{ text: 'Dedicated Client Success Manager', included: false },
+		],
+	},
+	{
+		title: 'ACCELERATION PACKAGE',
+		description:
+			'Ready to dominate your market. The Acceleration Package puts 10 dedicated agents on your campaign, generating up to 40 qualified appointments every week — giving your sales team a full, consistent pipeline to close and convert without lifting a finger on outreach.',
+		highlight: false,
+		features: [
+			{ text: '10 Trained Agents (Fully Managed)', included: true },
+			{ text: '40+ Qualified Appointments Weekly (160-180 Appt / mo.)', included: true },
+			{ text: 'Dedicated Quality Control and Agent KPI Management', included: true },
+			{ text: 'Dedicated Campaign Manager - Operations and KPI Tracking.', included: true },
+			{ text: 'Dedicated Client Success Manager', included: true },
+		],
+	},
+	{
+		title: 'ENTERPRISE PACKAGE',
+		description:
+			'The full force of Americall behind your business. The Enterprise Package deploys 20 dedicated agents to deliver up to 80 qualified appointments per week — the kind of volume that fuels serious revenue growth, fills your calendar end to end, and positions your business to scale without limits.',
+		highlight: false,
+		features: [
+			{ text: '20 Trained Agents (Fully Managed)', included: true },
+			{ text: '80+ Qualified Appointments Weekly (320-350 Appt / mo.)', included: true },
+			{ text: 'Dedicated Appointment Quality Control & Training Manager - 1. Appointment Quality 2. Agent KPI Management', included: true },
+			{ text: 'Dedicated Campaign and Lead Manager - a. Operations and Strategy b. Cold and Opt in Lead Management c. Appointment Tracking and Confirmations.', included: true },
+			{ text: 'Dedicated Client Success Manager', included: true },
+		],
+	},
+];
+
+export const whyAmericallCards = [
+	{
+		title: 'Trained Teams',
+		description:
+			'Every agent goes through a rigorous multi-stage recruitment and training process before handling a single call — ensuring only the most prepared, brand-aligned representatives reach your prospects.',
+	},
+	{
+		title: 'Quality First',
+		description:
+			'Every call is monitored against your exact requirements. Our QA process captures performance data, surfaces coaching opportunities, and feeds directly back to agents — so standards tighten over time, not drift.',
+	},
+	{
+		title: 'Smart Campaign Management',
+		description:
+			'From scrubbed lead lists and connection-optimized DIDs to real-time agent oversight — we manage every layer of your campaign so your pipeline stays full and your team stays focused on closing.',
+	},
+	{
+		title: 'Industry Expertise',
+		description:
+			"Deep specialization across solar, roofing, HVAC, healthcare, and home improvement means your agents already understand your buyer's language before the first call is made.",
 	},
 ];
 
