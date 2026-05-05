@@ -63,6 +63,33 @@ summary::-webkit-details-marker {
 	background-size: 56px 56px;
 }
 
+.hero-industry-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	border: 1px solid rgb(255 255 255 / 0.18);
+	border-radius: 999px;
+	background: rgb(255 255 255 / 0.11);
+	padding: 0.55rem 0.85rem;
+	color: rgb(255 255 255 / 0.88);
+	font-size: 0.78rem;
+	font-weight: 900;
+	line-height: 1;
+	box-shadow: 0 10px 26px rgb(0 0 0 / 0.12);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+}
+
+.hero-industry-chip__icon {
+	display: grid;
+	place-items: center;
+	width: 1.35rem;
+	height: 1.35rem;
+	border-radius: 999px;
+	background: rgb(255 255 255 / 0.12);
+	color: rgb(255 255 255 / 0.78);
+}
+
 .soft-grid {
 	background-image:
 		linear-gradient(rgb(2 18 44 / 0.035) 1px, transparent 1px),
@@ -375,23 +402,34 @@ html.js .reveal {
 	border-radius: 4px;
 }
 
-/* ─── Testimonial cards (equal-height modern tiles) ─── */
+/* ─── Testimonial carousel ─── */
 
-.testimonials-grid {
-	display: grid;
-	gap: 1.25rem;
-	grid-template-columns: 1fr;
+.testimonial-carousel-mask {
+	overflow: hidden;
+	mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
 }
 
-@media (min-width: 768px) {
-	.testimonials-grid {
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	}
+.testimonial-carousel {
+	display: flex;
+	gap: 1.25rem;
+	overflow-x: auto;
+	padding: 0.25rem 0.25rem 1rem;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+.testimonial-carousel::-webkit-scrollbar {
+	display: none;
 }
 
 .testimonial-card {
 	position: relative;
 	overflow: hidden;
+	width: min(100%, 42rem);
+	flex: 0 0 100%;
+	scroll-snap-align: center;
 	border-radius: var(--radius-smooth);
 	border: 1px solid var(--color-ameri-border);
 	background: white;
@@ -597,6 +635,66 @@ details[open] .faq-chevron {
 	color: white;
 }
 
+.service-tabs-shell {
+	position: sticky;
+	top: 5.35rem;
+	z-index: 20;
+	display: flex;
+	gap: 0.85rem;
+	margin-inline: -1.25rem;
+	padding: 0.2rem 1.25rem 0.85rem;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-padding-inline: 1.25rem;
+	background: linear-gradient(180deg, white 0%, rgb(255 255 255 / 0.96) 74%, rgb(255 255 255 / 0));
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+}
+
+.service-tabs-shell::-webkit-scrollbar {
+	display: none;
+}
+
+.service-tabs-shell .service-tab {
+	scroll-snap-align: center;
+}
+
+.service-tab-progress {
+	position: absolute;
+	right: 1rem;
+	bottom: 0.75rem;
+	left: 1rem;
+	height: 3px;
+	border-radius: 999px;
+	background: rgb(215 25 32 / 0.18);
+	opacity: 0;
+	overflow: hidden;
+}
+
+.service-tab-progress::before {
+	position: absolute;
+	inset: 0;
+	content: "";
+	border-radius: inherit;
+	background: var(--color-ameri-red);
+	transform: scaleX(0);
+	transform-origin: left;
+}
+
+.service-tab.is-active .service-tab-progress {
+	opacity: 1;
+}
+
+.service-tab.is-active .service-tab-progress::before {
+	animation: service-tab-progress 5.2s linear infinite;
+}
+
+@keyframes service-tab-progress {
+	to {
+		transform: scaleX(1);
+	}
+}
+
 .service-panel {
 	animation: service-panel-in 220ms ease both;
 }
@@ -622,6 +720,30 @@ details[open] .faq-chevron {
 	-webkit-backdrop-filter: blur(12px);
 }
 
+.package-snap-track {
+	display: flex;
+	gap: 1.25rem;
+	margin-inline: -1.25rem;
+	overflow-x: auto;
+	padding-inline: 1.25rem;
+	padding-bottom: 0.5rem;
+	scroll-snap-type: x mandatory;
+	scroll-padding-inline: 1.25rem;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+.package-snap-track::-webkit-scrollbar {
+	display: none;
+}
+
+.package-snap-track .package-card {
+	width: min(84vw, 23rem);
+	min-height: 100%;
+	flex: 0 0 auto;
+	scroll-snap-align: center;
+}
+
 .package-card-featured {
 	border-color: rgb(215 25 32 / 0.65);
 	background:
@@ -642,6 +764,40 @@ details[open] .faq-chevron {
 	border-radius: 1rem;
 	background: rgb(255 255 255 / 0.09);
 	color: #fff7d6;
+}
+
+@media (min-width: 1024px) {
+	.service-tabs-shell {
+		position: static;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		align-self: start;
+		margin-inline: 0;
+		padding: 0;
+		overflow: visible;
+		background: transparent;
+		scroll-snap-type: none;
+	}
+
+	.package-snap-track {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		margin-inline: 0;
+		overflow: visible;
+		padding: 0;
+		scroll-snap-type: none;
+	}
+
+	.package-snap-track .package-card {
+		width: auto;
+	}
+
+	.package-snap-track .package-card:nth-child(4) {
+		grid-column: 1 / -1;
+		width: min(100%, 56rem);
+		justify-self: center;
+	}
 }
 
 /* ─── Reduced motion ─── */
@@ -667,6 +823,11 @@ details[open] .faq-chevron {
 
 	.draggable-carousel {
 		scroll-behavior: auto;
+	}
+
+	.service-tab.is-active .service-tab-progress::before {
+		animation: none;
+		transform: scaleX(1);
 	}
 
 	.faq-answer {

@@ -45,10 +45,10 @@ const serviceIcons = [
 
 	<section class="px-5 py-16 sm:py-20 lg:px-8" id="service-details">
 		<div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-			<div class="reveal space-y-3" role="tablist" aria-label="Americall services">
+			<div class="service-tabs-shell reveal" role="tablist" aria-label="Americall services">
 				{services.map((service, index) => (
 					<button
-						class={`service-tab group w-full rounded-2xl border p-5 text-left transition ${index === 0 ? 'is-active border-ameri-navy bg-ameri-navy text-white shadow-card' : 'border-ameri-border bg-white text-ameri-navy hover:border-ameri-red/40 hover:shadow-card'}`}
+						class={`service-tab group relative w-[82vw] shrink-0 overflow-hidden rounded-2xl border p-5 text-left transition sm:w-[21rem] lg:w-full ${index === 0 ? 'is-active border-ameri-navy bg-ameri-navy text-white shadow-card' : 'border-ameri-border bg-white text-ameri-navy hover:border-ameri-red/40 hover:shadow-card'}`}
 						type="button"
 						id={`service-tab-${service.slug}`}
 						role="tab"
@@ -67,6 +67,7 @@ const serviceIcons = [
 								<span class="mt-1 block text-lg font-black leading-tight">{service.title}</span>
 							</span>
 						</span>
+						<span class="service-tab-progress" aria-hidden="true"></span>
 					</button>
 				))}
 			</div>
@@ -135,8 +136,8 @@ const serviceIcons = [
 				</p>
 			</div>
 
-			<div class="mt-12 grid gap-5 lg:grid-cols-3">
-				{servicePackages.slice(0, 3).map((pkg) => (
+			<div class="package-snap-track reveal mt-12" id="packages-carousel">
+				{servicePackages.map((pkg) => (
 					<article class={`reveal package-card ${pkg.highlight ? 'package-card-featured' : ''}`}>
 						<div class="flex items-center justify-between gap-4">
 							<div class="package-icon" aria-hidden="true">
@@ -165,32 +166,11 @@ const serviceIcons = [
 					</article>
 				))}
 			</div>
-
-			{servicePackages.slice(3).map((pkg) => (
-				<article class="reveal package-card package-card-enterprise mt-5">
-					<div class="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-						<div>
-							<div class="package-icon" aria-hidden="true">
-								<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="6" cy="7" r="2.5" /><circle cx="16" cy="7" r="2.5" /><circle cx="6" cy="17" r="2.5" /><circle cx="16" cy="17" r="2.5" /><path d="M21 17h-4M19 15v4" />
-								</svg>
-							</div>
-							<h3 class="mt-7 text-xl font-black">{pkg.title}</h3>
-							<p class="mt-4 text-base leading-7 text-white/76">{pkg.description}</p>
-						</div>
-						<ul class="space-y-4 border-t border-white/18 pt-7 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-							{pkg.features.map((feature) => (
-								<li class="flex gap-3 text-base leading-7 text-white">
-									<span class="mt-1.5 grid h-5 w-5 shrink-0 place-items-center rounded-full">
-										<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-									</span>
-									<span>{feature.text}</span>
-								</li>
-							))}
-						</ul>
-					</div>
-				</article>
-			))}
+			<div class="mt-6 flex justify-center gap-2 lg:hidden" id="packages-dots">
+				{servicePackages.map((_, index) => (
+					<button class={`carousel-dot ${index === 0 ? 'is-active' : ''}`} aria-label={`Go to package ${index + 1}`} data-index={index} type="button"></button>
+				))}
+			</div>
 		</div>
 	</section>
 
@@ -222,12 +202,17 @@ const serviceIcons = [
 	</section>
 
 	<script>
+		import { getNextSnapIndex, normalizeSnapIndex } from '../utils/carouselState.mjs';
+
 		const tabs = Array.from(document.querySelectorAll('[data-service-tab]')) as HTMLButtonElement[];
 		const panels = Array.from(document.querySelectorAll('[data-service-panel]')) as HTMLElement[];
 		const serviceDetails = document.getElementById('service-details');
 		const validServiceIds = new Set(tabs.map((tab) => tab.dataset.serviceTab).filter(Boolean));
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let serviceAutoTimer: number | null = null;
+		let serviceResumeTimer: number | null = null;
 
-		function activateService(target: string | undefined, options: { updateHash?: boolean; scroll?: boolean } = {}): void {
+		function activateService(target: string | undefined, options: { updateHash?: boolean; scroll?: boolean; alignTab?: boolean } = {}): void {
 			if (!target || !validServiceIds.has(target)) return;
 
 			tabs.forEach((item) => {
@@ -247,6 +232,11 @@ const serviceIcons = [
 				panel.classList.toggle('hidden', panel.dataset.servicePanel !== target);
 			});
 
+			if (options.alignTab !== false) {
+				const activeTab = tabs.find((tab) => tab.dataset.serviceTab === target);
+				activeTab?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
+			}
+
 			if (options.updateHash) {
 				window.history.replaceState(null, '', `#${target}`);
 			}
@@ -261,16 +251,119 @@ const serviceIcons = [
 		tabs.forEach((tab) => {
 			tab.addEventListener('click', () => {
 				activateService(tab.dataset.serviceTab, { updateHash: true });
+				pauseServiceRotation();
+				scheduleServiceRotation();
 			});
 		});
+
+		function getActiveServiceIndex(): number {
+			return Math.max(0, tabs.findIndex((tab) => tab.classList.contains('is-active')));
+		}
+
+		function startServiceRotation(): void {
+			if (reducedMotion || tabs.length < 2) return;
+			pauseServiceRotation();
+			serviceAutoTimer = window.setInterval(() => {
+				const nextIndex = getNextSnapIndex(getActiveServiceIndex(), tabs.length);
+				activateService(tabs[nextIndex]?.dataset.serviceTab, { alignTab: false });
+			}, 5200);
+		}
+
+		function pauseServiceRotation(): void {
+			if (serviceAutoTimer !== null) {
+				clearInterval(serviceAutoTimer);
+				serviceAutoTimer = null;
+			}
+			if (serviceResumeTimer !== null) {
+				clearTimeout(serviceResumeTimer);
+				serviceResumeTimer = null;
+			}
+		}
+
+		function scheduleServiceRotation(): void {
+			if (reducedMotion) return;
+			serviceResumeTimer = window.setTimeout(startServiceRotation, 7000);
+		}
 
 		const initialHash = window.location.hash.slice(1);
 		if (initialHash) {
 			activateService(initialHash, { scroll: true });
 		}
+		startServiceRotation();
 
 		window.addEventListener('hashchange', () => {
 			activateService(window.location.hash.slice(1), { scroll: true });
 		});
+
+		const packagesCarousel = document.getElementById('packages-carousel') as HTMLElement | null;
+		const packageDots = Array.from(document.querySelectorAll('#packages-dots .carousel-dot')) as HTMLElement[];
+		let packageIndex = 0;
+		let packageTimer: number | null = null;
+		let packageResumeTimer: number | null = null;
+
+		function getPackageStep(): number {
+			const card = packagesCarousel?.querySelector('.package-card') as HTMLElement | null;
+			if (!packagesCarousel || !card) return 320;
+			const gap = parseFloat(getComputedStyle(packagesCarousel).gap) || 20;
+			return card.offsetWidth + gap;
+		}
+
+		function updatePackageDots(): void {
+			packageDots.forEach((dot, index) => dot.classList.toggle('is-active', index === packageIndex));
+		}
+
+		function scrollPackageTo(index: number): void {
+			if (!packagesCarousel || packageDots.length === 0) return;
+			packageIndex = normalizeSnapIndex(index, packageDots.length);
+			packagesCarousel.scrollTo({ left: packageIndex * getPackageStep(), behavior: reducedMotion ? 'auto' : 'smooth' });
+			updatePackageDots();
+		}
+
+		function pausePackageRotation(): void {
+			if (packageTimer !== null) {
+				clearInterval(packageTimer);
+				packageTimer = null;
+			}
+			if (packageResumeTimer !== null) {
+				clearTimeout(packageResumeTimer);
+				packageResumeTimer = null;
+			}
+		}
+
+		function startPackageRotation(): void {
+			if (reducedMotion || !packagesCarousel || window.matchMedia('(min-width: 1024px)').matches) return;
+			pausePackageRotation();
+			packageTimer = window.setInterval(() => {
+				scrollPackageTo(getNextSnapIndex(packageIndex, packageDots.length));
+			}, 4400);
+		}
+
+		function schedulePackageRotation(): void {
+			if (reducedMotion) return;
+			packageResumeTimer = window.setTimeout(startPackageRotation, 7000);
+		}
+
+		packageDots.forEach((dot) => {
+			dot.addEventListener('click', () => {
+				scrollPackageTo(parseInt(dot.dataset.index || '0', 10));
+				pausePackageRotation();
+				schedulePackageRotation();
+			});
+		});
+
+		packagesCarousel?.addEventListener('scroll', () => {
+			if (window.matchMedia('(min-width: 1024px)').matches) return;
+			window.requestAnimationFrame(() => {
+				packageIndex = normalizeSnapIndex(Math.round(packagesCarousel.scrollLeft / getPackageStep()), packageDots.length || 1);
+				updatePackageDots();
+			});
+		}, { passive: true });
+
+		packagesCarousel?.addEventListener('pointerdown', () => {
+			pausePackageRotation();
+		});
+
+		packagesCarousel?.addEventListener('pointerup', schedulePackageRotation);
+		startPackageRotation();
 	</script>
 </BaseLayout>
