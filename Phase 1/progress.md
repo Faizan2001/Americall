@@ -55,6 +55,7 @@ Do not mark unrelated tasks done.
 | P1-023 | done        | Add homepage service teaser copy and Explore Services border trail.     | Codex | 2026-05-04 | 2026-05-04 | Added homepage-only shorter service carousel copy in `src/pages/index.astro`, added a subtle periodic red border trail on Explore Services in `src/styles/global.css`, and switched visible site copy to U.S. spellings including Dialer and Qualified. Verified `npm run build`, source spelling search, and Playwright desktop/mobile screenshots. |
 | P1-024 | done        | Fix Explore Services border trail animation.                           | Codex | 2026-05-04 | 2026-05-04 | Reworked the Explore Services animation as a thin conic border mask with subtle glow, made homepage service cards link to matching `/services/#...` panels, and updated Services tabs to activate from URL hashes. Verified `npm run build` and Playwright hash screenshots for Campaign Management and Administrative Support. |
 | P1-025 | done        | Improve large-screen page hero distribution.                           | Codex | 2026-05-04 | 2026-05-04 | Capped homepage hero desktop height, tuned standard desktop vs ultra-wide image sizing, and preserved mobile layout. Verified `npm run build` plus 1440x900, 2560x1400 home screenshots and 1440 services screenshot. |
+| P1-026 | review      | Plan a from-scratch UI redesign (docs only, no site code).             | Claude | 2026-10-20 | 2026-10-20 | Added `UI Redesign/` (README, research, design-system, page-blueprints, build-plan) on branch `docs/ui-redesign-plan`. Research: biyelo.com pill measured at 1024/375px, 5 competitors and live americall.io viewed 2026-10-20. No site code changed. Needs owner approval of README conflicts C3, C4, C6, C8, C9, C11 before build task R-02. |
 
 ## Decision Log
 
@@ -67,6 +68,7 @@ Do not mark unrelated tasks done.
 | 2026-04-17 | Put the Astro app in `americall-site/`.                                     | Keeps planning docs, old screenshots, and logo sources separate from the buildable website app.                                                     |
 | 2026-04-17 | Use navy, white, and restrained logo red as the primary brand direction.    | Complements the existing logo while keeping the site clean and trustworthy.                                                                         |
 | 2026-04-17 | Use placeholder agent photos and audio until the owner provides real media. | Lets Phase 1 proceed without blocking on assets, while making replacements easy.                                                                    |
+| 2026-10-20 | Proposed (not yet approved): from-scratch UI redesign, "colour chapters" direction with a glass pill nav. | See `UI Redesign/README.md`. Supersedes parts of `Phase 1/design-direction.md` only after owner approval. |
 | 2026-04-17 | Adopt strict AI-code review rules.                                          | Accept simple scaffolding/presentational code, rewrite risky state/effects/forms, never blindly ship sensitive/security/performance-critical logic. |
 
 ## Blockers And Questions
