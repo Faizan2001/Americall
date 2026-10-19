@@ -1,20 +1,88 @@
 export const site = {
 	name: 'Americall, Inc.',
-	domain: 'www.americall.io',
+	url: 'https://americall.io',
+	domain: 'americall.io',
 	email: 'info@americall.io',
-	address: '101-43 105th St Ozone Park, New York, NY 11416, USA',
+	// Mailing/registered address only: no staffed office customers can visit.
+	mailingAddress: '101-43 105th St, Ozone Park, NY 11416',
+	// Owner decision pending (UI Redesign build-plan Q6). The previous site already showed it.
+	showMailingAddress: true,
 	phone: '',
+	facebook: 'https://www.facebook.com/profile.php?id=61583101135869',
 	description:
 		'Americall provides trained calling teams, appointment-setting support, campaign management, and call operations for U.S. service businesses.',
 };
 
 export const navItems = [
+	{ label: 'Services', href: '/services/' },
+	{ label: 'Packages', href: '/#packages' },
+	{ label: 'FAQ', href: '/faq/' },
+	{ label: 'Contact', href: '/contact/' },
+];
+
+export const footerPages = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Services', href: '/services/' },
-	// About Us is intentionally hidden for now; the strongest trust cards were moved into Services.
-	// { label: 'About Us', href: '/about/' },
+	{ label: 'Packages', href: '/#packages' },
 	{ label: 'FAQ', href: '/faq/' },
-	{ label: 'Contact Us', href: '/contact/' },
+	{ label: 'Contact', href: '/contact/' },
+];
+
+/* Home "What we run" statement fields (UI Redesign/page-blueprints.md, Home §2). */
+export const statements = [
+	{
+		phrase: 'Trained for your offer',
+		text: 'We recruit for communication skills and resilience, then train every agent on your industry, your product and your audience before the first dial.',
+		ground: 'white',
+	},
+	{
+		phrase: 'Your dialer, handled',
+		text: 'We set up and maintain your dialer and CRM, working with VICI Dialer, Calltools, ReadyMode, GoHighLevel, Salesforce, HubSpot and Zoho CRM.',
+		ground: 'navy',
+	},
+	{
+		phrase: 'Campaigns watched live',
+		text: 'Managers monitor calls as they happen, coach agents one to one and adjust scripts and strategy as results come in.',
+		ground: 'soft',
+	},
+	{
+		phrase: 'One account manager',
+		text: "Every client gets a dedicated account manager, access to the campaign's dialer and the Appointment Master Spreadsheet, so you can see every appointment.",
+		ground: 'navy',
+	},
+] as const;
+
+/* Home "How it runs" stages (sources listed in page-blueprints.md, Home §3). */
+export const processStages = [
+	{
+		name: 'Discovery',
+		text: 'We learn your services, your target audience and your appointment qualification criteria, plus any scripts or talking points you want agents to follow.',
+	},
+	{
+		name: 'Setup',
+		text: 'We write the call scripts, set up the dialer and connect your CRM or scheduling tool.',
+	},
+	{
+		name: 'Calling',
+		text: 'Trained agents work your campaign while managers monitor calls live and coach agents as they go.',
+	},
+	{
+		name: 'Confirming',
+		text: 'Quality assurance checks each booked appointment, and it is confirmed with the prospect.',
+	},
+	{
+		name: 'Hand-off',
+		text: 'Appointments reach your CRM, scheduling system or shared Google Sheet with qualification notes and call recordings.',
+	},
+];
+
+/* Industries. Healthcare is left out until the owner confirms it (build-plan Q3). */
+export const industries = [
+	{ name: 'Solar', slug: 'solar', phrase: 'solar' },
+	{ name: 'Roofing', slug: 'roofing', phrase: 'roofing' },
+	{ name: 'HVAC', slug: 'hvac', phrase: 'HVAC' },
+	{ name: 'Real estate', slug: 'real-estate', phrase: 'real estate' },
+	{ name: 'Home improvement', slug: 'home-improvement', phrase: 'home improvement' },
 ];
 
 export const services = [
@@ -23,28 +91,24 @@ export const services = [
 		title: 'Dialer and CRM Solutions',
 		description:
 			'The right dialer, the right CRM, and the right numbers make all the difference. Our team manages DID selection and maintenance to protect call quality and maximize answer rates — while seamlessly integrating with the platforms you already use, including VICI Dialer, Calltools, ReadyMode, GoHighLevel, Salesforce, HubSpot, and Zoho CRM. We handle the setup, the upkeep, and the strategy so you can focus on closing.',
-		image: '/images/services/dialer-crm.webp',
 	},
 	{
 		slug: 'agent-training',
 		title: 'Skilled Agent Recruitment and Training',
 		description:
 			'Building a high-performing call team starts long before the first dial. At Americall, our recruitment process is designed to identify candidates with the right communication skills, resilience, and aptitude for sales — before any training even begins.\n\nFrom there, agents go through a structured onboarding and training program tailored to your industry, your product, and your target audience. The result is a team that understands your business, represents your brand professionally, and knows how to turn a conversation into a confirmed appointment.',
-		image: '/images/services/agent-training.webp',
 	},
 	{
 		slug: 'campaign-management',
 		title: 'Strategic Campaign Management',
 		description:
 			"We don't set campaigns and leave them running. Our team actively manages every aspect of your campaign — from call strategy and script refinement to performance tracking and real-time adjustments. Our managers conduct live monitoring of calls as they happen, stepping in with one-on-one agent coaching during active operations to ensure quality never slips.\n\nThe goal is simple: keep what's working, fix what isn't, and never stop improving.",
-		image: '/images/services/campaign-management.webp',
 	},
 	{
 		slug: 'admin-support',
 		title: 'Dedicated Administrative Support',
 		description:
 			"Every Americall client is assigned a dedicated account manager who serves as their primary point of contact throughout the campaign. From onboarding to ongoing operations, your account manager handles the administrative side of your campaign — coordinating between teams, managing reporting, tracking performance, and ensuring nothing falls through the cracks.\n\nYou'll be given direct access to agent, manager, and admin communication channels, your campaign's dialer, and the Appointment Master Spreadsheet — giving you full visibility into every moving part of your campaign at every stage. You focus on your business. We handle the rest.",
-		image: '/images/services/admin-support.webp',
 	},
 ];
 
@@ -122,7 +186,7 @@ export const whyAmericallCards = [
 	{
 		title: 'Industry Expertise',
 		description:
-			"Deep specialization across solar, roofing, HVAC, healthcare, and home improvement means your agents already understand your buyer's language before the first call is made.",
+			"Deep specialization across solar, roofing, HVAC, real estate, and home improvement means your agents already understand your buyer's language before the first call is made.",
 	},
 ];
 
@@ -275,3 +339,38 @@ export const agents = [
 		audio: '',
 	},
 ];
+
+/*
+ * Package comparison rows for the redesign (from servicePackages above).
+ * Weekly numbers are shown as "targets" pending owner approval (build-plan Q2).
+ * Client success manager vs account manager wording pending (build-plan Q5).
+ */
+export const packagePlans = [
+	{ slug: 'launch', name: 'Launch', agents: 2, summary: 'For testing the waters with a two-agent team.' },
+	{ slug: 'momentum', name: 'Momentum', agents: 5, summary: 'For businesses ready to scale with a five-agent team.' },
+	{ slug: 'acceleration', name: 'Acceleration', agents: 10, summary: 'For a full, consistent pipeline from ten dedicated agents.' },
+	{ slug: 'enterprise', name: 'Enterprise', agents: 20, summary: 'For serious volume from twenty dedicated agents.' },
+] as const;
+
+export const defaultPlan = 'momentum';
+
+export const packageRows: { label: string; values: [string, string, string, string] }[] = [
+	{ label: 'Trained agents', values: ['2', '5, fully managed', '10, fully managed', '20, fully managed'] },
+	{ label: 'Weekly appointment target', values: ['8 or more', '20 or more', '40 or more', '80 or more'] },
+	{
+		label: 'Appointment quality control',
+		values: ['Not included', 'Included, with agent KPI management', 'Dedicated, with agent KPI management', 'Dedicated manager for quality and agent KPIs'],
+	},
+	{ label: 'Campaign manager', values: ['Not included', 'Dedicated', 'Dedicated', 'Dedicated campaign and lead manager'] },
+	{ label: 'Client success manager', values: ['Not included', 'Not included', 'Dedicated', 'Dedicated'] },
+	{ label: 'Price', values: ['Custom quote', 'Custom quote', 'Custom quote', 'Custom quote'] },
+];
+
+/* FAQ questions shown on the Home page preview (indexes into faqs). */
+export const homeFaqIndexes = [0, 1, 3, 6, 7];
+
+export const slugify = (text: string) =>
+	text
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/(^-|-$)/g, '');

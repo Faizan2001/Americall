@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found" description="The page you asked for isn't here.">
+	<section class="chapter ground-navy nf" data-tone="dark" aria-labelledby="nf-title">
+		<div class="wrap nf__inner">
+			<div class="nf__text">
+				<h1 class="t-display" id="nf-title">Not found</h1>
+				<p class="t-lead">The page you asked for isn't here.</p>
+				<div class="nf__actions">
+					<a class="btn btn-primary" href="/">Go to the home page</a>
+					<a class="link-arrow" href="/contact/">Request a demo <span class="arrow" aria-hidden="true">&rarr;</span></a>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.nf {
+		min-height: 100svh;
+		display: flex;
+		padding-top: var(--pill-clearance);
+	}
+
+	.nf__inner {
+		flex: 1;
+		display: grid;
+		align-content: center;
+		gap: 40px;
+	}
+
+	.nf__text {
+		display: grid;
+		gap: 24px;
+		justify-items: start;
+	}
+
+	.nf__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 16px 24px;
+	}
+
+</style>

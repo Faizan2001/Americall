@@ -1,6 +1,6 @@
 # UI Redesign — Start Here
 
-Status: **plan only, awaiting owner approval.** No site code has changed.
+Status: **built on branch `docs/ui-redesign-plan` for preview (2026-10-20); not live.** Owner approvals below are still open.
 Written: 2026-10-20 by Claude (task P1-026 in `Phase 1/progress.md`, branch `docs/ui-redesign-plan`).
 
 This folder plans a from-scratch rebuild of the Americall website UI: a new visual direction, a glass pill navigation inspired by biyelo.com, and a phone layout designed on its own terms rather than squeezed from desktop.
@@ -63,3 +63,24 @@ The direction was dealt by the `design-taste-frontend` skill (`~/.claude/skills/
 3. C9: confirm the industry list and whether the two testimonials are real, verbatim and permitted.
 4. C11: supply real team photos (with consent), or approve launching without people photos.
 5. Answer the open questions at the end of `build-plan.md`.
+
+## Build notes (2026-10-20)
+
+The plan was built on the branch for a preview, with two changes the user asked for during the build. These override the plan where they differ:
+
+1. **Palette: red, white and dark navy only** (the original brand palette). Eagle blue and the pale blue accordion tints were removed. Tokens: navy `#02122C`, a one-step-lighter navy `#0B2A4A` for tiles and alternate bands, white `#FFFFFF`, soft `#F5F7FA`, red `#D71920` (buttons only).
+2. **Professional, not cartoonish** (checked against 2026 B2B guidance that favours restraint: limited palette, consistent type, clear hierarchy). Changes:
+   - Headings in Chivo 700, sentence case, tracking −0.02em (the plan's calmer fallback). Display is capped at 120px, headings at 64px.
+   - The glass pill is always light frosted glass showing the official logo, so the logo never disappears. The colour-by-section tone switch was dropped.
+   - No red panels: the accordion, the numbers board and the form card use navy, white and soft grey. Red is kept for buttons.
+   - The form is a plain white card (no ticket notches or perforation). The footer uses the company name in type (no coloured block letters). The 404 page has no large mascot.
+   - The open-collection trade photos were viewed and **rejected as amateur snapshots** (one has a burned-in date stamp). The photo strip stays hidden until professional photos are supplied.
+
+Verified on 2026-10-20 (local dev server, Chromium):
+- every headline is 2 lines or fewer, with no horizontal overflow, on all 5 pages at 320/375/768/1024/1440px
+- the pill fits at 768px
+- the phone menu: focus in/out, Escape, inert page and scroll lock
+- the picker, form validation and the `?package=` pre-fill
+- `npm run build` passes, and the design-skill lint has 0 failures
+
+Not verified: a real form submission, real iPhone/Android devices, Safari, Lighthouse scores.

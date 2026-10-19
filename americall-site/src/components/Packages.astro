@@ -1,0 +1,350 @@
+---
+import { defaultPlan, packagePlans, packageRows } from '../data/site';
+
+const defaultIndex = packagePlans.findIndex((plan) => plan.slug === defaultPlan);
+---
+
+<section class="chapter ground-soft packages" id="packages" data-tone="light" aria-labelledby="packages-title" data-packages>
+	<div class="wrap">
+		<div class="packages__top">
+			<h2 class="t-head" id="packages-title" data-reveal>Team sizes</h2>
+			<p class="t-body packages__lede" data-reveal style="--reveal-i:1">
+				Every package is a team of trained agents working your campaign. Pick a size to see exactly what comes with it.
+			</p>
+		</div>
+
+		<fieldset class="picker" data-picker hidden>
+			<legend class="visually-hidden">Team size</legend>
+			{
+				packagePlans.map((plan, i) => (
+					<label class="picker__option">
+						<input type="radio" name="team-size" value={plan.slug} checked={i === defaultIndex} />
+						<span>
+							{plan.agents} <span class="picker__unit">agents</span>
+						</span>
+					</label>
+				))
+			}
+		</fieldset>
+
+		<!-- Blocks: phones, tablets and small laptops (and everyone without JavaScript, all four stacked). -->
+		<div class="blocks">
+			{
+				packagePlans.map((plan, p) => (
+					<article class="block" data-plan={plan.slug} aria-labelledby={`plan-${plan.slug}`}>
+						<h3 class="t-head" id={`plan-${plan.slug}`}>{plan.name}</h3>
+						<p class="t-body block__summary">{plan.summary}</p>
+						<dl class="block__rows">
+							{packageRows.map((row) => (
+								<div>
+									<dt class="t-body ink-2">{row.label}</dt>
+									<dd class="t-body">{row.values[p]}</dd>
+								</div>
+							))}
+						</dl>
+						<a class="btn btn-dark block__cta" href={`/contact/?package=${plan.slug}`}>
+							Ask about {plan.name}
+						</a>
+					</article>
+				))
+			}
+		</div>
+
+		<!-- Table: 1280px and up. -->
+		<div class="table-wrap">
+			<table class="table">
+				<caption class="visually-hidden">What each package includes</caption>
+				<thead>
+					<tr>
+						<th scope="col"><span class="visually-hidden">Included</span></th>
+						{
+							packagePlans.map((plan, p) => (
+								<th scope="col" data-col={p} class:list={[p === defaultIndex && 'is-selected']}>
+									<span class="table__name">{plan.name}</span>
+									<span class="table__agents t-body">{plan.agents} agents</span>
+								</th>
+							))
+						}
+					</tr>
+				</thead>
+				<tbody>
+					{
+						packageRows.map((row) => (
+							<tr>
+								<th scope="row">{row.label}</th>
+								{row.values.map((value, p) => (
+									<td data-col={p} class:list={[p === defaultIndex && 'is-selected']}>
+										{value}
+									</td>
+								))}
+							</tr>
+						))
+					}
+					<tr class="table__actions">
+						<td></td>
+						{
+							packagePlans.map((plan, p) => (
+								<td data-col={p} class:list={[p === defaultIndex && 'is-selected']}>
+									<a class:list={['btn', 'btn-small', p === defaultIndex ? 'btn-primary' : 'btn-dark']} href={`/contact/?package=${plan.slug}`}>
+										Ask about {plan.name}
+									</a>
+								</td>
+							))
+						}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<p class="t-body packages__note">
+			Prefer to pay per appointment? Bulk appointment packages are available too.
+			<a class="link-arrow" href="/contact/?package=pay-per-appointment">Ask about it <span class="arrow" aria-hidden="true">&rarr;</span></a>
+		</p>
+	</div>
+</section>
+
+<style>
+	.packages__top {
+		display: grid;
+		gap: 20px;
+	}
+
+	.packages__lede {
+		max-width: 46ch;
+	}
+
+	.picker {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 4px;
+		margin: 40px 0 0;
+		padding: 4px;
+		border: 0;
+		border-radius: var(--radius-pill);
+		background: var(--color-white);
+	}
+
+	.picker[hidden] {
+		display: none;
+	}
+
+	.picker__option {
+		position: relative;
+		display: flex;
+	}
+
+	.picker__option input {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		margin: 0;
+		cursor: pointer;
+	}
+
+	.picker__option > span {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-height: 52px;
+		border-radius: var(--radius-pill);
+		font-weight: 700;
+		font-size: var(--step-body);
+		line-height: 1.1;
+		transition:
+			background-color 200ms ease,
+			color 200ms ease;
+	}
+
+	.picker__unit {
+		font-size: var(--step-small);
+		font-weight: 400;
+	}
+
+	.picker__option input:checked + span {
+		background: var(--color-navy);
+		color: var(--color-white);
+	}
+
+	.picker__option input:focus-visible + span {
+		outline: 3px solid var(--color-navy);
+		outline-offset: 2px;
+	}
+
+	.blocks {
+		display: grid;
+		gap: 24px;
+		margin-top: 24px;
+	}
+
+	.block {
+		padding: 28px 20px;
+		border-radius: var(--radius);
+		background: var(--color-white);
+	}
+
+	:global(.has-picker) .block[hidden] {
+		display: none;
+	}
+
+	.block__summary {
+		margin-top: 12px;
+	}
+
+	.block__rows {
+		margin: 24px 0 0;
+	}
+
+	.block__rows > div {
+		padding-block: 12px;
+	}
+
+	.block__rows > div:nth-child(odd) {
+		margin-inline: -12px;
+		padding-inline: 12px;
+		border-radius: 8px;
+		background: var(--color-soft);
+	}
+
+	.block__rows dd {
+		margin: 2px 0 0;
+		font-weight: 700;
+	}
+
+	.block__cta {
+		width: 100%;
+		margin-top: 24px;
+	}
+
+	.table-wrap {
+		display: none;
+	}
+
+	.packages__note {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 4px 16px;
+		margin-top: 40px;
+	}
+
+	@media (min-width: 768px) {
+		.packages__top {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			gap: var(--gap);
+		}
+
+		.packages__top h2 {
+			grid-column: 1 / span 5;
+		}
+
+		.packages__lede {
+			grid-column: 7 / span 5;
+			align-self: end;
+		}
+
+		.picker {
+			max-width: 640px;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.picker {
+			margin-top: 56px;
+		}
+
+		.blocks {
+			display: none;
+		}
+
+		.table-wrap {
+			display: block;
+			margin-top: 32px;
+		}
+
+		.table {
+			width: 100%;
+			border-collapse: collapse;
+			table-layout: fixed;
+		}
+
+		.table th,
+		.table td {
+			padding: 20px 16px;
+			text-align: left;
+			vertical-align: top;
+			font-size: var(--step-body);
+		}
+
+		.table thead th:first-child,
+		.table tbody th {
+			width: 25%;
+			font-weight: 700;
+		}
+
+		.table tbody tr:nth-child(odd):not(.table__actions) {
+			background: #e9edf3;
+		}
+
+		.table thead th {
+			vertical-align: bottom;
+			border-bottom: 2px solid var(--color-navy);
+		}
+
+		.table__name {
+			display: block;
+			font-size: var(--step-lead);
+			font-weight: 700;
+		}
+
+		.table__agents {
+			display: block;
+			margin-top: 4px;
+			font-weight: 400;
+		}
+
+		.table .is-selected {
+			background: var(--color-navy);
+			color: var(--color-white);
+		}
+
+		.table thead th.is-selected {
+			border-bottom-color: var(--color-navy);
+		}
+
+		.table td,
+		.table th {
+			transition:
+				background-color 250ms ease,
+				color 250ms ease;
+		}
+	}
+</style>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-packages]').forEach((section) => {
+		const picker = section.querySelector<HTMLFieldSetElement>('[data-picker]');
+		const blocks = Array.from(section.querySelectorAll<HTMLElement>('[data-plan]'));
+		const cells = Array.from(section.querySelectorAll<HTMLElement>('[data-col]'));
+		if (!picker) return;
+		picker.hidden = false;
+		document.documentElement.classList.add('has-picker');
+
+		const select = (slug: string) => {
+			const index = blocks.findIndex((block) => block.dataset.plan === slug);
+			blocks.forEach((block, i) => (block.hidden = i !== index));
+			cells.forEach((cell) => {
+				const selected = Number(cell.dataset.col) === index;
+				cell.classList.toggle('is-selected', selected);
+				const button = cell.querySelector('.btn');
+				button?.classList.toggle('btn-primary', selected);
+				button?.classList.toggle('btn-dark', !selected);
+			});
+		};
+
+		picker.addEventListener('change', (event) => select((event.target as HTMLInputElement).value));
+		const checked = picker.querySelector<HTMLInputElement>('input:checked');
+		if (checked) select(checked.value);
+	});
+</script>

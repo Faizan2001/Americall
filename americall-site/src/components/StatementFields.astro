@@ -1,0 +1,104 @@
+---
+import { statements } from '../data/site';
+
+const tone = (ground: string) => (ground === 'navy' ? 'dark' : 'light');
+---
+
+{
+	statements.map((item, i) => (
+		<section
+			class:list={['chapter', `ground-${item.ground}`, 'field', i % 2 === 1 && 'field--mirror']}
+			data-tone={tone(item.ground)}
+			aria-labelledby={`statement-${i}`}
+		>
+			<div class="wrap field__inner">
+				<p class="field__text t-body measure" data-reveal style="--reveal-i:1">
+					{item.text}
+				</p>
+				{i === 0 ? (
+					<h2 class="field__phrase t-head" id={`statement-${i}`} data-reveal>
+						{item.phrase}
+					</h2>
+				) : (
+					<h3 class="field__phrase t-head" id={`statement-${i}`} data-reveal>
+						{item.phrase}
+					</h3>
+				)}
+				{i === statements.length - 1 && (
+					<a class="link-arrow field__link" href="/services/" data-reveal style="--reveal-i:2">
+						All services <span class="arrow" aria-hidden="true">&rarr;</span>
+					</a>
+				)}
+			</div>
+		</section>
+	))
+}
+
+<style>
+	.field {
+		min-height: 52svh;
+		display: flex;
+	}
+
+	.field__inner {
+		flex: 1;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: auto 1fr auto auto;
+		gap: 24px;
+	}
+
+	.field__text {
+		grid-row: 1;
+		max-width: 30ch;
+	}
+
+	.field__phrase {
+		grid-row: 3;
+		max-width: 12ch;
+	}
+
+	.field__link {
+		grid-row: 4;
+	}
+
+	.field--mirror .field__text {
+		justify-self: end;
+		text-align: right;
+	}
+
+	@media (min-width: 768px) {
+		.field {
+			min-height: 58svh;
+		}
+
+		.field__inner {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+			gap: var(--gap);
+		}
+
+		.field__text {
+			grid-column: 8 / span 4;
+		}
+
+		.field__phrase {
+			grid-column: 1 / span 8;
+			max-width: none;
+		}
+
+		.field__link {
+			grid-column: 1 / span 4;
+		}
+
+		.field--mirror .field__text {
+			grid-column: 2 / span 4;
+			justify-self: start;
+			text-align: left;
+		}
+
+		.field--mirror .field__phrase {
+			grid-column: 5 / span 8;
+			text-align: right;
+		}
+	}
+</style>

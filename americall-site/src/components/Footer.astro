@@ -1,0 +1,158 @@
+---
+import { footerPages, site } from '../data/site';
+import { photoCredits } from '../data/photos';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="chapter ground-navy footer" data-tone="dark">
+	<div class="wrap">
+		<p class="footer__name t-display">Americall, Inc.</p>
+		<p class="footer__line t-lead">Trained calling teams for U.S. service businesses.</p>
+
+		<div class="footer__cols">
+			<nav aria-label="Footer" id="site-map">
+				<p class="footer__title t-small">Pages</p>
+				<ul role="list">
+					{footerPages.map((page) => <li><a href={page.href}>{page.label}</a></li>)}
+				</ul>
+			</nav>
+			<div>
+				<p class="footer__title t-small">Contact</p>
+				<ul role="list">
+					<li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+					{
+						site.showMailingAddress && (
+							<li class="ink-2">
+								Mailing address only (no walk-in office): {site.mailingAddress}
+							</li>
+						)
+					}
+				</ul>
+			</div>
+			<div>
+				<p class="footer__title t-small">Follow</p>
+				<ul role="list">
+					<li><a href={site.facebook} rel="noopener">Facebook</a></li>
+				</ul>
+			</div>
+		</div>
+
+		{
+			photoCredits.length > 0 && (
+				<p class="footer__credits t-small ink-2">
+					Photos:{' '}
+					{photoCredits.map((credit, i) => (
+						<>
+							<a href={credit.source} rel="noopener">{credit.title}</a> by {credit.author},{' '}
+							<a href={credit.licenceUrl} rel="noopener license">{credit.licence}</a>
+							{credit.changes ? `, ${credit.changes}` : ''}
+							{i < photoCredits.length - 1 ? '; ' : '.'}
+						</>
+					))}
+				</p>
+			)
+		}
+
+		<div class="footer__last">
+			<p class="t-small">&copy; {year} {site.name} All rights reserved.</p>
+			<a class="btn btn-primary btn-small" href="/contact/">Request a demo</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		padding-top: clamp(4rem, 8vw, 8rem);
+		padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+	}
+
+	.footer__name {
+		max-width: 14ch;
+	}
+
+	.footer__line {
+		margin-top: 16px;
+		color: var(--ink-2);
+	}
+
+	.footer__cols {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 32px var(--gap);
+		margin-top: 56px;
+	}
+
+	.footer__cols > div:nth-child(2) {
+		grid-column: 1 / -1;
+	}
+
+	.footer__title {
+		margin-bottom: 12px;
+		font-weight: 700;
+		color: var(--ink-2);
+	}
+
+	.footer ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.footer li {
+		margin-bottom: 4px;
+		max-width: 40ch;
+	}
+
+	.footer li a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		font-weight: 700;
+		text-decoration: none;
+		overflow-wrap: anywhere;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.footer li a:hover {
+			text-decoration: underline;
+			text-underline-offset: 6px;
+		}
+	}
+
+	.footer__credits {
+		margin-top: 40px;
+		max-width: 110ch;
+	}
+
+	.footer__credits a {
+		text-decoration: underline;
+	}
+
+	.footer__last {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		margin-top: 40px;
+	}
+
+	@media (min-width: 768px) {
+		.footer__cols {
+			grid-template-columns: repeat(12, minmax(0, 1fr));
+		}
+
+		.footer__cols > nav {
+			grid-column: span 3;
+		}
+
+		.footer__cols > div:nth-child(2) {
+			grid-column: span 6;
+		}
+
+		.footer__cols > div:nth-child(3) {
+			grid-column: span 3;
+		}
+	}
+</style>

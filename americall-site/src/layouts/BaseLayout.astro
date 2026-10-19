@@ -1,176 +1,96 @@
 ---
+import '@fontsource/chivo/400.css';
+import '@fontsource/chivo/700.css';
+import '@fontsource/chivo/900.css';
+import chivo900 from '@fontsource/chivo/files/chivo-latin-900-normal.woff2?url';
 import '../styles/global.css';
-import { navItems, site } from '../data/site';
+import GlassPill from '../components/GlassPill.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
 
 interface Props {
 	title?: string;
 	description?: string;
 }
 
-const {
-	title = site.name,
-	description = site.description,
-} = Astro.props;
+const { title = site.name, description = site.description } = Astro.props;
 
 const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(path, site.url).href;
+const ogImage = new URL('/og/americall.png', site.url).href;
+
+const organization = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: site.name,
+	url: site.url,
+	email: site.email,
+	logo: new URL('/images/americall-hero-eagle.png', site.url).href,
+	sameAs: [site.facebook],
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="theme-color" content="#02122c" />
+		<title>{pageTitle}</title>
 		<meta name="description" content={description} />
-		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={site.name} />
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Americall eagle logo with the text: Trained calling teams for U.S. service businesses" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<title>{pageTitle}</title>
+		<link rel="preload" href={chivo900} as="font" type="font/woff2" crossorigin />
+		<script type="application/ld+json" set:html={JSON.stringify(organization)} />
+		<script is:inline>
+			document.documentElement.classList.add('js-motion');
+			/* If the bundled script never runs, show everything rather than leave content hidden. */
+			setTimeout(function () {
+				if (!window.__revealReady) document.documentElement.classList.remove('js-motion');
+			}, 2500);
+		</script>
 	</head>
-	<body class="min-h-screen antialiased">
-		<a
-			href="#main-content"
-			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-3xl focus:bg-white focus:px-4 focus:py-2 focus:text-ameri-navy focus:shadow-lg"
-		>
-			Skip to content
-		</a>
-		<header class="glass-nav sticky top-0 z-40" id="site-header">
-			<div class="mx-auto flex items-center justify-between gap-4 px-5 py-3 lg:px-8">
-				<a href="/" class="brand-lockup group flex shrink-0 items-center" aria-label="Americall home">
-					<img src="/images/americall-logo-transparent-fixed.png" alt="Americall" class="brand-logo-img h-12 w-auto max-w-[10rem] object-contain sm:h-14 sm:max-w-[13rem] md:h-16 md:max-w-[18rem]" loading="eager" />
-				</a>
-				<nav class="hidden justify-center md:flex md:flex-1" aria-label="Main navigation">
-					<div class="glass-pill flex items-center gap-1 rounded-2xl p-1 text-sm font-bold text-ameri-ink">
-						{navItems.map((item) => (
-							<a class="rounded-xl px-4 py-2 transition hover:bg-white hover:text-ameri-red hover:shadow-sm" href={item.href}>{item.label}</a>
-						))}
-					</div>
-				</nav>
-				<div class="flex items-center gap-3">
-					<a
-						href="/contact/"
-						class="button-motion hidden rounded-2xl bg-ameri-red px-4 py-2.5 text-sm font-bold text-white shadow-sm shadow-ameri-red/25 hover:bg-red-700 sm:inline-flex md:px-5"
-					>
-						<span>Book a Free Demo</span>
-					</a>
-					<button id="mobile-menu-btn" class="grid h-10 w-10 place-items-center rounded-xl bg-ameri-soft text-ameri-navy transition hover:bg-ameri-border/50 md:hidden" aria-label="Open menu">
-						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-					</button>
-				</div>
-			</div>
-		</header>
-		<main id="main-content">
+	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
+		<GlassPill currentPath={path} />
+		<main id="main">
 			<slot />
 		</main>
-		<footer class="bg-ameri-navy text-white relative">
-			<div class="absolute inset-x-0 top-0 h-px bg-white/10"></div>
-			<div class="mx-auto grid max-w-7xl gap-10 px-5 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
-				<div class="sm:col-span-2">
-					<p class="text-2xl font-black">{site.name}</p>
-					<p class="mt-4 max-w-md text-sm leading-6 text-white/75">{site.description}</p>
-				</div>
-				<div>
-					<p class="font-bold">Contact</p>
-					<ul class="mt-4 space-y-2 text-sm text-white/75">
-						<li>{site.address}</li>
-						<li><a class="hover:text-white" href={`mailto:${site.email}`}>{site.email}</a></li>
-						<li>{site.domain}</li>
-					</ul>
-				</div>
-				<div>
-					<p class="font-bold">Pages</p>
-					<ul class="mt-4 space-y-2 text-sm text-white/75">
-						{navItems.map((item) => <li><a class="hover:text-white" href={item.href}>{item.label}</a></li>)}
-					</ul>
-				</div>
-			</div>
-			<div class="border-t border-white/10 px-5 py-5 text-center text-sm text-white/65">
-				&copy; 2026 Americall, Inc. All rights reserved.
-			</div>
-		</footer>
+		<Footer />
 		<script>
-			/* ── Scroll reveal ── */
-			const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-			const revealItems = Array.from(document.querySelectorAll('.reveal'));
+			/* Entrances: heading, then text, then picture, once per element. */
+			const items = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+			const show = (el: HTMLElement) => el.classList.add('is-in');
 
-			if (reducedMotion || !('IntersectionObserver' in window)) {
-				revealItems.forEach((item) => item.classList.add('is-visible'));
+			if (!('IntersectionObserver' in window)) {
+				items.forEach(show);
 			} else {
 				const observer = new IntersectionObserver(
 					(entries) => {
 						entries.forEach((entry) => {
 							if (entry.isIntersecting) {
-								entry.target.classList.add('is-visible');
+								show(entry.target as HTMLElement);
 								observer.unobserve(entry.target);
 							}
 						});
 					},
-					{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+					{ threshold: 0.15, rootMargin: '0px 0px -5% 0px' },
 				);
-
-				revealItems.forEach((item, index) => {
-					item.style.setProperty('--reveal-delay', `${Math.min(index * 55, 220)}ms`);
-					observer.observe(item);
-				});
+				items.forEach((el) => observer.observe(el));
 			}
-
-			/* ── Glassmorphism nav scroll enhancement ── */
-			const header = document.getElementById('site-header');
-			if (header) {
-				let ticking = false;
-				window.addEventListener('scroll', () => {
-					if (!ticking) {
-						window.requestAnimationFrame(() => {
-							if (window.scrollY > 40) {
-								header.classList.add('glass-nav-scrolled');
-							} else {
-								header.classList.remove('glass-nav-scrolled');
-							}
-							ticking = false;
-						});
-						ticking = true;
-					}
-				}, { passive: true });
-			}
-			/* ── Mobile Menu Toggle ── */
-			const mobileBtn = document.getElementById('mobile-menu-btn');
-			const mobileClose = document.getElementById('mobile-menu-close');
-			const mobileMenu = document.getElementById('mobile-menu');
-
-			if (mobileBtn && mobileClose && mobileMenu) {
-				mobileBtn.addEventListener('click', () => {
-					mobileMenu.classList.remove('hidden');
-					mobileMenu.classList.add('flex');
-					document.body.style.overflow = 'hidden';
-				});
-				mobileClose.addEventListener('click', () => {
-					mobileMenu.classList.add('hidden');
-					mobileMenu.classList.remove('flex');
-					document.body.style.overflow = '';
-				});
-			}
+			(window as unknown as { __revealReady: boolean }).__revealReady = true;
 		</script>
-
-		<!-- ═══ MOBILE MENU OVERLAY ═══ -->
-		<div id="mobile-menu" class="fixed inset-0 z-50 hidden flex-col bg-white px-5 py-5 sm:px-8">
-			<div class="flex items-center justify-between">
-				<a href="/" class="brand-lockup flex shrink-0 items-center" aria-label="Americall home">
-					<img src="/images/americall-logo-transparent-fixed.png" alt="Americall" class="brand-logo-img h-14 w-auto max-w-[13rem] object-contain" loading="eager" />
-				</a>
-				<button id="mobile-menu-close" class="grid h-10 w-10 place-items-center rounded-xl bg-ameri-soft text-ameri-navy transition hover:bg-ameri-border/50" aria-label="Close menu">
-					<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-				</button>
-			</div>
-			<nav class="mt-12 flex flex-col gap-6 text-2xl font-black text-ameri-navy">
-				{navItems.map((item) => <a class="transition hover:text-ameri-red" href={item.href}>{item.label}</a>)}
-			</nav>
-			<div class="mt-auto pb-6 pt-10">
-				<a href="/contact/" class="block w-full rounded-2xl bg-ameri-red py-4 text-center text-lg font-black text-white shadow-lg shadow-ameri-red/25 active:bg-red-700">
-					Book a Free Demo
-				</a>
-			</div>
-		</div>
 	</body>
 </html>
