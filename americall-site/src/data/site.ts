@@ -366,8 +366,15 @@ export const packageRows: { label: string; values: [string, string, string, stri
 	{ label: 'Price', values: ['Custom quote', 'Custom quote', 'Custom quote', 'Custom quote'] },
 ];
 
-/* FAQ questions shown on the Home page preview (indexes into faqs). */
-export const homeFaqIndexes = [0, 1, 3, 6, 7];
+/*
+ * FAQ order by importance to a first-time buyer (indexes into faqs):
+ * services, pricing, industries, how appointments arrive, point of contact,
+ * commitment, time to launch, integrations, what to provide, tracking, languages.
+ */
+export const faqOrder = [4, 0, 8, 6, 3, 1, 5, 7, 2, 9, 10];
+
+/* The five shown on the Home page, first one open. */
+export const homeFaqIndexes = [4, 0, 6, 3, 1];
 
 export const slugify = (text: string) =>
 	text
