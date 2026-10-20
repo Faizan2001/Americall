@@ -1,8 +1,7 @@
 ---
 import '@fontsource/chivo/400.css';
 import '@fontsource/chivo/700.css';
-import '@fontsource/chivo/900.css';
-import chivo900 from '@fontsource/chivo/files/chivo-latin-900-normal.woff2?url';
+import chivo700 from '@fontsource/chivo/files/chivo-latin-700-normal.woff2?url';
 import '../styles/global.css';
 import GlassPill from '../components/GlassPill.astro';
 import Footer from '../components/Footer.astro';
@@ -52,15 +51,8 @@ const organization = {
 		<meta name="twitter:card" content="summary_large_image" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<link rel="preload" href={chivo900} as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href={chivo700} as="font" type="font/woff2" crossorigin />
 		<script type="application/ld+json" set:html={JSON.stringify(organization)} />
-		<script is:inline>
-			document.documentElement.classList.add('js-motion');
-			/* If the bundled script never runs, show everything rather than leave content hidden. */
-			setTimeout(function () {
-				if (!window.__revealReady) document.documentElement.classList.remove('js-motion');
-			}, 2500);
-		</script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main">Skip to content</a>
@@ -69,28 +61,5 @@ const organization = {
 			<slot />
 		</main>
 		<Footer />
-		<script>
-			/* Entrances: heading, then text, then picture, once per element. */
-			const items = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
-			const show = (el: HTMLElement) => el.classList.add('is-in');
-
-			if (!('IntersectionObserver' in window)) {
-				items.forEach(show);
-			} else {
-				const observer = new IntersectionObserver(
-					(entries) => {
-						entries.forEach((entry) => {
-							if (entry.isIntersecting) {
-								show(entry.target as HTMLElement);
-								observer.unobserve(entry.target);
-							}
-						});
-					},
-					{ threshold: 0.15, rootMargin: '0px 0px -5% 0px' },
-				);
-				items.forEach((el) => observer.observe(el));
-			}
-			(window as unknown as { __revealReady: boolean }).__revealReady = true;
-		</script>
 	</body>
 </html>

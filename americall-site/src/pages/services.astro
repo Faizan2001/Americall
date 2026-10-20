@@ -84,7 +84,7 @@ const shortTitles: Record<string, string> = {
 
 <style>
 	.svc-hero {
-		min-height: max(520px, 80svh);
+		min-height: 0;
 		display: flex;
 		padding-top: var(--pill-clearance);
 	}
@@ -93,7 +93,7 @@ const shortTitles: Record<string, string> = {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: flex-start;
 		gap: 40px;
 	}
 
@@ -164,17 +164,19 @@ const shortTitles: Record<string, string> = {
 		.svc-hero__inner {
 			display: grid;
 			grid-template-columns: repeat(12, minmax(0, 1fr));
-			grid-template-rows: auto 1fr auto;
+			grid-template-rows: auto auto;
 			gap: var(--gap);
 		}
 
 		.svc-hero h1 {
-			grid-column: 1 / -1;
+			grid-column: 1 / span 6;
 		}
 
 		.svc-hero__side {
 			grid-column: 7 / -1;
-			grid-row: 3;
+			grid-row: 1;
+			align-self: center;
+			margin-top: 6svh;
 		}
 
 		.svc__title {

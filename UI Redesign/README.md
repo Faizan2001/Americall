@@ -84,3 +84,9 @@ Verified on 2026-10-20 (local dev server, Chromium):
 - `npm run build` passes, and the design-skill lint has 0 failures
 
 Not verified: a real form submission, real iPhone/Android devices, Safari, Lighthouse scores.
+
+### Preview refinement (Codex, 2026-10-20)
+
+Owner requested a professionalism review, better imagery and a preview push. Tightened the home hero so the offer and CTA stay together; added one generated equipment still life (no synthetic staff or office). Replaced oversized home statement bands with service rows and rotating process panels with a readable numbered sequence. Reduced section padding, grouped demo introduction text, removed entrance reveals and unused Chivo 900 loading, improved form borders and selected-package focus contrast. See `imagery-notes.md` for provenance, exact generation prompt and preferred future real images.
+
+Verified: production build, all five pages at 320/375/390/1440px, keyboard menu/picker/FAQ and required-field validation. Local mobile Lighthouse: 97 performance, 100 accessibility, LCP 2.4s, CLS 0, TBT 0ms. These are lab results, not field Core Web Vitals. Real devices and form delivery remain unchecked. Existing owner decisions and proof claims remain pending.

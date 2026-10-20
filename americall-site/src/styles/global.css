@@ -24,7 +24,7 @@
 	--gap: 16px;
 	--radius: 16px;
 	--radius-pill: 999px;
-	--chapter-pad: clamp(5rem, 10vw, 10rem);
+	--chapter-pad: clamp(3.5rem, 6vw, 6rem);
 
 	--pill-top: calc(10px + env(safe-area-inset-top, 0px));
 	--pill-h: 56px;
@@ -337,31 +337,9 @@ h4 {
 	transform: translateX(6px);
 }
 
-/* Entrance motion: content is visible unless the script opts in (no hidden content without JS). */
-.js-motion [data-reveal] {
-	opacity: 0;
-	transform: translateY(24px);
-	transition:
-		opacity 500ms var(--ease-out),
-		transform 500ms var(--ease-out);
-	transition-delay: calc(var(--reveal-i, 0) * 70ms);
-}
-
-.js-motion [data-reveal].is-in {
-	opacity: 1;
-	transform: none;
-}
-
+/* Content remains immediately visible while browsing and scrolling. */
 @media (prefers-reduced-motion: reduce) {
-	.js-motion [data-reveal] {
-		transform: none;
-		transition: opacity 150ms linear;
-		transition-delay: 0ms;
-	}
-
-	*,
-	*::before,
-	*::after {
+	*, *::before, *::after {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 	}
