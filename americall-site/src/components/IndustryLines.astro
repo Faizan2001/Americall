@@ -1,162 +1,46 @@
 ---
 import { industries } from '../data/site';
 import { photoCredits } from '../data/photos';
-
-const photos = industries
-	.map((industry) => photoCredits.find((photo) => photo.slug === industry.slug))
-	.filter((photo) => photo !== undefined);
 ---
-
-<section class="chapter ground-navy industries" id="industries" data-tone="dark" aria-labelledby="industries-title">
-	<div class="wrap">
-		<h2 class="visually-hidden" id="industries-title">Industries we call for</h2>
-		<ul class="lines" role="list">
-			{
-				industries.map((industry, i) => (
-					<li class="line" data-reveal style={`--reveal-i:${i}`}>
-						<span class="line__name t-head">{industry.name}</span>
-						<a class="link-arrow line__link" href={`/contact/?industry=${industry.slug}`}>
-							Talk to us about {industry.phrase} <span class="arrow" aria-hidden="true">&rarr;</span>
-						</a>
-					</li>
-				))
-			}
-		</ul>
-
-		{
-			photos.length > 0 && (
-				<ul class="strip" role="list" aria-label="The trades our clients work in">
-					{photos.map((photo) => (
-						<li class="strip__item">
-							<figure>
-								<div class="strip__frame">
-									<img src={photo.file} alt={photo.alt} width="900" height="1200" loading="lazy" decoding="async" />
-								</div>
-								<figcaption class="t-small">
-									{photo.caption} Photo: {photo.author}, {photo.licence}.
-								</figcaption>
-							</figure>
-						</li>
-					))}
-				</ul>
-			)
-		}
-	</div>
+<section class="chapter ground-navy industries" id="industries" aria-labelledby="industries-title">
+ <div class="wrap">
+  <div class="industry-intro">
+   <h2 class="t-head" id="industries-title">Calling support for your industry</h2>
+   <p class="t-body">Your team handles the sale. We handle the calls, qualification and appointment confirmations that come before it.</p>
+  </div>
+  <div class="industry-photos">
+   {photoCredits.map((photo) => (
+    <figure>
+     <img src={photo.file} srcset={`${photo.file.replace('.webp', '-small.webp')} 640w, ${photo.file} 1200w`} sizes="(min-width: 768px) 48vw, 100vw" alt={photo.alt} width="1200" height="800" loading="lazy" decoding="async" />
+     <figcaption class="t-small">{photo.caption} <span>Photo by <a href={photo.source}>{photo.author}</a></span></figcaption>
+    </figure>
+   ))}
+  </div>
+  <ul class="industry-links" role="list">
+   {industries.map((industry) => (
+    <li><a href={`/contact/?industry=${industry.slug}`}><span>{industry.name}</span><span aria-hidden="true">↗</span></a></li>
+   ))}
+  </ul>
+  <p class="t-small industry-note">Industry photography illustrates the businesses we support.</p>
+ </div>
 </section>
-
 <style>
-	.lines {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.line {
-		display: flex;
-		flex-direction: column;
-		gap: 6px;
-		padding-block: 10px 18px;
-	}
-
-	.line__name {
-		display: block;
-	}
-
-	.line__link {
-		align-self: flex-start;
-	}
-
-	@media (min-width: 1024px) {
-		.line {
-			flex-direction: row;
-			align-items: baseline;
-			justify-content: space-between;
-			gap: 32px;
-			padding-block: 6px;
-		}
-
-		.line__link {
-			align-self: baseline;
-			flex-shrink: 0;
-		}
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		.line:hover .line__link {
-			text-decoration: underline;
-			text-underline-offset: 6px;
-			text-decoration-thickness: 2px;
-		}
-
-		.line:hover .arrow {
-			transform: translateX(6px);
-		}
-	}
-
-	.strip {
-		display: grid;
-		grid-auto-flow: column;
-		grid-auto-columns: 78%;
-		gap: 16px;
-		margin: 96px calc(var(--gutter) * -1) 0;
-		padding: 0 var(--gutter) 8px;
-		list-style: none;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		scroll-padding-inline: var(--gutter);
-		overscroll-behavior-x: contain;
-	}
-
-	.strip__item {
-		scroll-snap-align: start;
-	}
-
-	.strip figure {
-		margin: 0;
-	}
-
-	.strip__frame {
-		aspect-ratio: 3 / 4;
-		overflow: hidden;
-		background: var(--color-navy-2);
-	}
-
-	.strip img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		animation: drift 8s var(--ease-out) both;
-		animation-timeline: view();
-		animation-range: entry 0% exit 100%;
-	}
-
-	@keyframes drift {
-		from {
-			transform: scale(1);
-		}
-		to {
-			transform: scale(1.06);
-		}
-	}
-
-	.strip figcaption {
-		margin-top: 10px;
-		color: var(--ink-2);
-	}
-
-	@media (min-width: 768px) {
-		.strip {
-			grid-auto-flow: row;
-			grid-template-columns: repeat(5, minmax(0, 1fr));
-			margin-inline: 0;
-			padding: 0;
-			overflow: visible;
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.strip img {
-			animation: none;
-		}
-	}
+ .industry-intro { display: grid; gap: 24px; margin-bottom: 36px; }
+ .industry-intro h2 { max-width: 18ch; }
+ .industry-intro p { max-width: 46ch; align-self: end; }
+ .industry-photos { display: grid; gap: 28px; }
+ figure { margin: 0; min-width: 0; }
+ .industry-photos img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; }
+ figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; margin-top: 12px; }
+ figcaption span { color: var(--ink-2); }
+ figcaption a { text-underline-offset: 3px; }
+ .industry-links { display: grid; margin: 32px 0 0; padding: 0; list-style: none; }
+ .industry-links a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--ink-2); min-height: 64px; font-weight: 700; text-decoration: none; }
+ .industry-links a:hover { text-decoration: underline; text-underline-offset: 5px; }
+ .industry-note { margin-top: 24px; color: var(--ink-2); }
+ @media (min-width: 768px) {
+  .industry-intro { grid-template-columns: 1.2fr 1fr; gap: 64px; }
+  .industry-photos { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .industry-links { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
+ }
 </style>

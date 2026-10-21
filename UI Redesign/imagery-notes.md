@@ -13,3 +13,7 @@ Assets: `americall-site/public/images/calling-headset.webp` (1200×800) and `cal
 ## Preferred future replacements
 
 A real close-up of an Americall headset/work surface, photographed in soft daylight with no private information; an anonymized real appointment hand-off example; or a real training session photographed with staff consent. Do not present synthetic employees or invented dashboards as operational proof.
+
+## Real photography replacement — 2026-10-21
+
+Owner rejected the generated headset as generic and requested real free pictures. The hero is now text-led with the offer and CTA adjacent. Two real Pexels photos accompany the visible Industries section: Kindel Media's solar installation detail and Binyamin Mellish's U.S. home exterior. Kelly's residential solar aerial is retained in the desktop shortlist as an alternative, avoiding redundant solar images on the page. Originals and license/source notes are in `~/Desktop/Americall Photo Shortlist/`. Credits also appear alongside images and in the footer. Responsive 640/1200px WebPs are lazy-loaded with reserved aspect ratios. No image zoom, carousel or entrance effects. These images represent industries; they are not Americall project or customer evidence.
