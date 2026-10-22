@@ -51,13 +51,15 @@ Both are plain and fine. The FAQ list now lines up with the right-hand column th
 Ranked by how much each one makes the site look template-made.
 
 1. **Section fade-up entrances on scroll** (added 2026-10-23 at your request). The `frontend-design` skill names "fade-and-slide-up entrances on each section" as a top sign of an AI-made page. Replace them with one deliberate moment, for example the team-size picker's change of package. Motion that answers a click (FAQ, menu, picker, button press) stays.
-2. **Arrows after text links** ("See the packages →", "All services →", "All questions →", "Ask about it →", "Americall on Facebook →" and "Request a demo →" on the 404 page). The words stay; the arrows go.
-3. **Stat tiles → a plain ledger.** Same six numbers, shown as one typographic row or a two-column list with hairlines, not six boxes.
+2. **Applied 2026-10-23 (P1-033).** **Arrows after text links** ("See the packages →", "All services →", "All questions →", "Ask about it →", "Americall on Facebook →" and "Request a demo →" on the 404 page). The words stay; the arrows go.
+3. **Applied 2026-10-23 (P1-033).** **Stat tiles → a plain ledger.** Same six numbers, shown as one typographic row or a two-column list with hairlines, not six boxes.
 4. **"Why Americall" on Services.** It repeats the four service chapters in vaguer words.
 5. **Trade link rows on Home.** All five open the same form. Make them plain text, or drop them; the photos and heading already name the trades.
 6. **One of the two "Team sizes" blocks** (Home or Services). Keep one and link to it from the other.
-7. **Oversized footer wordmark.** Shrink it to a normal heading size.
+7. **Applied 2026-10-23 (P1-033).** **Oversized footer wordmark.** Shrink it to a normal heading size.
 8. **Photo hover zoom.** Subtle, but "hover effect on every image" is another default.
+
+Also applied in P1-033 without removing anything: "Why Americall" now sits on one lighter navy band with hairline rows instead of alternating tinted bands, and on phones the chosen package card eases in when the team size changes.
 
 ## Premium upgrades (beyond cuts)
 
@@ -71,7 +73,7 @@ Ranked by impact. Items 1 and 2 need the owner.
    - Before: "The goal is simple: keep what's working, fix what isn't, and never stop improving." After: cut.
    - Before: "Deep specialization across solar, roofing, HVAC, real estate, and home improvement…" After: "Agents train on your trade before their first call."
 4. **Fewer type sizes per page.** One display size, one heading size, one body size; figures in tables set in tabular numerals.
-5. **FAQ as a hairline accordion** with the heading and the list in the same band (heading left, list right), instead of grey boxes under a separate title band.
+5. **Applied 2026-10-23 (P1-033).** **FAQ as a hairline accordion** with the heading and the list in the same band (heading left, list right), instead of grey boxes under a separate title band.
 
 ## Component library
 

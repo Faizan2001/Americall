@@ -86,24 +86,18 @@ const shortTitles: Record<string, string> = {
 
 	<section class="chapter ground-navy why" id="why-americall" data-tone="dark" aria-labelledby="why-title">
 		<div class="wrap">
-			<h2 class="t-head" id="why-title" data-reveal>Why Americall</h2>
+			<h2 class="t-head" id="why-title">Why Americall</h2>
+			<ul class="why__list" role="list">
+				{
+					whyAmericallCards.map((card) => (
+						<li class="why__row grid-12">
+							<h3 class="t-lead why__q">{card.title}</h3>
+							<p class="t-body why__a">{card.description}</p>
+						</li>
+					))
+				}
+			</ul>
 		</div>
-		<ul class="why__list" role="list">
-			{
-				whyAmericallCards.map((card, i) => (
-					<li class:list={['why__band', i % 2 === 0 && 'why__band--alt']}>
-						<div class="wrap grid-12">
-							<h3 class="t-lead why__q" data-reveal>
-								{card.title}
-							</h3>
-							<p class="t-body why__a" data-reveal style="--reveal-i:1">
-								{card.description}
-							</p>
-						</div>
-					</li>
-				))
-			}
-		</ul>
 	</section>
 
 	<DemoCoupon />
@@ -202,27 +196,23 @@ const shortTitles: Record<string, string> = {
 		max-width: 60ch;
 	}
 
+	/* One lighter navy band with hairline rows, so it still reads apart from the navy demo section below. */
 	.why {
-		padding-bottom: 0;
+		--ground: var(--color-navy-2);
+		--rule: color-mix(in srgb, var(--color-ink-2-dark) 35%, transparent);
 	}
 
 	.why__list {
-		margin: 48px 0 0;
+		margin: 40px 0 0;
 		padding: 0;
 		list-style: none;
+		border-top: 1px solid var(--rule);
 	}
 
-	.why__band {
-		margin-inline: calc(var(--gutter) * -1);
-		padding: 32px var(--gutter);
-	}
-
-	.why__band--alt {
-		background: var(--color-navy-2);
-	}
-
-	.why__band .grid-12 {
+	.why__row {
 		row-gap: 10px;
+		padding-block: 28px;
+		border-bottom: 1px solid var(--rule);
 	}
 
 	.why__q {
@@ -272,8 +262,8 @@ const shortTitles: Record<string, string> = {
 			grid-row: 1;
 		}
 
-		.why__band {
-			padding-block: 56px;
+		.why__row {
+			padding-block: 40px;
 		}
 
 		.why__q {

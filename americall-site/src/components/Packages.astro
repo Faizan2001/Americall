@@ -98,7 +98,7 @@ const defaultIndex = packagePlans.findIndex((plan) => plan.slug === defaultPlan)
 
 		<p class="t-body packages__note">
 			Prefer to pay per appointment? Bulk appointment packages are available too.
-			<a class="link-arrow" href="/contact/?package=pay-per-appointment">Ask about it <span class="arrow" aria-hidden="true">&rarr;</span></a>
+			<a class="text-link" href="/contact/?package=pay-per-appointment">Ask about it</a>
 		</p>
 	</div>
 </section>
@@ -331,10 +331,24 @@ const defaultIndex = packagePlans.findIndex((plan) => plan.slug === defaultPlan)
 		if (!picker) return;
 		picker.hidden = false;
 		document.documentElement.classList.add('has-picker');
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+		let easing: Animation | undefined;
 
-		const select = (slug: string) => {
+		const select = (slug: string, animate = false) => {
 			const index = blocks.findIndex((block) => block.dataset.plan === slug);
 			blocks.forEach((block, i) => (block.hidden = i !== index));
+			// The chosen package eases in so the change is visible; the 1280px+ table has its own colour transition.
+			const shown = blocks[index];
+			if (animate && !reduced.matches && shown?.offsetParent) {
+				easing?.cancel();
+				easing = shown.animate(
+					[
+						{ opacity: 0.4, transform: 'translateY(8px)' },
+						{ opacity: 1, transform: 'none' },
+					],
+					{ duration: 220, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+				);
+			}
 			cells.forEach((cell) => {
 				const selected = Number(cell.dataset.col) === index;
 				cell.classList.toggle('is-selected', selected);
@@ -344,7 +358,7 @@ const defaultIndex = packagePlans.findIndex((plan) => plan.slug === defaultPlan)
 			});
 		};
 
-		picker.addEventListener('change', (event) => select((event.target as HTMLInputElement).value));
+		picker.addEventListener('change', (event) => select((event.target as HTMLInputElement).value, true));
 		const checked = picker.querySelector<HTMLInputElement>('input:checked');
 		if (checked) select(checked.value);
 	});

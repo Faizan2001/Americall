@@ -14,75 +14,64 @@ const Heading = headingLevel;
 const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 ---
 
-<section class="faq" aria-labelledby="faq-title">
-	<div class:list={['chapter', 'ground-soft', 'faq__head', headingLevel === 'h1' && 'faq__head--first']} data-tone="light">
-		<div class="wrap">
-			<Heading class="t-head" id="faq-title" data-reveal>Questions, answered</Heading>
+<section
+	class:list={['chapter', 'ground-white', 'faq', headingLevel === 'h1' && 'faq--first']}
+	data-tone="light"
+	aria-labelledby="faq-title"
+>
+	<div class="wrap faq__inner">
+		<div class="faq__intro">
+			<Heading class="t-head" id="faq-title">Questions, answered</Heading>
+			{showAllLink && <a class="text-link" href="/faq/">All questions</a>}
 		</div>
-	</div>
-
-	<div class="chapter ground-white faq__body" data-tone="light">
-		<div class="wrap">
-			<div class="faq__list" data-faq>
-				{
-					items.map((item, i) => (
-						<details class="qa" id={slugify(item.question)} open={openFirst && i === 0}>
-							<summary class="qa__summary">
-								<QuestionTag class="qa__q t-lead">{item.question}</QuestionTag>
-								<span class="qa__icon" aria-hidden="true" />
-							</summary>
-							<div class="qa__a">
-								<p class="t-body">{item.answer}</p>
-							</div>
-						</details>
-					))
-				}
-			</div>
+		<div class="faq__list" data-faq>
 			{
-				showAllLink && (
-					<a class="link-arrow faq__all" href="/faq/">
-						All questions <span class="arrow" aria-hidden="true">&rarr;</span>
-					</a>
-				)
+				items.map((item, i) => (
+					<details class="qa" id={slugify(item.question)} open={openFirst && i === 0}>
+						<summary class="qa__summary">
+							<QuestionTag class="qa__q t-lead">{item.question}</QuestionTag>
+							<span class="qa__icon" aria-hidden="true" />
+						</summary>
+						<div class="qa__a">
+							<p class="t-body">{item.answer}</p>
+						</div>
+					</details>
+				))
 			}
 		</div>
 	</div>
 </section>
 
 <style>
-	.faq__head {
-		min-height: 22svh;
-		display: flex;
-		align-items: flex-end;
-		padding-bottom: 32px;
+	/* One band: heading beside a hairline list, instead of a title band over grey boxes. */
+	.faq {
+		--rule: color-mix(in srgb, var(--color-navy) 18%, transparent);
 	}
 
-	.faq__head--first {
+	.faq--first {
 		padding-top: var(--pill-clearance);
 	}
 
-	.faq__head .wrap {
-		width: 100%;
+	.faq__inner {
+		display: grid;
+		gap: 32px;
 	}
 
-	.faq__body {
-		padding-top: 40px;
+	.faq__intro {
+		display: grid;
+		align-content: start;
+		justify-items: start;
+		gap: 12px;
 	}
 
 	.faq__list {
-		display: grid;
-		gap: 8px;
-		max-width: 920px;
+		border-top: 1px solid var(--rule);
 	}
 
 	.qa {
-		border-radius: var(--radius);
-		background: var(--color-soft);
-		transition: background-color 200ms ease;
-	}
-
-	.qa[open] {
-		background: #edf1f6;
+		border-bottom: 1px solid var(--rule);
+		/* Deep links (/faq/#question) land below the fixed pill. */
+		scroll-margin-top: var(--pill-clearance);
 	}
 
 	.qa__summary {
@@ -91,8 +80,7 @@ const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 		justify-content: space-between;
 		gap: 20px;
 		min-height: 64px;
-		padding: 16px 20px;
-		border-radius: var(--radius);
+		padding-block: 20px;
 		cursor: pointer;
 		list-style: none;
 		touch-action: manipulation;
@@ -117,8 +105,11 @@ const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 		flex: 0 0 auto;
 		width: 36px;
 		height: 36px;
+		border: 1px solid #798594;
 		border-radius: 50%;
-		background: var(--color-white);
+		transition:
+			background-color 160ms ease,
+			border-color 160ms ease;
 	}
 
 	.qa__icon::before,
@@ -132,7 +123,9 @@ const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 		border-radius: 2px;
 		background: var(--color-navy);
 		transform: translate(-50%, -50%);
-		transition: transform 250ms var(--ease-out);
+		transition:
+			transform 250ms var(--ease-out),
+			background-color 160ms ease;
 	}
 
 	.qa__icon::after {
@@ -144,7 +137,7 @@ const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 	}
 
 	.qa__a {
-		padding: 0 20px 22px;
+		padding-bottom: 24px;
 	}
 
 	.qa__a p {
@@ -171,45 +164,39 @@ const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.qa:not([open]):hover {
-			background: #edf1f6;
+		.qa__summary:hover .qa__icon {
+			border-color: var(--color-navy);
+			background: var(--color-navy);
 		}
-	}
 
-	.faq__all {
-		margin-top: 24px;
+		.qa__summary:hover .qa__icon::before,
+		.qa__summary:hover .qa__icon::after {
+			background: var(--color-white);
+		}
 	}
 
 	@media (min-width: 768px) {
-		.faq__head {
-			min-height: 30svh;
-			padding-bottom: 40px;
-		}
-
-		.faq__body {
-			padding-top: 56px;
-		}
-
 		.qa__summary {
 			min-height: 76px;
-			padding: 20px 28px;
+			padding-block: 24px;
 		}
 
 		.qa__a {
-			padding: 0 28px 28px;
+			padding-bottom: 28px;
 		}
 	}
 
-	/* Line the list up with the right-hand column the service and process sections use, instead of leaving half the row empty.
-	   Only from 1440px: narrower, the offset squeezes each question onto two lines. */
-	@media (min-width: 1440px) {
-		.faq__list {
-			max-width: none;
+	/* Side by side only where the list keeps room for one-line questions. */
+	@media (min-width: 1280px) {
+		.faq__inner {
+			grid-template-columns: 1fr 2fr;
+			gap: 64px;
 		}
 
-		.faq__list,
-		.faq__all {
-			margin-left: calc((100% - 64px) * 0.4 + 64px);
+		.faq__intro {
+			position: sticky;
+			top: var(--pill-clearance);
+			align-self: start;
 		}
 	}
 
