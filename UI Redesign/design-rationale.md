@@ -22,7 +22,7 @@ Sources for the reasoning: `README.md` (plan and owner conflicts C1–C11), `res
 | Section | Why it's there | What reads as generic | Verdict |
 | --- | --- | --- | --- |
 | Glass pill | Your request; keeps "Request a demo" one tap away on every page | A current trend, but deliberate here | Keep |
-| Hero, "Trained calling teams" | States the offer and the trades in one line; the note under the button says what happens next (the Belkins pattern in `research.md`) | Text only, and only about half the first screen tall, so it reads like a header band. Nothing from the calling world is shown | Change (premium item 2) |
+| Hero, "Trained calling teams" | States the offer and the trades in one line; the note under the button says what happens next (the Belkins pattern in `research.md`) | Was text only and about half the first screen tall | **Rebuilt 2026-10-23 (P1-034):** a white "What a hand-off includes" sheet beside the copy (see below) |
 | "Support behind every campaign" | The four real services in plain rows | Fine | Keep |
 | "Calling support for your industry" | Names the trades the way the closest competitors do; real licensed photos | All five trade rows link to the same form | Keep photos; rows are cut 5 |
 | "How it runs" | Answers "what happens after I sign"; the five steps are a real sequence, so numbering them is earned | Fine | Keep |
@@ -37,7 +37,7 @@ Sources for the reasoning: `README.md` (plan and owner conflicts C1–C11), `res
 | Section | Why it's there | What reads as generic | Verdict |
 | --- | --- | --- | --- |
 | "What we do" hero and rooftop photo | You asked for visible real photos here | Fine | Keep |
-| Four service chapters | Long-form detail for each service | Heading swaps sides each band (zig-zag) and the paragraphs are long and em-dash heavy | Keep; copy needs a pass (premium item 3) |
+| Four service chapters | Long-form detail for each service | Were four alternating colour bands with the heading swapping sides (zig-zag) | **Rebuilt 2026-10-23 (P1-035):** one white band, title left and text right, hairlines between. Copy unchanged; it still needs a pass (premium item 3) |
 | "Team sizes" | Same block as Home | Repeats Home word for word | Cut 6 |
 | "Why Americall" | Four selling points | Generic claims ("Quality first", "Industry expertise") that repeat the service chapters above | Cut 4 |
 | Form | Conversion point | Fine | Keep |
@@ -74,6 +74,12 @@ Ranked by impact. Items 1 and 2 need the owner.
    - Before: "Deep specialization across solar, roofing, HVAC, real estate, and home improvement…" After: "Agents train on your trade before their first call."
 4. **Fewer type sizes per page.** One display size, one heading size, one body size; figures in tables set in tabular numerals.
 5. **Applied 2026-10-23 (P1-033).** **FAQ as a hairline accordion** with the heading and the list in the same band (heading left, list right), instead of grey boxes under a separate title band.
+
+## Rebuilt from scratch (2026-10-23)
+
+- **Home hero (P1-034).** The visual is now the deliverable itself: a white sheet titled "What a hand-off includes", with four rows (Booked, Confirmed, Documented, Delivered). Each row restates the existing Discovery, Confirming and Hand-off steps. There are no sample records, names, times, checkmarks or promises. This is new interface text that summarises owner copy, so **the owner should approve its wording**. The headline, lead, button, note and packages link are word for word as before.
+- **Services chapters (P1-035).** The four services sit in one white band of hairline rows instead of four alternating, mirrored colour bands. Section links (`/services/#agent-training` and so on) still work and land below the pill.
+- **Audit (impeccable reference guides; its engine was not run).** Fixed: a hard-coded colour in the FAQ icon (now the `--color-input` token), text selection themed from the brand pair on every surface, and tabular numerals in the package table. Still open: the same scroll entrance on every section (cut 1, your call) and one older hard-coded stripe colour in the package table.
 
 ## Component library
 
