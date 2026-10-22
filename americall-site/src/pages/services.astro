@@ -6,9 +6,6 @@ import { services, whyAmericallCards } from '../data/site';
 import { photoCredits } from '../data/photos';
 const servicePhoto = photoCredits.find((photo) => photo.slug === 'residential-solar')!;
 
-/* Grounds alternate so no two light chapters touch: white, navy, white, navy. */
-const grounds = ['white', 'navy', 'white', 'navy'];
-
 /* Short display headings (full titles break the two-line headline rule). */
 const shortTitles: Record<string, string> = {
 	'dialer-crm': 'Dialers and CRMs',
@@ -60,27 +57,25 @@ const shortTitles: Record<string, string> = {
 		</div>
 	</section>
 
-	{
-		services.map((service, i) => (
-			<section
-				class:list={['chapter', `ground-${grounds[i]}`, 'svc', i % 2 === 1 && 'svc--mirror']}
-				id={service.slug}
-				data-tone={grounds[i] === 'navy' ? 'dark' : 'light'}
-				aria-labelledby={`${service.slug}-title`}
-			>
-				<div class="wrap grid-12 svc__inner">
-					<h2 class="t-head svc__title" id={`${service.slug}-title`} data-reveal>
-						{shortTitles[service.slug] ?? service.title}
-					</h2>
-					<div class="svc__text" data-reveal style="--reveal-i:1">
-						{service.description.split('\n\n').map((paragraph) => (
-							<p class="t-body">{paragraph}</p>
-						))}
-					</div>
-				</div>
-			</section>
-		))
-	}
+	{/* One white band of hairline rows: title left, detail right. Replaces four alternating, mirrored colour bands. */}
+	<section class="chapter ground-white svc-list" data-tone="light" aria-label="Our services">
+		<div class="wrap">
+			{
+				services.map((service) => (
+					<article class="svc grid-12" id={service.slug} aria-labelledby={`${service.slug}-title`}>
+						<h2 class="t-head svc__title" id={`${service.slug}-title`}>
+							{shortTitles[service.slug] ?? service.title}
+						</h2>
+						<div class="svc__text">
+							{service.description.split('\n\n').map((paragraph) => (
+								<p class="t-body">{paragraph}</p>
+							))}
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</section>
 
 	<Packages />
 
@@ -180,8 +175,25 @@ const shortTitles: Record<string, string> = {
 		max-width: 32ch;
 	}
 
-	.svc__inner {
-		row-gap: 28px;
+	.svc-list {
+		--rule: color-mix(in srgb, var(--color-navy) 14%, transparent);
+	}
+
+	.svc {
+		row-gap: 20px;
+		padding-block: 40px;
+		border-top: 1px solid var(--rule);
+		/* In-page links (#agent-training and so on) land below the fixed pill. */
+		scroll-margin-top: var(--pill-clearance);
+	}
+
+	.svc:first-child {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	.svc:last-child {
+		padding-bottom: 0;
 	}
 
 	.svc__title {
@@ -244,22 +256,16 @@ const shortTitles: Record<string, string> = {
 			margin-top: 6svh;
 		}
 
+		.svc {
+			padding-block: 56px;
+		}
+
 		.svc__title {
-			grid-column: 1 / span 6;
+			grid-column: 1 / span 5;
 		}
 
 		.svc__text {
 			grid-column: 7 / span 6;
-		}
-
-		.svc--mirror .svc__title {
-			grid-column: 7 / span 6;
-			grid-row: 1;
-		}
-
-		.svc--mirror .svc__text {
-			grid-column: 1 / span 6;
-			grid-row: 1;
 		}
 
 		.why__row {
