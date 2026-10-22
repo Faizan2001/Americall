@@ -145,6 +145,19 @@ const shortTitles: Record<string, string> = {
 		}
 	}
 
+	/* The hero photo settles once from first paint, so nothing moves after the page is shown. */
+	@media (prefers-reduced-motion: no-preference) {
+		.svc-photo img {
+			animation: photo-settle 1100ms var(--ease-out) backwards;
+		}
+	}
+
+	@keyframes photo-settle {
+		from {
+			transform: scale(1.04);
+		}
+	}
+
 	.svc-hero {
 		min-height: 0;
 		display: flex;

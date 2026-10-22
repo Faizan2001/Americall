@@ -39,3 +39,17 @@ Verified on 2026-10-23 against the local production build:
 - local mobile Lighthouse, 2 runs: Services 97 performance, 100 accessibility, LCP 2.6s (the photo), CLS 0, TBT 0ms. Home 98–99, 100, LCP 2.0s (text). Home's text LCP already carries about 1.6s of simulated render delay, so most of Services' LCP is the shared CSS and font cost, not the photo or the motion.
 
 These are lab results, not field Core Web Vitals. Not tested: real devices and Safari.
+
+### Smoother motion — 2026-10-23 (P1-031)
+
+The owner asked for smoother animations. The FAQ dropdowns and the mobile menu already ease open, so they are unchanged. What's new:
+- Section blocks now enter one after another, 60ms apart (capped at 240ms), using the same 14px, 0.88 → 1 over 650ms. Before, the whole section moved as one block.
+- Below-the-fold photos settle from scale 1.05 to 1 over 900ms inside their clipped frames.
+- The Services hero photo settles from 1.04 to 1 over 1.1s. It is a CSS animation that starts at first paint, so nothing moves after the page is shown, and it fills backwards only, so the hover zoom still eases.
+
+Verified in headless Chrome over DevTools (the app's browser pane was hidden and does not render frames):
+- Home and Services at 1440 and 375px: nothing animates at load, the stagger delays come out as 0/60/120/180/240ms, all animations finish, and there is no overflow.
+- With reduced motion on: 0 animations and no hero settle.
+- Local mobile Lighthouse: Services 97 performance, 100 accessibility, LCP 2.6s; Home 98, 100, LCP 2.0s. CLS 0 and TBT 0ms on both, unchanged.
+
+Not tested: how it feels on real devices and in Safari.
