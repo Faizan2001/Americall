@@ -200,8 +200,9 @@ const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 		}
 	}
 
-	/* Line the list up with the right-hand column the service and process sections use, instead of leaving half the row empty. */
-	@media (min-width: 1024px) {
+	/* Line the list up with the right-hand column the service and process sections use, instead of leaving half the row empty.
+	   Only from 1440px: narrower, the offset squeezes each question onto two lines. */
+	@media (min-width: 1440px) {
 		.faq__list {
 			max-width: none;
 		}
