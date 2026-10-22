@@ -1,5 +1,9 @@
 ---
 import { site } from '../data/site';
+import { Input } from '@/components/starwind/input';
+import { Label } from '@/components/starwind/label';
+import { NativeSelect, NativeSelectOption } from '@/components/starwind/native-select';
+import { Textarea } from '@/components/starwind/textarea';
 
 interface Props {
 	headingLevel?: 'h1' | 'h2';
@@ -13,6 +17,9 @@ const {
 	first = false,
 } = Astro.props;
 const Heading = headingLevel;
+
+/* Shared field look on top of Starwind defaults: white field, brand error state. */
+const control = 'bg-background aria-invalid:border-error aria-invalid:ring-3 aria-invalid:ring-error/20';
 
 const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,000 appointments/mo', '1,000+/mo', 'Not sure yet'];
 ---
@@ -37,47 +44,47 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 					</p>
 					<input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
 					<div class="form__row">
-						<label class="field">
-							<span class="field__label">First name*</span>
-							<input name="firstName" autocomplete="given-name" required />
+						<div class="field">
+							<Label for="demo-first-name" size="sm">First name*</Label>
+							<Input id="demo-first-name" name="firstName" autocomplete="given-name" size="lg" class={control} required />
 							<span class="field__msg" data-msg></span>
-						</label>
-						<label class="field">
-							<span class="field__label">Last name*</span>
-							<input name="lastName" autocomplete="family-name" required />
+						</div>
+						<div class="field">
+							<Label for="demo-last-name" size="sm">Last name*</Label>
+							<Input id="demo-last-name" name="lastName" autocomplete="family-name" size="lg" class={control} required />
 							<span class="field__msg" data-msg></span>
-						</label>
+						</div>
 					</div>
-					<label class="field">
-						<span class="field__label">Designation</span>
-						<input name="designation" autocomplete="organization-title" />
-					</label>
-					<label class="field">
-						<span class="field__label">Company*</span>
-						<input name="company" autocomplete="organization" required />
+					<div class="field">
+						<Label for="demo-designation" size="sm">Designation</Label>
+						<Input id="demo-designation" name="designation" autocomplete="organization-title" size="lg" class={control} />
+					</div>
+					<div class="field">
+						<Label for="demo-company" size="sm">Company*</Label>
+						<Input id="demo-company" name="company" autocomplete="organization" size="lg" class={control} required />
 						<span class="field__msg" data-msg></span>
-					</label>
-					<label class="field">
-						<span class="field__label">Business email*</span>
-						<input type="email" name="email" autocomplete="email" inputmode="email" required />
+					</div>
+					<div class="field">
+						<Label for="demo-email" size="sm">Business email*</Label>
+						<Input id="demo-email" type="email" name="email" autocomplete="email" inputmode="email" size="lg" class={control} required />
 						<span class="field__msg" data-msg></span>
-					</label>
-					<label class="field">
-						<span class="field__label">Contact number*</span>
-						<input type="tel" name="phone" autocomplete="tel" inputmode="tel" required />
+					</div>
+					<div class="field">
+						<Label for="demo-phone" size="sm">Contact number*</Label>
+						<Input id="demo-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" size="lg" class={control} required />
 						<span class="field__msg" data-msg></span>
-					</label>
-					<label class="field">
-						<span class="field__label">Monthly appointment volume</span>
-						<select name="monthlyAppointmentVolume">
-							<option value="">Select appointment volume</option>
-							{volumes.map((v) => <option value={v}>{v}</option>)}
-						</select>
-					</label>
-					<label class="field">
-						<span class="field__label">How can Americall help with your campaign?</span>
-						<textarea name="message" rows="4" data-prefill></textarea>
-					</label>
+					</div>
+					<div class="field">
+						<Label for="demo-volume" size="sm">Monthly appointment volume</Label>
+						<NativeSelect id="demo-volume" name="monthlyAppointmentVolume" size="lg" class={control}>
+							<NativeSelectOption value="">Select appointment volume</NativeSelectOption>
+							{volumes.map((v) => <NativeSelectOption value={v}>{v}</NativeSelectOption>)}
+						</NativeSelect>
+					</div>
+					<div class="field">
+						<Label for="demo-message" size="sm">How can Americall help with your campaign?</Label>
+						<Textarea id="demo-message" name="message" rows="4" size="lg" class={`${control} resize-y`} data-prefill />
+					</div>
 					<button class="btn btn-primary form__submit" type="submit" data-submit>Send request</button>
 				</form>
 
@@ -131,7 +138,7 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 
 	.form {
 		display: grid;
-		gap: 14px;
+		gap: 18px;
 	}
 
 	.form__row {
@@ -144,39 +151,9 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 		gap: 6px;
 	}
 
-	.field__label {
-		font-size: var(--step-small);
-		font-weight: 700;
-	}
-
-	.field input,
-	.field select,
-	.field textarea {
+	/* Starwind wraps the select in a fit-content box; the form wants full-width fields. */
+	.field :global([data-slot='native-select-wrapper']) {
 		width: 100%;
-		min-height: 54px;
-		padding: 14px 16px;
-		border: 1px solid #798594;
-		border-radius: 12px;
-		background: var(--color-soft);
-		color: var(--color-navy);
-		font: inherit;
-		font-size: max(16px, var(--step-body));
-		--focus: var(--color-navy);
-	}
-
-	.field textarea {
-		resize: vertical;
-	}
-
-	.field input:focus-visible,
-	.field select:focus-visible,
-	.field textarea:focus-visible {
-		outline: 3px solid var(--color-navy);
-		outline-offset: 2px;
-	}
-
-	.field [aria-invalid='true'] {
-		border: 2px solid var(--color-red-press);
 	}
 
 	.field__msg {

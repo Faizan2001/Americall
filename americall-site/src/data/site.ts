@@ -169,22 +169,22 @@ export const servicePackages = [
 
 export const whyAmericallCards = [
 	{
-		title: 'Trained Teams',
+		title: 'Trained teams',
 		description:
 			'Every agent goes through a rigorous multi-stage recruitment and training process before handling a single call — ensuring only the most prepared, brand-aligned representatives reach your prospects.',
 	},
 	{
-		title: 'Quality First',
+		title: 'Quality first',
 		description:
 			'Every call is monitored against your exact requirements. Our QA process captures performance data, surfaces coaching opportunities, and feeds directly back to agents — so standards tighten over time, not drift.',
 	},
 	{
-		title: 'Smart Campaign Management',
+		title: 'Smart campaign management',
 		description:
 			'From scrubbed lead lists and connection-optimized DIDs to real-time agent oversight — we manage every layer of your campaign so your pipeline stays full and your team stays focused on closing.',
 	},
 	{
-		title: 'Industry Expertise',
+		title: 'Industry expertise',
 		description:
 			"Deep specialization across solar, roofing, HVAC, real estate, and home improvement means your agents already understand your buyer's language before the first call is made.",
 	},
@@ -193,37 +193,37 @@ export const whyAmericallCards = [
 export const stats = [
 	{
 		value: '100+',
-		label: 'Satisfied Clients Served',
+		label: 'Satisfied clients served',
 		description:
 			'Trusted by clients across the U.S., including solar, roofing, HVAC, and a wide range of home improvement businesses.',
 	},
 	{
 		value: '500+',
-		label: 'Agents Recruited And Trained',
+		label: 'Agents recruited and trained',
 		description:
 			'An in-house team of trained agents supports inbound and outbound calling with sales approaches shaped around each client industry.',
 	},
 	{
 		value: '10,000+',
-		label: 'Hours Logged',
+		label: 'Hours logged',
 		description:
 			'Hours across agents, client managers, operations, quality control, and confirmations teams, all invested in better campaign outcomes.',
 	},
 	{
 		value: '30,000+',
-		label: 'Qualified Appointments Sent',
+		label: 'Qualified appointments sent',
 		description:
 			'Qualified appointments generated for U.S. businesses through trained agents and industry-specific call strategies.',
 	},
 	{
 		value: '12,000+',
-		label: 'Confirmed Customer Sit Ins',
+		label: 'Confirmed customer sit-ins',
 		description:
 			'Confirmed sit-ins with prospects who showed up, listened, and were ready to engage.',
 	},
 	{
 		value: '3,000+',
-		label: 'Sold Deals And Installs',
+		label: 'Sold deals and installs',
 		description:
 			'Appointments moved through to sold deals and installs, connecting calling operations to measurable business outcomes.',
 	},

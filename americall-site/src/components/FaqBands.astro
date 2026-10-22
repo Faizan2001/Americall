@@ -200,6 +200,18 @@ const QuestionTag = headingLevel === 'h1' ? 'h2' : 'h3';
 		}
 	}
 
+	/* Line the list up with the right-hand column the service and process sections use, instead of leaving half the row empty. */
+	@media (min-width: 1024px) {
+		.faq__list {
+			max-width: none;
+		}
+
+		.faq__list,
+		.faq__all {
+			margin-left: calc((100% - 64px) * 0.4 + 64px);
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.qa::details-content {
 			transition: none;

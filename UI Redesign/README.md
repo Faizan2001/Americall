@@ -13,6 +13,7 @@ This folder plans a from-scratch rebuild of the Americall website UI: a new visu
 | --- | --- |
 | `README.md` (this file) | What is decided, what conflicts with existing rules, what needs owner sign-off. |
 | `research.md` | What competitors, biyelo.com and the current site actually do, measured on 2026-10-20. |
+| `design-rationale.md` | Why each section looks the way it does, a numbered cut list and the component library choice (2026-10-23). |
 | `design-system.md` | Tokens (colour, type, space, radius, motion), the glass pill spec, imagery rules, accessibility. |
 | `page-blueprints.md` | Every page and section, desktop and phone, with the real copy. |
 | `build-plan.md` | Ordered build tasks with acceptance checks, fixes carried over, verification, open questions. |

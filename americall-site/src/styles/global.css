@@ -13,6 +13,35 @@
 	--font-sans: "Chivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+/*
+ * Starwind UI bridge. Components in src/components/starwind/ use shadcn-style names;
+ * each one points at a brand token above, so there is still one colour system.
+ * The site has no dark theme, so `dark:` only applies inside an explicit .dark class.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+	--color-background: var(--color-white);
+	--color-foreground: var(--color-navy);
+	--color-primary: var(--color-red);
+	--color-primary-foreground: var(--color-white);
+	--color-muted: var(--color-soft);
+	--color-muted-foreground: var(--color-ink-2-light);
+	--color-input: #798594; /* 3.9:1 on white, so field edges stay visible */
+	--color-outline: var(--color-navy);
+	--color-error: var(--color-red-press);
+	--radius-md: 12px;
+}
+
+/* Starwind fields show focus with their own ring and navy border, so they skip the site-wide outline.
+   A transparent outline stays, which Windows high-contrast mode turns visible. */
+[data-slot='input']:focus-visible,
+[data-slot='textarea']:focus-visible,
+[data-slot='native-select']:focus-visible {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+}
+
 :root {
 	--step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
 	--step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);

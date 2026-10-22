@@ -18,7 +18,7 @@ import { photoCredits } from '../data/photos';
   </div>
   <ul class="industry-links" role="list">
    {industries.map((industry) => (
-    <li><a href={`/contact/?industry=${industry.slug}`}><span>{industry.name}</span><span aria-hidden="true">↗</span></a></li>
+    <li><a href={`/contact/?industry=${industry.slug}`}>{industry.name}</a></li>
    ))}
   </ul>
   <p class="t-small industry-note">Industry photography illustrates the businesses we support.</p>
