@@ -9,9 +9,9 @@ import { photoCredits } from '../data/photos';
    <p class="t-body">Your team handles the sale. We handle the calls, qualification and appointment confirmations that come before it.</p>
   </div>
   <div class="industry-photos">
-   {photoCredits.map((photo) => (
+   {photoCredits.filter((photo) => photo.slug !== 'residential-solar').map((photo) => (
     <figure>
-     <img src={photo.file} srcset={`${photo.file.replace('.webp', '-small.webp')} 640w, ${photo.file} 1200w`} sizes="(min-width: 768px) 48vw, 100vw" alt={photo.alt} width="1200" height="800" loading="lazy" decoding="async" />
+     <div class="media-frame"><img src={photo.file} srcset={`${photo.file.replace('.webp', '-small.webp')} 640w, ${photo.file} 1200w`} sizes="(min-width: 768px) 48vw, 100vw" alt={photo.alt} width="1200" height="800" loading="lazy" decoding="async" /></div>
      <figcaption class="t-small">{photo.caption} <span>Photo by <a href={photo.source}>{photo.author}</a></span></figcaption>
     </figure>
    ))}

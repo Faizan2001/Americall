@@ -37,5 +37,16 @@ export const photoCredits: PhotoCredit[] = [
     "licence": "Pexels License",
     "licenceUrl": "https://www.pexels.com/license/",
     "source": "https://www.pexels.com/photo/brown-and-gray-painted-house-in-front-of-road-1396122/"
+  },
+  {
+    "slug": "residential-solar",
+    "file": "/images/industries/residential-solar.webp",
+    "alt": "Solar panels on suburban rooftops viewed from above",
+    "caption": "Calling support for U.S. home-service businesses",
+    "title": "Residential solar rooftops",
+    "author": "Kelly",
+    "licence": "Pexels License",
+    "licenceUrl": "https://www.pexels.com/license/",
+    "source": "https://www.pexels.com/photo/solar-panels-on-tiled-roofs-of-a-house-8457868/"
   }
 ];

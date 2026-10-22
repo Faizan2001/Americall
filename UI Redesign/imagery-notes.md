@@ -17,3 +17,25 @@ A real close-up of an Americall headset/work surface, photographed in soft dayli
 ## Real photography replacement — 2026-10-21
 
 Owner rejected the generated headset as generic and requested real free pictures. The hero is now text-led with the offer and CTA adjacent. Two real Pexels photos accompany the visible Industries section: Kindel Media's solar installation detail and Binyamin Mellish's U.S. home exterior. Kelly's residential solar aerial is retained in the desktop shortlist as an alternative, avoiding redundant solar images on the page. Originals and license/source notes are in `~/Desktop/Americall Photo Shortlist/`. Credits also appear alongside images and in the footer. Responsive 640/1200px WebPs are lazy-loaded with reserved aspect ratios. No image zoom, carousel or entrance effects. These images represent industries; they are not Americall project or customer evidence.
+
+## Services photo and restrained motion — 2026-10-23
+
+The owner viewed `/services/` and saw no photos, so Kelly's residential solar aerial (Pexels, `pexels-kelly-8457868.jpg`) now sits under the Services hero text and CTA, captioned as an industry photo and credited inline and in the footer. It does not show Americall staff, customers or projects. Files: `residential-solar-small.webp` (640w), `residential-solar.webp` (1200w) and `residential-solar-large.webp` (1800w). A `<picture>` source sends the 1800w file to screens 1024px and wider only, so phones never download it. The crop is 16:7 on desktop and 4:3 on phones.
+
+On the homepage, the Industries photos now come straight after the services overview, before the process section. The process band changed from soft grey to white so that two grey bands never touch.
+
+Motion is restrained, and content never waits for JavaScript:
+- below-the-fold sections ease up 14px from 0.88 opacity over 650ms, once each (Web Animations API plus IntersectionObserver);
+- the first screen and any section already in view at load do not animate, so nothing shifts after first paint;
+- photos zoom to 1.025 and buttons lift 2px on hover, for fine pointers only;
+- pages crossfade over 180ms (native cross-document view transitions; browsers without them just navigate);
+- with reduced motion on, there are no entrances, no zoom and no crossfade, and transitions are near-instant.
+
+Verified on 2026-10-23 against the local production build:
+- desktop 1440 and mobile 375 screenshots of Home and Services: photos load, with no horizontal overflow;
+- hover zoom applied, and entrances fire once per section;
+- the menu (open, Escape, inert page), FAQ, team-size picker, contact required-field validation (not submitted) and 404 all work;
+- reduced motion, forced in headless Chrome: 0 entrance animations across a full scroll, and transitions are about 0;
+- local mobile Lighthouse, 2 runs: Services 97 performance, 100 accessibility, LCP 2.6s (the photo), CLS 0, TBT 0ms. Home 98–99, 100, LCP 2.0s (text). Home's text LCP already carries about 1.6s of simulated render delay, so most of Services' LCP is the shared CSS and font cost, not the photo or the motion.
+
+These are lab results, not field Core Web Vitals. Not tested: real devices and Safari.

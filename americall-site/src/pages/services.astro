@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Packages from '../components/Packages.astro';
 import DemoCoupon from '../components/DemoCoupon.astro';
 import { services, whyAmericallCards } from '../data/site';
+import { photoCredits } from '../data/photos';
+const servicePhoto = photoCredits.find((photo) => photo.slug === 'residential-solar')!;
 
 /* Grounds alternate so no two light chapters touch: white, navy, white, navy. */
 const grounds = ['white', 'navy', 'white', 'navy'];
@@ -30,6 +32,31 @@ const shortTitles: Record<string, string> = {
 				</p>
 				<a class="btn btn-primary" href="/contact/">Request a demo</a>
 			</div>
+			<figure class="svc-photo">
+				<div class="media-frame">
+					<picture>
+						{/* The large file only goes to wide screens, so phones never download it. */}
+						<source
+							media="(min-width: 1024px)"
+							srcset={`${servicePhoto.file} 1200w, ${servicePhoto.file.replace('.webp', '-large.webp')} 1800w`}
+							sizes="(min-width: 1440px) 1376px, 100vw"
+						/>
+						<img
+							src={servicePhoto.file}
+							srcset={`${servicePhoto.file.replace('.webp', '-small.webp')} 640w, ${servicePhoto.file} 1200w`}
+							sizes="100vw"
+							width="1200"
+							height="674"
+							alt={servicePhoto.alt}
+							fetchpriority="high"
+						/>
+					</picture>
+				</div>
+				<figcaption class="t-small">
+					Calling support for solar, roofing, HVAC, real estate and home improvement.
+					<span>Industry photo by <a href={servicePhoto.source}>{servicePhoto.author}</a>.</span>
+				</figcaption>
+			</figure>
 		</div>
 	</section>
 
@@ -83,6 +110,41 @@ const shortTitles: Record<string, string> = {
 </BaseLayout>
 
 <style>
+	.svc-photo {
+		grid-column: 1 / -1;
+		margin: 0;
+	}
+
+	.svc-photo img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 7;
+		object-fit: cover;
+		object-position: 50% 55%;
+	}
+
+	.svc-photo figcaption {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 24px;
+		justify-content: space-between;
+		margin-top: 12px;
+	}
+
+	.svc-photo figcaption span {
+		color: var(--ink-2);
+	}
+
+	.svc-photo a {
+		text-underline-offset: 3px;
+	}
+
+	@media (max-width: 767px) {
+		.svc-photo img {
+			aspect-ratio: 4 / 3;
+		}
+	}
+
 	.svc-hero {
 		min-height: 0;
 		display: flex;

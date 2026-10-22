@@ -342,5 +342,48 @@ h4 {
 	*, *::before, *::after {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation: none !important;
+	}
+
+	.media-frame img {
+		transform: none !important;
+	}
+}
+
+/* Native page crossfade; normal links and scrolling are untouched, unsupported browsers just navigate. */
+@view-transition {
+	navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 180ms;
+}
+
+.media-frame {
+	overflow: hidden;
+	border-radius: 8px;
+}
+
+.media-frame img {
+	transition: transform 700ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+	.media-frame:hover img {
+		transform: scale(1.025);
+	}
+
+	.btn:hover {
+		transform: translateY(-2px);
+	}
+
+	.btn:active {
+		transform: scale(0.97);
 	}
 }

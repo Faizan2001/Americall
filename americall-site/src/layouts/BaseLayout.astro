@@ -61,5 +61,42 @@ const organization = {
 			<slot />
 		</main>
 		<Footer />
+		<script>
+			// Below-the-fold sections ease in once. Nothing is hidden while waiting for JavaScript,
+			// and the first screen is left alone so it never shifts after first paint.
+			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+			if (!reduced.matches && 'IntersectionObserver' in window) {
+				const running = new Set<Animation>();
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+							observer.unobserve(entry.target);
+							const animation = entry.target.animate(
+								[
+									{ transform: 'translateY(14px)', opacity: 0.88 },
+									{ transform: 'none', opacity: 1 },
+								],
+								{ duration: 650, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+							);
+							running.add(animation);
+							animation.onfinish = animation.oncancel = () => running.delete(animation);
+						});
+					},
+					{ threshold: 0.06 },
+				);
+				const sections = document.querySelectorAll('main > section:not(:first-child) > .wrap');
+				// Skip anything already on screen at load (short pages, anchor jumps, restored scroll).
+				sections.forEach((el) => {
+					if (el.getBoundingClientRect().top < window.innerHeight) return;
+					observer.observe(el);
+				});
+				reduced.addEventListener('change', () => {
+					if (!reduced.matches) return;
+					observer.disconnect();
+					running.forEach((animation) => animation.cancel());
+				});
+			}
+		</script>
 	</body>
 </html>
