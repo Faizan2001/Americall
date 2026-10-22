@@ -76,6 +76,17 @@ export const processStages = [
 	},
 ];
 
+/*
+ * Home hero card: what one hand-off includes. Each line restates the Discovery, Confirming and
+ * Hand-off stages above; no new claims, no sample records.
+ */
+export const handoffRows = [
+	{ term: 'Booked', text: 'Against your appointment qualification criteria.' },
+	{ term: 'Confirmed', text: 'Quality assurance checks it, and it is confirmed with the prospect.' },
+	{ term: 'Documented', text: 'Qualification notes and the call recording.' },
+	{ term: 'Delivered', text: 'To your CRM, scheduling system or shared Google Sheet.' },
+];
+
 /* Industries. Healthcare is left out until the owner confirms it (build-plan Q3). */
 export const industries = [
 	{ name: 'Solar', slug: 'solar', phrase: 'solar' },

@@ -7,7 +7,7 @@ import Packages from '../components/Packages.astro';
 import NumbersBoard from '../components/NumbersBoard.astro';
 import FaqBands from '../components/FaqBands.astro';
 import DemoCoupon from '../components/DemoCoupon.astro';
-import { homeFaqIndexes } from '../data/site';
+import { handoffRows, homeFaqIndexes } from '../data/site';
 ---
 
 <BaseLayout
@@ -17,19 +17,30 @@ import { homeFaqIndexes } from '../data/site';
 	<section class="chapter ground-navy hero" data-tone="dark" aria-labelledby="hero-title">
 		<div class="wrap hero__inner">
 			<div class="hero__copy">
-				<h1 class="t-display hero__title" id="hero-title">
-					Trained calling teams
-				</h1>
-				<div class="hero__side">
-					<p class="t-lead">
-						We set and confirm qualified appointments for U.S. solar, roofing, HVAC, real estate and home improvement companies.
-					</p>
-					<div class="hero__actions">
-						<a class="btn btn-primary hero__cta" href="/contact/">Request a demo</a>
-						<p class="t-small ink-2">We'll contact you to set up a short demo call.</p>
-						<a class="text-link" href="#packages">See the packages</a>
-					</div>
+				<h1 class="t-display hero__title" id="hero-title">Trained calling teams</h1>
+				<p class="t-lead hero__lead">
+					We set and confirm qualified appointments for U.S. solar, roofing, HVAC, real estate and home improvement companies.
+				</p>
+				<div class="hero__actions">
+					<a class="btn btn-primary hero__cta" href="/contact/">Request a demo</a>
+					<p class="t-small ink-2">We'll contact you to set up a short demo call.</p>
+					<a class="text-link" href="#packages">See the packages</a>
 				</div>
+			</div>
+
+			{/* The deliverable itself, the most characteristic thing in this business, in place of a stock image. */}
+			<div class="handoff ground-white">
+				<h2 class="handoff__title">What a hand-off includes</h2>
+				<dl class="handoff__rows">
+					{
+						handoffRows.map((row) => (
+							<div>
+								<dt>{row.term}</dt>
+								<dd>{row.text}</dd>
+							</div>
+						))
+					}
+				</dl>
 			</div>
 		</div>
 	</section>
@@ -48,16 +59,103 @@ import { homeFaqIndexes } from '../data/site';
 		padding-top: calc(var(--pill-clearance) + 28px);
 		padding-bottom: 56px;
 	}
-	.hero__inner { display: grid; gap: 36px; align-items: center; }
-	.hero__copy { display: grid; gap: 24px; }
-	.hero__title { max-width: 13ch; font-size: clamp(2.75rem, 5.2vw, 5rem); }
-	.hero__side { display: grid; gap: 24px; }
-	.hero__side .t-lead { max-width: 38ch; }
-	.hero__actions { display: grid; gap: 10px; justify-items: start; }
-	.hero__cta { width: 100%; }
+
+	.hero__inner {
+		display: grid;
+		gap: 40px;
+	}
+
+	.hero__copy {
+		display: grid;
+		align-content: center;
+		gap: 24px;
+	}
+
+	.hero__title {
+		max-width: 12ch;
+		font-size: clamp(2.75rem, 6vw, 6rem);
+	}
+
+	.hero__lead {
+		max-width: 36ch;
+	}
+
+	.hero__actions {
+		display: grid;
+		justify-items: start;
+		gap: 10px;
+	}
+
+	.hero__cta {
+		width: 100%;
+	}
+
+	/* A white sheet on navy: terms in navy, details in grey, hairlines between. No red inside it. */
+	.handoff {
+		--rule: color-mix(in srgb, var(--color-navy) 14%, transparent);
+		padding: 24px;
+		border-radius: var(--radius);
+		background: var(--color-white);
+		color: var(--color-navy);
+		font-size: var(--step-body);
+	}
+
+	.handoff__title {
+		margin: 0 0 12px;
+		font-size: var(--step-lead);
+		font-weight: 700;
+		line-height: 1.2;
+	}
+
+	.handoff__rows {
+		margin: 0;
+	}
+
+	.handoff__rows > div {
+		display: grid;
+		gap: 4px;
+		padding-block: 16px;
+		border-top: 1px solid var(--rule);
+	}
+
+	.handoff__rows > div:last-child {
+		padding-bottom: 0;
+	}
+
+	.handoff dt {
+		font-weight: 700;
+	}
+
+	.handoff dd {
+		margin: 0;
+		color: var(--color-ink-2-light);
+	}
+
 	@media (min-width: 1024px) {
-		.hero { padding-block: calc(var(--pill-clearance) + 48px) 72px; }
-		.hero__copy { grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-		.hero__cta { width: auto; }
+		.hero {
+			padding-block: calc(var(--pill-clearance) + 48px) 80px;
+		}
+
+		.hero__inner {
+			grid-template-columns: 7fr 5fr;
+			align-items: center;
+			gap: 64px;
+		}
+
+		.hero__cta {
+			width: auto;
+		}
+
+		.handoff {
+			padding: 32px;
+		}
+	}
+
+	/* Term beside its detail only where the card is wide enough for both. */
+	@media (min-width: 1280px) {
+		.handoff__rows > div {
+			grid-template-columns: 8.5rem 1fr;
+			gap: 16px;
+		}
 	}
 </style>
