@@ -81,6 +81,16 @@ Ranked by impact. Items 1 and 2 need the owner.
 - **Services chapters (P1-035).** The four services sit in one white band of hairline rows instead of four alternating, mirrored colour bands. Section links (`/services/#agent-training` and so on) still work and land below the pill.
 - **Audit (impeccable reference guides; its engine was not run).** Fixed: a hard-coded colour in the FAQ icon (now the `--color-input` token), text selection themed from the brand pair on every surface, and tabular numerals in the package table. Still open: the same scroll entrance on every section (cut 1, your call) and one older hard-coded stripe colour in the package table.
 
+## Final review before stakeholder preview (2026-10-23, P1-036)
+
+Verdict: the preview is a coherent, credible B2B site. One type family, one hairline language across lists, ledger, FAQ and cards, red kept to buttons, real photos with honest captions, and accessible, responsive behaviour on every page. What still separates it from exceptional is content, not layout:
+
+1. **No real proof yet.** Client logos, verified testimonials or a real call clip would do more than any visual change (owner).
+2. **Copy voice.** The Services and "Why Americall" paragraphs read as generic marketing copy (em dashes, "seamlessly", "rigorous"); see premium item 3 for suggested rewrites (owner).
+3. **The same scroll entrance on every section** (cut 1). Subtle and harmless at this strength, but a generic pattern; your call.
+
+Final layout fixes applied: the contact details band (it was a mostly empty 60svh block), more space under the pill on Contact and FAQ, a footer top hairline, smaller Services titles, and all five trades on one row on desktop.
+
 ## Component library
 
 **Chosen: [Starwind UI](https://starwind.dev)**, which is shadcn/ui's component set rebuilt as native Astro components. MIT licence, about 750 GitHub stars, active (last commit 2026-10-22).

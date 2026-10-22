@@ -43,4 +43,8 @@ import { photoCredits } from '../data/photos';
   .industry-photos { grid-template-columns: 1fr 1fr; gap: 32px; }
   .industry-links { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
  }
+ /* All five trades on one row once there is room, so no row ends with an empty cell. */
+ @media (min-width: 1024px) {
+  .industry-links { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+ }
 </style>

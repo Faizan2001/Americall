@@ -62,7 +62,9 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
+	/* Every page ends on a navy band, so a hairline marks where the footer starts. */
 	.footer {
+		border-top: 1px solid color-mix(in srgb, var(--color-ink-2-dark) 25%, transparent);
 		padding-top: clamp(4rem, 8vw, 8rem);
 		padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
 	}
