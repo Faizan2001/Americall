@@ -1,5 +1,6 @@
 ---
-import { site } from '../data/site';
+import { packagePlans, site } from '../data/site';
+import { TIME_SLOTS, TIME_ZONES } from '../scripts/booking';
 import { Input } from '@/components/starwind/input';
 import { Label } from '@/components/starwind/label';
 import { NativeSelect, NativeSelectOption } from '@/components/starwind/native-select';
@@ -21,6 +22,9 @@ const Heading = headingLevel;
 /* Shared field look on top of Starwind defaults: white field, brand error state. */
 const control = 'bg-background aria-invalid:border-error aria-invalid:ring-3 aria-invalid:ring-error/20';
 
+/* Pricing links (?package=momentum) pre-fill the message with the plan's full name. */
+const planNames = JSON.stringify(Object.fromEntries(packagePlans.map((plan) => [plan.slug, `${plan.name} (${plan.agents} agents)`])));
+
 const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,000 appointments/mo', '1,000+/mo', 'Not sure yet'];
 ---
 
@@ -38,11 +42,12 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 			</div>
 
 			<div class="coupon__right">
-				<form id="demo-form" class="form" novalidate data-demo-form>
+				<form id="demo-form" class="form" novalidate data-demo-form data-plans={planNames}>
 					<p class="form__error t-body" role="alert" tabindex="-1" data-form-error hidden>
 						Something went wrong and your request was not sent. Please try again or email {site.email}.
 					</p>
 					<input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+					<input type="hidden" name="_subject" data-subject />
 					<div class="form__row">
 						<div class="field">
 							<Label for="demo-first-name" size="sm">First name*</Label>
@@ -81,6 +86,41 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 							{volumes.map((v) => <NativeSelectOption value={v}>{v}</NativeSelectOption>)}
 						</NativeSelect>
 					</div>
+					{/* A preference the team confirms, not a live booking. Dates and the time zone are set in the browser. */}
+					<fieldset class="booking" aria-describedby="booking-hint booking-msg" data-booking>
+						<legend class="booking__legend">Preferred demo time*</legend>
+						<p class="booking__hint" id="booking-hint">Pick a weekday and a time that suits you. We'll confirm it with you.</p>
+						<div class="field">
+							<Label for="demo-timezone" size="sm">Your time zone</Label>
+							<NativeSelect id="demo-timezone" name="timeZone" size="lg" class={control} data-timezone>
+								{TIME_ZONES.map((zone) => <NativeSelectOption value={zone.id}>{zone.label}</NativeSelectOption>)}
+							</NativeSelect>
+						</div>
+						<div class="booking__pick">
+							<calendar-date class="booking__calendar" locale="en-US" data-calendar>
+								<svg slot="previous" aria-label="Previous month" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+								<svg slot="next" aria-label="Next month" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+								<span slot="heading" class="booking__month" aria-hidden="true" data-cal-heading></span>
+								<calendar-month></calendar-month>
+							</calendar-date>
+							<fieldset class="booking__slots">
+								<legend class="visually-hidden">Time</legend>
+								{
+									TIME_SLOTS.map((slot) => (
+										<label class="slot">
+											<input type="radio" name="preferredTime" value={slot.value} />
+											<span>{slot.label}</span>
+										</label>
+									))
+								}
+							</fieldset>
+						</div>
+						<input type="hidden" name="preferredDate" data-date />
+						<input type="hidden" name="preferredDemoTime" data-slot-summary />
+						<input type="hidden" name="preferredTimeEastern" data-eastern />
+						<p class="booking__summary" aria-live="polite" data-summary>No date or time picked yet.</p>
+						<span class="field__msg" id="booking-msg" data-booking-msg></span>
+					</fieldset>
 					<div class="field">
 						<Label for="demo-message" size="sm">How can Americall help with your campaign?</Label>
 						<Textarea id="demo-message" name="message" rows="4" size="lg" class={`${control} resize-y`} data-prefill />
@@ -90,7 +130,10 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 
 				<div class="success" tabindex="-1" data-form-success hidden>
 					<p class="t-head">Request sent</p>
-					<p class="t-body">We'll be in touch to set up your demo call.</p>
+					<p class="t-body">We'll be in touch to confirm your demo time.</p>
+					<p class="t-body" data-success-slot hidden></p>
+					<p class="t-body ink-2" data-success-sent hidden></p>
+					<p class="t-body">Need to change something? Email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
 				</div>
 			</div>
 		</div>
@@ -193,6 +236,181 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 		display: none;
 	}
 
+	.success a {
+		font-weight: 700;
+		color: inherit;
+		overflow-wrap: anywhere;
+	}
+
+	/* Preferred demo time */
+	.booking {
+		display: grid;
+		gap: 16px;
+		min-width: 0;
+		margin: 6px 0 0;
+		padding: 0;
+		border: 0;
+		container-type: inline-size;
+	}
+
+	.booking__legend {
+		padding: 0;
+		font-weight: 700;
+	}
+
+	.booking__hint {
+		margin: -8px 0 0;
+		font-size: var(--step-small);
+		color: var(--ink-2);
+	}
+
+	.booking__pick {
+		display: grid;
+		gap: 20px;
+	}
+
+	/* Cally calendar, themed through its parts: navy for the chosen day, a separate ring for keyboard focus. */
+	.booking__calendar {
+		--color-accent: var(--color-navy);
+		--color-text-on-accent: var(--color-white);
+		--day: 2.25rem;
+		justify-self: start;
+		font-size: var(--step-small);
+	}
+
+	.booking__calendar::part(header) {
+		align-items: center;
+	}
+
+	/* One "October 2026" heading between the arrows; the grid's own month label stays for screen readers only. */
+	.booking__month {
+		font-size: var(--step-body);
+		font-weight: 700;
+	}
+
+	.booking__calendar calendar-month::part(heading) {
+		position: absolute;
+		inline-size: 1px;
+		block-size: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	.booking__calendar::part(previous),
+	.booking__calendar::part(next) {
+		display: grid;
+		place-items: center;
+		inline-size: 2.75rem;
+		block-size: 2.75rem;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	.booking__calendar calendar-month::part(button) {
+		inline-size: var(--day);
+		block-size: var(--day);
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	.booking__calendar calendar-month::part(today) {
+		font-weight: 700;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.booking__calendar calendar-month::part(button):focus-visible {
+		outline: 2px solid var(--color-navy);
+		outline-offset: 1px;
+	}
+
+	.booking__calendar calendar-month::part(disallowed) {
+		opacity: 0.35;
+		cursor: not-allowed;
+	}
+
+	.booking__slots {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-content: start;
+		gap: 8px;
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.slot {
+		position: relative;
+	}
+
+	/* The radio stays in the page for keyboards and screen readers; the chip is what people see. */
+	.slot input {
+		position: absolute;
+		inset: 0;
+		margin: 0;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	.slot span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 44px;
+		padding-inline: 4px;
+		border: 1px solid var(--color-input);
+		border-radius: var(--radius-pill);
+		font-size: var(--step-small);
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+		transition:
+			background-color 160ms ease,
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	.slot input:checked + span {
+		border-color: var(--color-navy);
+		background: var(--color-navy);
+		color: var(--color-white);
+	}
+
+	.slot input:focus-visible + span {
+		outline: 3px solid var(--color-navy);
+		outline-offset: 2px;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.slot input:not(:checked):hover + span {
+			border-color: var(--color-navy);
+		}
+	}
+
+	.booking__summary {
+		margin: 0;
+		padding: 12px 16px;
+		border-radius: 12px;
+		background: var(--color-soft);
+		font-weight: 700;
+	}
+
+	@media (min-width: 420px) {
+		.booking__calendar {
+			--day: 2.5rem;
+		}
+	}
+
+	/* Calendar beside the times once the form column is wide enough for both. */
+	@container (min-width: 560px) {
+		.booking__pick {
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: start;
+		}
+	}
+
 	@media (min-width: 600px) {
 		.form__row {
 			grid-template-columns: 1fr 1fr;
@@ -226,21 +444,147 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 </style>
 
 <script>
+	import 'cally';
+	import { bookingRange, describeSlot, detectTimeZone } from '../scripts/booking';
+
+	type CalendarElement = HTMLElement & {
+		value: string;
+		isDateDisallowed: (date: Date) => boolean;
+		focus: () => void;
+	};
+	type SentRequest = { sentAt: string; slot?: string };
+
+	/* One request per browser: after a successful send, every page shows the confirmation instead of the form.
+	   This stops refresh-and-resend in a normal browser; it cannot stop a cleared browser or a direct POST. */
+	const SENT_KEY = 'americall-demo-request';
+	const readSent = (): SentRequest | null => {
+		try {
+			const raw = localStorage.getItem(SENT_KEY);
+			return raw ? (JSON.parse(raw) as SentRequest) : null;
+		} catch {
+			return null;
+		}
+	};
+	const writeSent = (request: SentRequest) => {
+		try {
+			localStorage.setItem(SENT_KEY, JSON.stringify(request));
+		} catch {
+			/* Storage blocked: the send still worked; only the lock is skipped. */
+		}
+	};
+
 	const form = document.querySelector<HTMLFormElement>('[data-demo-form]');
 	const success = document.querySelector<HTMLElement>('[data-form-success]');
 	const errorBox = document.querySelector<HTMLElement>('[data-form-error]');
 	const submit = form?.querySelector<HTMLButtonElement>('[data-submit]');
 	const prefill = form?.querySelector<HTMLTextAreaElement>('[data-prefill]');
 
-	/* Pre-fill from ?package= or ?industry= links. */
-	if (prefill) {
+	const showSent = (request: SentRequest, moveFocus: boolean) => {
+		if (!form || !success) return;
+		form.hidden = true;
+		success.hidden = false;
+		const slot = success.querySelector<HTMLElement>('[data-success-slot]');
+		if (slot && request.slot) {
+			slot.textContent = `Your preferred time: ${request.slot}.`;
+			slot.hidden = false;
+		}
+		const sent = success.querySelector<HTMLElement>('[data-success-sent]');
+		const sentOn = new Date(request.sentAt);
+		if (sent && !Number.isNaN(sentOn.getTime())) {
+			sent.textContent = `Sent on ${sentOn.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`;
+			sent.hidden = false;
+		}
+		if (moveFocus) success.focus();
+	};
+
+	const alreadySent = readSent();
+	if (alreadySent) showSent(alreadySent, false);
+
+	/* Pre-fill from ?package= (pricing buttons) or ?industry= links. */
+	if (form && prefill) {
 		const params = new URLSearchParams(window.location.search);
-		const value = params.get('package') || params.get('industry');
-		if (value && /^[a-z-]{2,40}$/.test(value)) {
-			const label = value.replace(/-/g, ' ');
-			prefill.value = `Interested in: ${label}`;
+		const plan = params.get('package');
+		const industry = params.get('industry');
+		let plans: Record<string, string> = {};
+		try {
+			plans = JSON.parse(form.dataset.plans || '{}');
+		} catch {
+			plans = {};
+		}
+		if (plan && /^[a-z-]{2,40}$/.test(plan)) {
+			prefill.value = `Pricing request: ${plans[plan] ?? plan.replace(/-/g, ' ')}`;
+		} else if (industry && /^[a-z-]{2,40}$/.test(industry)) {
+			prefill.value = `Interested in: ${industry.replace(/-/g, ' ')}`;
 		}
 	}
+
+	/* Preferred demo time */
+	const booking = form?.querySelector<HTMLFieldSetElement>('[data-booking]');
+	const calendar = booking?.querySelector<CalendarElement>('[data-calendar]');
+	const zoneSelect = booking?.querySelector<HTMLSelectElement>('[data-timezone]');
+	const dateField = booking?.querySelector<HTMLInputElement>('[data-date]');
+	const summaryField = booking?.querySelector<HTMLInputElement>('[data-slot-summary]');
+	const easternField = booking?.querySelector<HTMLInputElement>('[data-eastern]');
+	const summary = booking?.querySelector<HTMLElement>('[data-summary]');
+	const bookingMsg = booking?.querySelector<HTMLElement>('[data-booking-msg]');
+	const slots = Array.from(booking?.querySelectorAll<HTMLInputElement>('input[name="preferredTime"]') ?? []);
+	const pickedTime = () => slots.find((slot) => slot.checked)?.value ?? '';
+
+	const updateSlot = () => {
+		if (!dateField || !summaryField || !easternField || !summary || !zoneSelect) return;
+		const date = dateField.value;
+		const time = pickedTime();
+		if (date && time) {
+			const slot = describeSlot(date, time, zoneSelect.value);
+			const eastern = zoneSelect.value === 'America/New_York' ? '' : `, which is ${slot.eastern}`;
+			summary.textContent = `${slot.local}${eastern}.`;
+			summaryField.value = slot.full;
+			easternField.value = slot.eastern;
+			if (bookingMsg) bookingMsg.textContent = '';
+			booking?.removeAttribute('aria-invalid');
+		} else {
+			summary.textContent = date ? 'Now pick a time.' : time ? 'Now pick a date.' : 'No date or time picked yet.';
+			summaryField.value = '';
+			easternField.value = '';
+		}
+	};
+
+	const checkSlot = () => {
+		const date = dateField?.value;
+		const time = pickedTime();
+		if (date && time) return true;
+		if (bookingMsg) bookingMsg.textContent = !date && !time ? 'Please pick a date and a time.' : !date ? 'Please pick a date.' : 'Please pick a time.';
+		booking?.setAttribute('aria-invalid', 'true');
+		return false;
+	};
+
+	if (calendar && dateField) {
+		const range = bookingRange();
+		calendar.setAttribute('min', range.min);
+		calendar.setAttribute('max', range.max);
+		calendar.setAttribute('today', range.today);
+		calendar.setAttribute('focused-date', range.min);
+		const heading = calendar.querySelector<HTMLElement>('[data-cal-heading]');
+		const monthLabel = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+		const showMonth = (date: Date) => {
+			if (heading) heading.textContent = monthLabel.format(date);
+		};
+		const [minYear, minMonth] = range.min.split('-').map(Number);
+		showMonth(new Date(Date.UTC(minYear, minMonth - 1, 1)));
+		/* Cally reports every move (arrows, keyboard, month buttons) as a focused day. */
+		calendar.addEventListener('focusday', (event) => showMonth((event as CustomEvent<Date>).detail));
+		/* Weekdays only. Cally passes dates at midnight UTC. */
+		calendar.isDateDisallowed = (date: Date) => date.getUTCDay() === 0 || date.getUTCDay() === 6;
+		calendar.addEventListener('change', () => {
+			dateField.value = calendar.value;
+			updateSlot();
+		});
+	}
+	if (zoneSelect) {
+		zoneSelect.value = detectTimeZone();
+		zoneSelect.addEventListener('change', updateSlot);
+	}
+	slots.forEach((slot) => slot.addEventListener('change', updateSlot));
 
 	const messages: Record<string, string> = {
 		valueMissing: 'Please fill this in.',
@@ -263,19 +607,33 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 	if (form && success && errorBox && submit) {
 		const required = Array.from(form.querySelectorAll<HTMLInputElement>('input[required]'));
 		required.forEach((input) => input.addEventListener('blur', () => input.value && check(input)));
+		const subject = form.querySelector<HTMLInputElement>('[data-subject]');
+		let sending = false;
 
 		form.addEventListener('submit', async (event) => {
 			event.preventDefault();
+			if (sending || readSent()) return;
 			errorBox.hidden = true;
 			const results = required.map(check);
 			const firstInvalid = required[results.indexOf(false)];
+			const slotPicked = checkSlot();
 			if (firstInvalid) {
 				firstInvalid.focus();
 				return;
 			}
+			if (!slotPicked) {
+				if (!dateField?.value) calendar?.focus();
+				else slots[0]?.focus();
+				return;
+			}
 
+			sending = true;
 			submit.disabled = true;
 			submit.textContent = 'Sending...';
+			if (subject) {
+				const company = form.querySelector<HTMLInputElement>('[name="company"]')?.value.trim();
+				subject.value = `Demo request${company ? ` from ${company}` : ''}`;
+			}
 			try {
 				const response = await fetch('https://formspree.io/f/xbdqyony', {
 					method: 'POST',
@@ -283,14 +641,16 @@ const volumes = ['Under 100 appointments/mo', '100-500 appointments/mo', '500-1,
 					headers: { Accept: 'application/json' },
 				});
 				if (!response.ok) throw new Error('Form submission failed');
-				form.hidden = true;
-				success.hidden = false;
-				success.focus();
+				const sent = { sentAt: new Date().toISOString(), slot: summaryField?.value || undefined };
+				writeSent(sent);
+				showSent(sent, true);
 			} catch {
 				errorBox.hidden = false;
 				errorBox.focus();
 				submit.disabled = false;
 				submit.textContent = 'Send request';
+			} finally {
+				sending = false;
 			}
 		});
 	}
