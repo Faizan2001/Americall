@@ -106,3 +106,17 @@ export const describeSlot = (date: string, time: string, timeZone: string) => {
 	const eastern = `${sameDay ? '' : `${easternDay} `}${easternTime} ET`;
 	return { local, eastern, full: `${withYear} (${eastern})` };
 };
+
+/* One-click "Add to Google Calendar" link for the team: a 30-minute event at the chosen slot. */
+export const googleCalendarLink = (date: string, time: string, timeZone: string, title: string, details: string) => {
+	const start = zonedTimeToUtc(date, time, timeZone);
+	const stamp = (ms: number) => new Date(ms).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+	const params = new URLSearchParams({
+		action: 'TEMPLATE',
+		text: title,
+		dates: `${stamp(start)}/${stamp(start + 30 * 60000)}`,
+		details,
+		ctz: timeZone,
+	});
+	return `https://calendar.google.com/calendar/render?${params.toString()}`;
+};
