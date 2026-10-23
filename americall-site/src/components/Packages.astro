@@ -43,7 +43,7 @@ const defaultIndex = packagePlans.findIndex((plan) => plan.slug === defaultPlan)
 							))}
 						</dl>
 						<a class="btn btn-dark block__cta" href={`/contact/?package=${plan.slug}`}>
-							Ask about {plan.name}
+							Request pricing<span class="visually-hidden"> for {plan.name}</span>
 						</a>
 					</article>
 				))
@@ -86,7 +86,7 @@ const defaultIndex = packagePlans.findIndex((plan) => plan.slug === defaultPlan)
 							packagePlans.map((plan, p) => (
 								<td data-col={p} class:list={[p === defaultIndex && 'is-selected']}>
 									<a class:list={['btn', 'btn-small', p === defaultIndex ? 'btn-primary' : 'btn-dark']} href={`/contact/?package=${plan.slug}`}>
-										Ask about {plan.name}
+										Request pricing<span class="visually-hidden"> for {plan.name}</span>
 									</a>
 								</td>
 							))

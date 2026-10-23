@@ -374,7 +374,6 @@ export const packageRows: { label: string; values: [string, string, string, stri
 	},
 	{ label: 'Campaign manager', values: ['Not included', 'Dedicated', 'Dedicated', 'Dedicated campaign and lead manager'] },
 	{ label: 'Client success manager', values: ['Not included', 'Not included', 'Dedicated', 'Dedicated'] },
-	{ label: 'Price', values: ['Custom quote', 'Custom quote', 'Custom quote', 'Custom quote'] },
 ];
 
 /*
