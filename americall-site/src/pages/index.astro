@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StatementFields from '../components/StatementFields.astro';
+import SitRate from '../components/SitRate.astro';
 import ProcessAccordion from '../components/ProcessAccordion.astro';
 import IndustryLines from '../components/IndustryLines.astro';
 import Packages from '../components/Packages.astro';
@@ -45,6 +46,7 @@ import { handoffRows, homeFaqIndexes } from '../data/site';
 		</div>
 	</section>
 
+	<SitRate />
 	<StatementFields />
 	<IndustryLines />
 	<ProcessAccordion />

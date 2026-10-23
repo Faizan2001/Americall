@@ -1,0 +1,104 @@
+---
+import { stats } from '../data/site';
+
+/*
+ * What sets Americall apart: sit rate and appointment quality (the owner's own positioning).
+ * The proof sentence is the owner's copy from the old site's statistics panel; the numbers come
+ * from `stats`, so they stay in step with the ledger further down. No percentages: the owner has
+ * not published a sit rate.
+ */
+const sits = stats.find((stat) => stat.label === 'Confirmed customer sit-ins')!;
+const appointments = stats.find((stat) => stat.label === 'Qualified appointments sent')!;
+---
+
+<section class="chapter ground-soft sits" data-tone="light" aria-labelledby="sits-title">
+	<div class="wrap">
+		<h2 class="t-head sits__title" id="sits-title">
+			<span class="sits__muted">Most call centers count bookings.</span>
+			<span>We count sits.</span>
+		</h2>
+
+		<div class="sits__body">
+			<div class="sits__copy">
+				<p class="t-lead">Sit rate and appointment quality are what set Americall apart from other call centers.</p>
+				<p class="t-body">
+					Each appointment is qualified against your criteria, checked by quality assurance and confirmed with the prospect
+					before your rep shows up.
+				</p>
+				<a class="text-link" href="#how-it-works">See how it runs</a>
+			</div>
+
+			<div class="sits__proof">
+				<p class="sits__figure">{sits.value}</p>
+				<p class="sits__label">Confirmed sits</p>
+				<p class="t-body sits__note">
+					Out of {appointments.value} qualified appointments, over {sits.value.replace('+', '')} resulted in confirmed sits:
+					prospects who showed up, listened and were ready to engage.
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.sits__title span {
+		display: block;
+	}
+
+	/* The comparison sits a step back so the promise reads first. */
+	.sits__muted {
+		color: var(--ink-2);
+	}
+
+	.sits__body {
+		display: grid;
+		gap: 32px;
+		margin-top: 32px;
+		padding-top: 32px;
+		border-top: 1px solid color-mix(in srgb, var(--color-navy) 14%, transparent);
+	}
+
+	.sits__copy {
+		display: grid;
+		justify-items: start;
+		gap: 16px;
+	}
+
+	.sits__copy p {
+		max-width: 52ch;
+	}
+
+	.sits__proof {
+		display: grid;
+		align-content: start;
+		gap: 8px;
+	}
+
+	.sits__figure {
+		margin: 0;
+		font-size: var(--step-head);
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.sits__label {
+		margin: 0;
+		font-weight: 700;
+	}
+
+	.sits__note {
+		max-width: 44ch;
+		color: var(--ink-2);
+	}
+
+	@media (min-width: 1024px) {
+		.sits__body {
+			grid-template-columns: 1fr 1fr;
+			gap: 64px;
+			margin-top: 40px;
+			padding-top: 40px;
+		}
+	}
+</style>
