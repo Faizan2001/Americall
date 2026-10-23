@@ -1,6 +1,6 @@
 # UI Redesign — Start Here
 
-Status: **built on branch `docs/ui-redesign-plan` for preview (2026-10-20); not live.** Owner approvals below are still open.
+Status: **live on americall.io since 2026-10-23** (released from `docs/ui-redesign-plan` to `main` at the user's request). Owner approvals below are still open; the demo form now also asks for a preferred demo date, time and time zone, beyond the owner's original 8 fields (C7).
 Written: 2026-10-20 by Claude (task P1-026 in `Phase 1/progress.md`, branch `docs/ui-redesign-plan`).
 
 This folder plans a from-scratch rebuild of the Americall website UI: a new visual direction, a glass pill navigation inspired by biyelo.com, and a phone layout designed on its own terms rather than squeezed from desktop.
