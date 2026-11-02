@@ -1,0 +1,5 @@
+# On americall.io, Cloudflare's managed robots.txt adds its crawler rules above this file.
+User-agent: *
+Allow: /
+
+Sitemap: https://americall.io/sitemap-index.xml
